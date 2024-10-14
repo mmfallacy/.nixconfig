@@ -15,6 +15,6 @@
     };
   in
   {
-    nixosConfigurations.vm = import ./hosts/vm/configuration.nix {inherit args;};
+    nixosConfigurations.vm = import ./hosts/vm {inherit args;};
   };
 }
