@@ -2,7 +2,7 @@
 let
   PROGRAM = "grub";
 in {
-  options.modules.${PROGRAM} = { enable = lib.mkEnableOption PROGRAM; };
+  options.modules.${PROGRAM}.enable = lib.mkEnableOption PROGRAM;
 
   config = lib.mkIf config.modules.${PROGRAM}.enable {
     boot.loader.grub.enable = true;

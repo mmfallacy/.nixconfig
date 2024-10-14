@@ -27,25 +27,12 @@
     LC_TIME = "fil_PH";
   };
 
-  # Display Manager (Login)
-  services.xserver.displayManager.gdm.enable = true;
-
-  # Desktop Environment
-  services.xserver.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.xkb = { layout = "us"; variant = ""; };
-
   # System packages
   environment.systemPackages = with pkgs; [
     neovim
     git
     gnupg
   ];
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   system.stateVersion = "24.05";
 

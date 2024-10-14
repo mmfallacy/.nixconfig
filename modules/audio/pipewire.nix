@@ -3,7 +3,7 @@
 let
   PROGRAM = "pipewire";
 in {
-  options.modules.${PROGRAM} = { enable = lib.mkEnableOption PROGRAM; };
+  options.modules.${PROGRAM}.enable = lib.mkEnableOption PROGRAM;
 
   config = lib.mkIf config.modules.${PROGRAM}.enable {
     # Enable sound with pipewire.
