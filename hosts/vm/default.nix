@@ -1,14 +1,17 @@
 {args}:
 let
+  inherit (args) nixpkgs home-manager;
+
   system = "x86_64-linux";
-  pkgs = import args.nixpkgs {
+  pkgs = import nixpkgs {
     inherit system;
     config.allowUnfree = true;
   };
-  lib = args.nixpkgs.lib;
-in lib.nixosSystem {
+
+in nixpkgs.lib.nixosSystem {
   inherit system;
   modules = [
+    home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
     ./configuration.nix
   ];
