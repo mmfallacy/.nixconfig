@@ -1,5 +1,7 @@
 {...}: {
   imports = [
+    ./base.nix
+
     ./audio/pipewire.nix
     ./boot/grub.nix
     ./de/gnome.nix

@@ -31,11 +31,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
-    gnupg
   ];
 
   system.stateVersion = "24.05";
-
-  # Virtualization
-  virtualisation.vmware.guest.enable = true;
 }
