@@ -1,6 +1,8 @@
-{config, R, pkgs, ...} @ inputs: let
+{config, mylib, pkgs, ...} @ inputs: let
+  inherit (mylib) R;
   USERNAME = "mmfallacy";
-in {
+in
+{
   imports = [
     (R "/system")
   ];

@@ -1,6 +1,6 @@
-{args}:
+{...} @ args:
 let
-  inherit (args) nixpkgs home-manager;
+  inherit (args.inputs) nixpkgs home-manager;
 
   system = "x86_64-linux";
   pkgs = import nixpkgs {

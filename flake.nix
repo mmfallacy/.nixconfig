@@ -13,12 +13,8 @@
 
   outputs = { self, ... } @ inputs:
   let
-    # Inject user library code:
-    args = inputs // {
-      # Root path resolver
-      R = import ./lib/relpath.nix self;
-    };
+    mylib = import ./mylib inputs;
   in {
-    nixosConfigurations.vm = import ./hosts/vm {inherit args;};
+    nixosConfigurations.vm = import ./hosts/vm {inherit inputs; inherit mylib;};
   };
 }
