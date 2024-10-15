@@ -1,6 +1,6 @@
 {config, mylib, pkgs, ...} @ inputs: let
-  inherit (mylib) R;
-  USERNAME = "mmfallacy";
+  inherit (mylib) R userFactory;
+  mkUser = userFactory ./users;
 in
 {
   imports = [
@@ -19,22 +19,8 @@ in
         gnupg.enable = true;
     };
 
-    # User
-    users.users.${USERNAME} = {
-      isNormalUser = true;
-      description = "Michael M.";
-      extraGroups = [ "networkmanager" "wheel" ];
-    };
-    networking.hostName = USERNAME;
-
     home-manager.useGlobalPkgs = true;
     home-manager.useUserPackages = true;
     home-manager.extraSpecialArgs = {inherit inputs;};
-    home-manager.users.${USERNAME} = {
-      home.packages = with pkgs; [
-        kitty
-      ];
-      home.stateVersion = "24.05";
-    };
-  };
+  } // mkUser "mmfallacy" "Michael M.";
 }
