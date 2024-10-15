@@ -9,7 +9,7 @@ in {
     # Virtualization
     virtualisation.vmware.guest.enable = true;
 
-    modules = {
+    sysmodules = {
         pipewire.enable = true;
         grub.enable = true;
         gnome.enable = true;

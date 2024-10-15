@@ -3,9 +3,9 @@
 let
   PROGRAM = "gdm";
 in {
-  options.modules.${PROGRAM}.enable = lib.mkEnableOption PROGRAM;
+  options.sysmodules.${PROGRAM}.enable = lib.mkEnableOption PROGRAM;
 
-  config = lib.mkIf config.modules.${PROGRAM}.enable {
+  config = lib.mkIf config.sysmodules.${PROGRAM}.enable {
     # Display Manager (Login)
     services.xserver.displayManager.gdm.enable = true;
   };
