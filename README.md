@@ -7,6 +7,7 @@
 - [youtube:LibrePhoneix/ NixOS Config Guides for NHerds and Other Cool People](https://www.youtube.com/playlist?list=PL_WcXIXdDWWpuypAEKzZF2b5PijTluxRG)
 
 ## Structure:
+> Do note that `R` here is a function defined in `./mylib`. Refer to [mylib documentation](mylib/README.md) for more information.
 - `R "/hosts"`: This directory contains host configurations that declaratively composes sysmodules to bootstrap a system.
 - `R "/hosts/${HOSTNAME}/users"`: For a specific `HOSTNAME`, this contain user configurations. Multiple users can exist for a single hostname.
 - `R "/mylib"`: This directory contains nix functions used as utility functions in this configuration.
