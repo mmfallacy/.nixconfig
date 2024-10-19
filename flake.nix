@@ -14,7 +14,8 @@
   outputs = { self, ... } @ inputs:
   let
     mylib = import ./mylib inputs;
+    mkHost = mylib.mkHost {inherit inputs; inherit mylib;};
   in {
-    nixosConfigurations.vm = import ./hosts/vm {inherit inputs; inherit mylib;};
+    nixosConfigurations.vm = mkHost "vm" "x86_64-linux";
   };
 }
