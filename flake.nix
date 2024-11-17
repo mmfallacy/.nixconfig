@@ -1,33 +1,26 @@
 {
-  description = "NixOS Configuration";
+  description = "A home-manager template providing useful tools & settings for Nix-based development";
 
-  # Flake dependencies.
-  # `nixpkgs` is locked to NixOS Release 24.05.
-  # `nixpkgs-unstable` is locked to NixOS unstable.
-  # `home-manager` is locked to Release 24.05, with its nixpkgs following `nixpkgs`.
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # Principle inputs (updated by `nix run .#update`)
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nix-darwin.url = "github:LnL7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    nixos-unified.url = "github:srid/nixos-unified";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Software inputs
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.inputs.flake-parts.follows = "flake-parts";
   };
 
-  # Flake outputs.
-  # nixosConfigurations.{host} are valid targets for `nixos-rebuild`
-  outputs = { self, ... } @ inputs:
-  let
-    # This set contains utility functions defined in ./mylib.
-    mylib = import ./mylib inputs;
-
-    # Function used to create hosts. mkHost also passes mylib to the host's configuration.nix.
-    mkHost = mylib.mkHost {inherit inputs; inherit mylib;};
-  in {
-
-    # To create a new host, insert a new line containing nixosConfigurations.{hostname} = mkHost "${hostname}" {system};
-    # e.g. nixosConfigurations.host = mkHost "host" "x86_64-linux";
-    nixosConfigurations.vm = mkHost "vm" "x86_64-linux";
-  };
+  # Wired using https://nixos-unified.org/autowiring.html
+  outputs = inputs:
+    inputs.nixos-unified.lib.mkFlake
+      { inherit inputs; root = ./.; };
 }
