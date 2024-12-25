@@ -1,3 +1,0 @@
-pinned:
-  path:
-    "${pinned}/${path}"

@@ -3,7 +3,7 @@
 {
   # Clear default packages not necessary for running Nix
   # environment.defaultPackages ships with packages by default hence the need to override them.
-  environment.defaultPackages = [];
+  environment.defaultPackages = lib.mkForce [];
 
   # Nix flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -27,12 +27,22 @@
     LC_TIME = "fil_PH";
   };
 
+  # Display Manager (Login)
+  services.xserver.displayManager.gdm.enable = true;
+
+  # Desktop Environment
+  services.xserver.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.xkb = { layout = "us"; variant = ""; };
+
   # System packages
   environment.systemPackages = with pkgs; [
     neovim
     git
-    just
   ];
 
   system.stateVersion = "24.05";
+
+  # Virtualization
+  virtualization.vmware.guest.enable = true;
 }

@@ -1,26 +1,15 @@
-{config, mylib, pkgs, ...} @ inputs: let
-  inherit (mylib) R userFactory;
-  mkUser = userFactory ./users;
-in
+{self, config, pkgs, ... }:
+
 {
   imports = [
-    (R "/system")
+    ../../modules/system/base.nix
+    ../../modules/system/grub.nix
+    ../../modules/system/pipewire.nix
+    ./hardware-configuration.nix
+    ./user.nix
   ];
 
-  config = {
-    # Virtualization
-    virtualisation.vmware.guest.enable = true;
+  config.modules.grub.enable = true;
+  config.modules.pipewire.enable = true;
 
-    sysmodules = {
-        pipewire.enable = true;
-        grub.enable = true;
-        gnome.enable = true;
-        gdm.enable = true;
-        gnupg.enable = true;
-    };
-
-    home-manager.useGlobalPkgs = true;
-    home-manager.useUserPackages = true;
-    home-manager.extraSpecialArgs = {inherit inputs;};
-  } // mkUser "mmfallacy" "Michael M.";
 }

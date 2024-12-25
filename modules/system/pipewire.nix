@@ -3,9 +3,9 @@
 let
   PROGRAM = "pipewire";
 in {
-  options.sysmodules.${PROGRAM}.enable = lib.mkEnableOption PROGRAM;
+  options.modules.${PROGRAM} = { enable = lib.mkEnableOption PROGRAM; };
 
-  config = lib.mkIf config.sysmodules.${PROGRAM}.enable {
+  config = lib.mkIf config.modules.${PROGRAM}.enable {
     # Enable sound with pipewire.
     hardware.pulseaudio.enable = false;
     security.rtkit.enable = true;
