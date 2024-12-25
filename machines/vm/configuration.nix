@@ -14,4 +14,12 @@ in {
 
   time.timeZone = "Asia/Manila";
   virtualisation.vmware.guest.enable = true;
+
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+
+  home-manager.users.mmfallacy = {
+    home.packages = with pkgs; [ cowsay ];
+    home.stateVersion = "24.05";
+  };
 }
