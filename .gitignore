@@ -1,0 +1,2 @@
+# Ignore `home-manager build` result symlink.
+result
