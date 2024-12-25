@@ -5,8 +5,13 @@ in {
     modules.system.base
     modules.system.audio.pipewire
     modules.system.boot.grub
+    modules.system.locales.en_PH
+    modules.system.login.gdm
+    modules.system.wm.gnome
     ./hardware-configuration.nix
     ./user.nix
   ];
 
+  time.timeZone = "Asia/Manila";
+  virtualisation.vmware.guest.enable = true;
 }
