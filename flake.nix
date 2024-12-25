@@ -24,5 +24,10 @@
         ./machines/vm/configuration.nix
       ];
     };
+
+    homeConfigurations.mmfallacy = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [./profiles/mmfallacy.nix];
+    };
   };
 }
