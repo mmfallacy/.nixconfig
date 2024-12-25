@@ -1,0 +1,3 @@
+{ ... } : {
+  mmfallacy = ./mmfallacy.nix;
+}
