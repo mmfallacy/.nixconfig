@@ -39,13 +39,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
-    gnupg
   ];
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   system.stateVersion = "24.05";
 

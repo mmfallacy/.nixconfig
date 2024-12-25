@@ -17,7 +17,7 @@
   in {
     nixosConfigurations.vm = lib.nixosSystem {
       inherit system;
-      modules = [./hosts/vm/configuration.nix];
+      modules = [./profiles/vm/configuration.nix];
     };
   };
 }
