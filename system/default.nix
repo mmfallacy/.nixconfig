@@ -1,5 +1,5 @@
 { ... } : {
-  pipewire = ./pipewire.nix;
-  grub = ./grub.nix;
+  audio.pipewire = ./audio/pipewire.nix;
+  boot.grub = ./boot/grub.nix;
   base = ./base.nix;
 }

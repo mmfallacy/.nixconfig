@@ -3,13 +3,10 @@ inputs @ {self, config, pkgs, ... }: let
 in {
   imports = [
     modules.system.base
-    modules.system.pipewire
-    modules.system.grub
+    modules.system.audio.pipewire
+    modules.system.boot.grub
     ./hardware-configuration.nix
     ./user.nix
   ];
-
-  config.modules.grub.enable = true;
-  config.modules.pipewire.enable = true;
 
 }
