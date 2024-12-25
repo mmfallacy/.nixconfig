@@ -15,7 +15,7 @@
     };
     lib = nixpkgs.lib;
   in {
-    nixosConfigurations.vm = lib.nixosSystem {
+    nixosConfigurations.vm = lib.nixosSystem rec {
       inherit system;
       modules = [./profiles/vm/configuration.nix];
     };

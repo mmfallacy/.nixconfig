@@ -1,10 +1,10 @@
-{self, config, pkgs, ... }:
-
-{
+inputs @ {self, config, pkgs, ... }: let
+  modules.system = import ../../system inputs;
+in {
   imports = [
-    ../../modules/system/base.nix
-    ../../modules/system/grub.nix
-    ../../modules/system/pipewire.nix
+    modules.system.base
+    modules.system.pipewire
+    modules.system.grub
     ./hardware-configuration.nix
     ./user.nix
   ];
