@@ -16,6 +16,7 @@
       config.allowUnfree = true;
     };
     lib = nixpkgs.lib;
+    profiles = import ./profiles inputs;
   in {
     nixosConfigurations.vm = lib.nixosSystem rec {
       inherit system;
@@ -27,7 +28,7 @@
 
     homeConfigurations.mmfallacy = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [./profiles/mmfallacy.nix];
+      modules = [ profiles.mmfallacy.home ];
     };
   };
 }

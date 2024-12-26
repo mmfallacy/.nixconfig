@@ -1,5 +1,6 @@
 { pkgs , ... } : let
-  username = "mmfallacy";
+  const = import ./const.nix;
+  inherit (const) username;
 in {
   home.username = username;
   home.homeDirectory = "/home/" + username;
