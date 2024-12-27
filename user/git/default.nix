@@ -1,5 +1,9 @@
-{ const, ... } : {
-  programs.git.enable = true;
+{ const , pkgs , ... } : {
+  home.packages = with pkgs; [ git ];
+  programs.git = {
+    enable = true;
 
-  programs.git.username = const.username;
+    userName = const.username;
+    userEmail = const.email;
+  };
 }
