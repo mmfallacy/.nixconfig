@@ -1,7 +1,5 @@
 inputs @ {self, config, pkgs, ... }: let
   modules.system = import ../../system inputs;
-  profiles = import ../../profiles inputs;
-
 in {
   imports = [
     modules.system.base
@@ -11,8 +9,7 @@ in {
     modules.system.login.gdm
     modules.system.wm.gnome
     ./hardware-configuration.nix
-
-    profiles.mmfallacy.nixos
+    ./user.nix
   ];
 
   time.timeZone = "Asia/Manila";
