@@ -1,4 +1,4 @@
 { ... } : {
-  mmfallacy.nixos = ./mmfallacy/nixos.nix;
-  mmfallacy.home = ./mmfallacy/home.nix;
+  mmfallacy.const = import ./mmfallacy/const.nix;
+  mmfallacy.homeConfig = import ./mmfallacy/home.nix;
 }
