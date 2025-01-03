@@ -10,5 +10,9 @@
     signing.signByDefault = true;
     extraConfig.gpg.format = "ssh";
 
+    extraConfig.init.defaultBranch = "main";
+
+    aliases = import ./aliases.nix;
+
   };
 }
