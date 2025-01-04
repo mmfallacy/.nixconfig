@@ -23,6 +23,7 @@ in {
     isNormalUser = true;
     description = name;
     extraGroups = [ "networkmanager" "wheel" ];
+    useDefaultShell = true;
   };
 
   home-manager.useGlobalPkgs = true;
