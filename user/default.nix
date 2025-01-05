@@ -1,4 +1,7 @@
 { ... } : {
   git = ./git;
-  zsh = ./shell/zsh.nix;
+  shell = {
+    zsh = ./shell/zsh.nix;
+    starship = ./shell/starship.nix;
+  };
 }
