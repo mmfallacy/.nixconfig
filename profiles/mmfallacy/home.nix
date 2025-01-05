@@ -7,6 +7,7 @@ in {
 
   imports = [
     modules.user.git
+    modules.user.zsh
   ];
 
   home.username = username;
