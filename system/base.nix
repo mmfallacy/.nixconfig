@@ -16,6 +16,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     git
+    home-manager
   ];
 
   programs.zsh.enable = true;
