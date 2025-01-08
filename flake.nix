@@ -28,7 +28,7 @@
 
     homeConfigurations.mmfallacy = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [ profiles.mmfallacy.home ];
+      modules = [ profiles.mmfallacy.homeConfig ];
     };
   };
 }
