@@ -19,6 +19,11 @@
     home-manager
   ];
 
+  # Set Environment Variable
+  environment.sessionVariables = {
+    IS_NIXOS = 1;
+  };
+
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
