@@ -9,6 +9,7 @@ in {
     modules.user.git
     modules.user.shell.zsh
     modules.user.shell.starship
+    modules.user.neovim
   ];
 
   home.username = username;
