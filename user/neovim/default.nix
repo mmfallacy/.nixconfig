@@ -24,8 +24,10 @@ in {
 
       opts.install = { missing = false }
 
+      require("custom.options")
+      require("custom.keybinds")
       require("lazy").setup(
-        { import = "plugins" },
+        { import = "custom.plugins" },
         opts
       )
     '';
