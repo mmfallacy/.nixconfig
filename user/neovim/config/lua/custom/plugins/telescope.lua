@@ -7,6 +7,8 @@ local M = {
   }
 }
 
+local DOTFILES_PATH = vim.env.DOTFILES_PATH or (vim.env.HOME .. '.dotfiles')
+
 function M.config()
     require("telescope").setup {
         defaults = {
@@ -55,7 +57,7 @@ M.keys = {
     {
         "<leader>f,",
         function()
-            require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" }
+            require("telescope.builtin").find_files { cwd = DOTFILES_PATH  }
         end,
     },
     {
