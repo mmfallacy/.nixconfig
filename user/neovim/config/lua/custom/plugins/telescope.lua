@@ -14,7 +14,16 @@ function M.config()
         defaults = {
             path_display = { 'filename_first' , 'truncate' },
             -- Use ripgrep
-            vimgrep_arguments = { 'rg' },
+            vimgrep_arguments = {
+              'rg',
+              '--color=never',  -- Suppress color output
+              '--no-heading',
+              '--with-filename', -- required
+              '--line-number', -- required
+              '--column', -- required
+              '--smart-case',
+              '--trim', -- Remove the whitespaces at the start of every line match
+            },
             mappings = {
               i = {
                 -- Since telescope starts in Insert mode, you normally need to press Esc twice to close.
