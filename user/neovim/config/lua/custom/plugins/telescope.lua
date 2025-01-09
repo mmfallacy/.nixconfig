@@ -82,7 +82,12 @@ M.keys = {
             require("telescope.builtin").buffers()
         end,
     },
-    { "<leader>fc", "<CMD>TodoTelescope<CR>" },
+    {
+      "<leader>fh",
+      function()
+            require("telescope.builtin").help_tags()
+      end,
+    },
 }
 
 return M
