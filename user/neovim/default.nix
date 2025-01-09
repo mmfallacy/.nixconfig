@@ -5,9 +5,16 @@
   # Compute lazypath.
   lazypath = import ./lazy.nix { inherit lib pkgs; };
 in {
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+
+    extraPackages = with pkgs; [
+      # Required by telescope
+      ripgrep
+      fd
+    ];
 
     # Create a nix-compatible entry point.
     extraLuaConfig = ''
