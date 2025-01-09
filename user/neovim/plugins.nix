@@ -10,5 +10,6 @@ vimPlugins : with vimPlugins; [
   # telescope.nvim and extensions
   telescope-nvim
   telescope-ui-select-nvim
+  telescope-fzf-native-nvim
 
 ]
