@@ -1,40 +1,43 @@
+# This neovim user module is loosely based on https://github.com/LazyVim/LazyVim/discussions/1972.
 { config, pkgs, const, lib, ... } : let
   dotfiles = "${config.home.homeDirectory}/${const.dotfiles}";
 
-  # Based from https://github.com/LazyVim/LazyVim/discussions/1972
-  mkEntryFromDrv = drv:
-    if lib.isDerivation drv then { name = "${lib.getName drv}"; path = drv; }
-    else drv;
-
-  lazy = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
-
-  plugins = with pkgs.vimPlugins; [
-    lazy-nvim
-    { name = "mini.pairs"; path = mini-nvim; }
-  ];
+  # Compute lazypath.
+  lazypath = import ./lazy.nix { inherit lib pkgs; };
 in {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+
+    # Create a nix-compatible entry point.
     extraLuaConfig = ''
-      vim.opt.rtp:prepend("${lazy}/lazy.nvim")
+      vim.opt.rtp:prepend("${lazypath}/lazy.nvim")
+
+      local opts = {}
+
+      -- Make plugin installation handled by nix.
+      opts.dev = {
+        path = "${lazypath}",
+        -- Match all. This ensures all plugins are sourced from opts.dev.path.
+        patterns = { "" },
+      }
+
+      opts.install = { missing = false }
 
       require("lazy").setup(
         { import = "plugins" },
-        {
-          dev = {
-            path = "${lazy}",
-            patterns = { "" },
-            fallback = false,
-          },
-          install = { missing = false },
-        }
+        opts
       )
     '';
   };
 
 
 
+  # Symlink the configuration folder, excluding init.lua
   xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/user/neovim/config/lua";
-  xdg.configFile."nvim/lazypath".text = "${lazy}";
+  # Symlink lazypath to $XDG_DATA_HOME/nvim/lazy recursively to mimic a normal lazy installation
+  xdg.dataFile."nvim/lazy".source = lazypath;
+  xdg.dataFile."nvim/lazy".recursive = true;
+  # Symlink lazypath to $XDG_DATA_HOME/nvim/lazy-plugins for debugging purposes;
+  xdg.dataFile."nvim/lazy-plugins".source = lazypath;
 }
