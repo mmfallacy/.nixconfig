@@ -10,12 +10,21 @@ local M = {
 function M.config()
     require("telescope").setup {
         defaults = {
-            path_display = {'filename_first', 'truncate'},
-            file_ignore_patterns = { "node_modules/", ".git/", ".svelte-kit/" },
-            vimgrep_arguments = { 'rg' }
+            path_display = { 'filename_first' , 'truncate' },
+            -- Use ripgrep
+            vimgrep_arguments = { 'rg' },
+            mappings = {
+              i = {
+                -- Since telescope starts in Insert mode, you normally need to press Esc twice to close.
+                -- Closes telescope on one escape keypress.
+                [ '<Esc>' ] = require('telescope.actions').close
+              }
+            }
         },
         pickers = {
           find_files = {
+            -- Use fd for finding files
+            -- --strip-cwd-prefix so all paths are relative to neovim's cwd.
             find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix'}
           }
         }
