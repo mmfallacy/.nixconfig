@@ -41,12 +41,11 @@ function M.setup(_spec, _opts)
   local spec = vim.list_extend(M.spec, _spec or {})
   local opts = vim.tbl_deep_extend('force', M.opts, _opts or {})
 
-  -- Set options, keybinds, commands prior to setting up lazy.nvim
+  -- Set options for the leader keys, then set up lazy, then set up keybinds and commands
   require("custom.options")
+  require("lazy").setup(spec, opts)
   require("custom.keybinds")
   require("custom.commands")
-
-  require("lazy").setup(spec, opts)
 end
 
 return M
