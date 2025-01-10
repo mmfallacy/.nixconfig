@@ -24,7 +24,5 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("custom.options")
-require("custom.keybinds")
-require("lazy").setup({ import = "custom.plugins" })
+require("custom.lazy").setup()
 
