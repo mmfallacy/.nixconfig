@@ -9,6 +9,12 @@ local M = {
 
 local DOTFILES_PATH = vim.env.DOTFILES_PATH or (vim.env.HOME .. '.dotfiles')
 
+-- Use fd for finding files. The following function composes a table for find_command.
+-- --strip-cwd-prefix so all paths are relative to neovim's cwd.
+local function fd(...)
+	return { 'fd', '--strip-cwd-prefix', '--color', 'never', ... }
+end
+
 function M.config()
     require("telescope").setup {
         defaults = {
@@ -33,10 +39,9 @@ function M.config()
             }
         },
         pickers = {
+			-- Default
           find_files = {
-            -- Use fd for finding files
-            -- --strip-cwd-prefix so all paths are relative to neovim's cwd.
-            find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix'}
+			find_command = fd { '--type', 'f' }
           }
         },
     }
@@ -60,6 +65,15 @@ M.keys = {
     },
     {
         "<leader>fp",
+        function()
+            require("telescope.builtin").find_files({
+				-- Remove --type f as arguments to allow telescope to call oil.nvim on directory select
+				find_command = fd { }
+			})
+        end,
+    },
+    {
+        "<leader>ff",
         function()
             require("telescope.builtin").find_files()
         end,
