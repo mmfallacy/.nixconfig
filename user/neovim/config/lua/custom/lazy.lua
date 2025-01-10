@@ -8,21 +8,27 @@ M.opts = {
   defaults = {
     lazy = true,
   },
-  -- Based on https://github.com/BastiDood/neovim-rc
   change_detection = {
     enabled = false,
   },
   performance = {
     rtp = {
       disabled_plugins = {
-        'gzip',
-        'tarPlugin',
-        'zipPlugin',
-        'tohtml',
-        'tutor',
-        'shada',
-        'spellfile',
-        'rplugin'
+        -- From :Lazy profile
+        "editorconfig",
+        "gzip",
+        "man",
+        -- "matchit",
+        -- "matchparen",
+        "netrwPlugin",
+        "osc52",
+        "rplugin",
+        "shada",
+        "spellfile",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
       },
     }
   }
