@@ -12,4 +12,7 @@ vimPlugins : with vimPlugins; [
   telescope-ui-select-nvim
   telescope-fzf-native-nvim
 
+  # treesitter
+  nvim-treesitter
+  # NOTE: Parsers are handled by ./treesiter.nix.
 ]
