@@ -4,7 +4,7 @@ local M = {
   opts = {}
 }
 
-M.opts.ensure_installed = {
+local ensure_installed = {
   -- Based on LazyVim's default ensure_installed.
   "bash",
   "c",
@@ -34,4 +34,14 @@ M.opts.ensure_installed = {
   "nix",
 }
 
-return {}
+function M.config(_,opts)
+  require("nvim-treesitter.configs").setup(opts)
+
+  local parsers = require("nvim-treesitter.info").installed_parsers()
+  vim.print(parsers)
+
+end
+
+
+return M
+

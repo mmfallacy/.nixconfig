@@ -44,13 +44,11 @@ in {
         { import = "custom.plugins" },
         {
           'nvim-treesitter/nvim-treesitter',
+          optional = true,
           opts = {
-            ensure_installed = {},
+			      ensure_installed = {},
             parser_install_dir = "${parserpath}"
           },
-          config = function(_, opts)
-            require("nvim-treesitter.configs").setup(opts)
-          end
         },
       }
 
