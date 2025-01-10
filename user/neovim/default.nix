@@ -22,26 +22,32 @@ in {
     extraLuaConfig = ''
       vim.opt.rtp:prepend("${lazypath}/lazy.nvim")
 
-      local opts = {}
-
-      -- Make plugin installation handled by nix.
-      opts.dev = {
-        path = "${lazypath}",
-        -- Match all. This ensures all plugins are sourced from opts.dev.path.
-        patterns = { "" },
-      }
-
-      opts.install = { missing = false }
-
-      opts.performance = {}
-      opts.performance.rtp = {
-        paths = {
-          "${parserpath}"
+      -- This contains the overrides for opts to make lazy.nvim work with nix
+      local opts = {
+        dev = {
+          -- Handle plugin installation from nix, point lazy to lazy-plugins linkfarm
+          path = "${lazypath}",
+          -- Match all plugins for local lazy-plugins sourcing
+          patterns = { "" },
+          -- Do not fallback to git as the linkfarm is readonly (location inside /nix/store )
+          fallback = false,
+        },
+        install = {
+          -- Disable installation of missing plugins (probably a redundancy as opts.dev.fallback is already false)
+          missing = false,
+        },
+        performance = {
+          rtp = {
+            -- Include nvim-treesitter-grammars to runtimepath which is required to set parser_install_dir
+            paths = {
+              "${parserpath}"
+            }
+          }
         }
       }
 
+      -- This contains the overrides for spec to make lazy.nvim work with nix.
       local spec = {
-        { import = "custom.plugins" },
         {
           'nvim-treesitter/nvim-treesitter',
           optional = true,
@@ -52,9 +58,8 @@ in {
         },
       }
 
-      require("custom.options")
-      require("custom.keybinds")
-      require("lazy").setup(spec, opts)
+      -- Set lazy.nvim up using custom wrapper
+      require("custom.lazy").setup(spec , opts)
     '';
   };
 
