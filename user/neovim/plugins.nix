@@ -4,6 +4,9 @@ vimPlugins : with vimPlugins; [
   # Common Dependencies
   plenary-nvim
 
+  # Plugins
+  oil-nvim
+
   # mini.nvim
   { name = "mini.pairs"; path = mini-nvim; }
 
