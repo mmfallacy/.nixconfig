@@ -15,7 +15,7 @@ M.opts = {
     rtp = {
       disabled_plugins = {
         -- From :Lazy profile
-        "editorconfig",
+        -- "editorconfig",
         "gzip",
         "man",
         -- "matchit",
