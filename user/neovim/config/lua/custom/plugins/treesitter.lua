@@ -1,7 +1,32 @@
 local M = {
   'nvim-treesitter/nvim-treesitter',
-  event = { "BufReadPost" , "BufNewFile" },
+  dependencies = { 'nvim-treesitter/nvim-treesitter-context' }
+}
+
+local N = {
+  'nvim-treesitter/nvim-treesitter-context',
   opts = {}
+}
+
+M.keys = {
+  { 'c[', function() require('treesitter-context').go_to_context() end },
+}
+
+M.event = { "BufReadPost" , "BufNewFile" }
+
+M.opts = {
+  indent = {
+    enable = true ,
+  },
+
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+
+  context_commentstring = {
+    enable = true,
+  }
 }
 
 local ensure_installed = {
@@ -50,5 +75,9 @@ function M.config(_,opts)
 end
 
 
-return M
+return {
+  N,
+  M
+}
+
 

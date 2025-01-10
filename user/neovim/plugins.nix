@@ -14,5 +14,6 @@ vimPlugins : with vimPlugins; [
 
   # treesitter
   nvim-treesitter
+  nvim-treesitter-context
   # NOTE: Parsers are handled by ./treesiter.nix.
 ]
