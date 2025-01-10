@@ -34,12 +34,19 @@ local ensure_installed = {
   "nix",
 }
 
+-- This function checks if ensure_installed matches the available parsers. If not, it warns the user.
+local function check_parsers()
+  local utils = require("nvim-treesitter.utils")
+  local parsers = require("nvim-treesitter.info").installed_parsers()
+  local diff = utils.difference(ensure_installed, parsers)
+  if #diff > 0 then
+    vim.notify_once("plugins/treesitter.lua: ensured_installed parsers not met. " .. vim.inspect(diff) .. " are missing!", vim.log.levels.WARN)
+  end
+end
+
 function M.config(_,opts)
   require("nvim-treesitter.configs").setup(opts)
-
-  local parsers = require("nvim-treesitter.info").installed_parsers()
-  vim.print(parsers)
-
+  check_parsers()
 end
 
 
