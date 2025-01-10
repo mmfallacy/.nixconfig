@@ -1,7 +1,7 @@
 inputs @ {self, config, pkgs, ... }: let
   modules.system = import ../../system inputs;
 
-  profiles = import ../../profiles inputs;
+  profiles = import ../../profiles;
   inherit (profiles) mmfallacy;
   inherit (mmfallacy.const) username name;
 in {
