@@ -13,6 +13,8 @@ in {
     defaultEditor = true;
 
     extraPackages = with pkgs; [
+	  # Clipboard provider for Neovim
+	  xclip
       # Required by telescope
       ripgrep
       fd
