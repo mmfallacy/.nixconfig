@@ -20,6 +20,7 @@
     nixosConfigurations.vm = nixpkgs.lib.nixosSystem rec {
       inherit system;
       modules = [
+        inputs.stylix.nixosModules.stylix
         home-manager.nixosModules.home-manager
         ./machines/vm/configuration.nix
       ];
@@ -29,18 +30,27 @@
     # Set up homeConfigurations (profiles)
     homeConfigurations.mmfallacy = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      modules = [ profiles.mmfallacy.homeConfig ];
+      modules = [
+        inputs.stylix.homeManagerModules.stylix
+        profiles.mmfallacy.homeConfig
+      ];
       exraSpecialArgs = { inherit extras; };
     };
   };
 
   inputs = {
+    # Used as main nixpkgs version
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
+    # Used as main home-manager version
+    # This should match main nixpkgs version
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Only used for package deduplication.
+
+    # This should also match main nixpkgs home-manager version
+    stylix.url = "github:danth/stylix/release-24.11";
   };
 
 }
