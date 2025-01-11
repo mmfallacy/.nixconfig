@@ -14,6 +14,18 @@ vimPlugins : with vimPlugins;
   blink-cmp
   friendly-snippets
 
+  # Mini.nvim
+  mini-ai
+  mini-cursorword
+  mini-files
+  mini-hipatterns
+  mini-indentscope
+  mini-pairs
+  mini-splitjoin
+  mini-starter
+  mini-statusline
+  mini-surround
+
   # Noice.nvim and dependencies
   noice-nvim
   nui-nvim
@@ -29,22 +41,8 @@ vimPlugins : with vimPlugins;
   nvim-treesitter-context
   # NOTE: Parsers are handled by ./treesiter.nix.
 ] ++ (builtins.map (name: { inherit name; path = mini-nvim; }) [
-  # mini.nvim
-  # Nixpkgs ships mini-nvim completely, with no way to sparsely checkout individual subplugins
-  # Hence, we will create symlinks to the complete plugin path to mimic lazy.nvim's way of
-  # handling these plugins
-  "mini.ai"
-  # "mini.base16" will already be included via stylix.
-  "mini.cursorword"
-  "mini.files"
-  "mini.hipatterns"
-  "mini.indentscope"
-  "mini.splitjoin"
-  "mini.starter"
-  "mini.statusline"
-  "mini.surround"
+  # mini.nvim. The following are sourced from mini-nvim as currently, they are unavailable in nixpkgs
 
-  # We will use this also as a blink.cmp snippet source
+  # We will also use this as a snippet source
   "mini.snippets"
-
 ])
