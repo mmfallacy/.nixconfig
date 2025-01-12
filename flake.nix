@@ -12,6 +12,7 @@
     # Link input to extras to explicitly pass to modules.
     # This attribute set will contain extra package sources.
     extras.pkgs-unstable = import inputs.nixpkgs-unstable default;
+    extras.pkgs-master = import inputs.nixpkgs-master default;
 
     # Load profiles.
     profiles = import ./profiles;
@@ -24,6 +25,7 @@
         home-manager.nixosModules.home-manager
         ./machines/vm/configuration.nix
       ];
+      # Do not forget to also pass this to home-manager!
       specialArgs = { inherit extras; };
     };
 
@@ -42,7 +44,8 @@
     # Used as main nixpkgs version
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
-    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     # Used as main home-manager version
     # This should match main nixpkgs version
