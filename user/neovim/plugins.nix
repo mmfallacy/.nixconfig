@@ -1,4 +1,7 @@
 { pkgs, extras } :
+# NOTE: Preference is stable -> unstable -> master.
+# At least fallback to unstable in the case some plugins do not get backported.
+# Immediately update once nixpkgs-master gets merged to unstable after a few days.
 with pkgs.vimPlugins;
 [
   lazy-nvim
@@ -9,30 +12,26 @@ with pkgs.vimPlugins;
   # Plugins
   oil-nvim
   gitsigns-nvim
-  indent-blankline-nvim
+
+  # nixpkgs-stable is outdated. (<2024-11-13)
+  extras.pkgs-master.vimPlugins.snacks-nvim
 
   # blink-cmp and other snippet sources
   blink-cmp
   friendly-snippets
+  # My PR is still in nixpkgs/master.
+  extras.pkgs-master.vimPlugins.mini-snippets
+
 
   # Mini.nvim
   mini-ai
   mini-cursorword
   mini-files
   mini-hipatterns
-  mini-indentscope
   mini-pairs
   mini-splitjoin
-  mini-starter
   mini-statusline
   mini-surround
-  # My PR is still in nixpkgs/master.
-  extras.pkgs-master.vimPlugins.mini-snippets
-
-  # Noice.nvim and dependencies
-  noice-nvim
-  nui-nvim
-  nvim-notify
 
   # telescope.nvim and extensions
   telescope-nvim

@@ -51,6 +51,5 @@ vim.o.splitright = true
 vim.o.history = 1024
 vim.o.backup = false
 vim.o.writebackup = false
-vim.o.lazyredraw = true
 vim.o.updatetime = 250
 
