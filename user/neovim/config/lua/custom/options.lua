@@ -18,6 +18,9 @@ vim.o.clipboard = 'unnamedplus'
 -- Decrease map sequence timeout
 vim.o.timeoutlen = 300
 
+-- Set statusline global and linked only to the last window (3)
+vim.o.laststatus = 3
+
 -- -----------------------------------------------------------
 
 -- Text wrapping
