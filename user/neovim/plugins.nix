@@ -1,4 +1,5 @@
-vimPlugins : with vimPlugins;
+{ pkgs, extras } :
+with pkgs.vimPlugins;
 [
   lazy-nvim
 
@@ -25,6 +26,8 @@ vimPlugins : with vimPlugins;
   mini-starter
   mini-statusline
   mini-surround
+  # My PR is still in nixpkgs/master.
+  extras.pkgs-master.vimPlugins.mini-snippets
 
   # Noice.nvim and dependencies
   noice-nvim
@@ -42,7 +45,4 @@ vimPlugins : with vimPlugins;
   # NOTE: Parsers are handled by ./treesiter.nix.
 ] ++ (builtins.map (name: { inherit name; path = mini-nvim; }) [
   # mini.nvim. The following are sourced from mini-nvim as currently, they are unavailable in nixpkgs
-
-  # We will also use this as a snippet source
-  "mini.snippets"
 ])

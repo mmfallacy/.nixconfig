@@ -1,11 +1,12 @@
 # This neovim user module is loosely based on https://github.com/LazyVim/LazyVim/discussions/1972.
-{ config, pkgs, const, lib, ... } : let
+{ config, pkgs, const, lib, extras, ... } : let
   dotfiles = "${config.home.homeDirectory}/${const.dotfiles}";
 
   # Compute lazypath.
-  lazypath = import ./lazy.nix { inherit lib pkgs; };
+  # Also pass extras so we can source other inputs for vim plugins
+  lazypath = import ./lazy.nix { inherit lib pkgs extras; };
   # Compute parserpath
-  parserpath = import ./treesitter.nix { inherit lib pkgs; };
+  parserpath = import ./treesitter.nix { inherit lib pkgs extras; };
 in {
 
   programs.neovim = {

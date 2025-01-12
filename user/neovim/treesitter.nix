@@ -3,7 +3,8 @@
 # To install nvim-treesitter, include it as part of ./plugins.nix;
 {
   lib,
-  pkgs
+  pkgs,
+  extras
 } : let
   inherit (pkgs.vimPlugins) nvim-treesitter;
   # nvim-treesitter provides us a neat way of creating a derivation of nvim-treesitter

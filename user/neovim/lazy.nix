@@ -1,9 +1,10 @@
 {
   lib,
-  pkgs
+  pkgs,
+  extras,
 }: let
   # Load plugin list
-  plugins = import ./plugins.nix pkgs.vimPlugins;
+  plugins = import ./plugins.nix { inherit pkgs extras; };
 
   # pkgs.linkfarm requires a list of entries of the shape { name: string; path = path_to_derivation; }
   mkEntryFromDrv = drv:
