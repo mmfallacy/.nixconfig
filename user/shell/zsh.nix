@@ -24,6 +24,7 @@ in {
     plugins = with pkgs; builtins.map plug [
       zsh-autopair
       my.zsh-fzf-tab
+      zsh-vi-mode
     ];
   };
 
