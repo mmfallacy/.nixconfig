@@ -17,7 +17,7 @@
     [
       bash c diff html javascript jsdoc json jsonc lua luadoc
       luap markdown markdown_inline printf python query regex
-      toml tsx typescript vim vimdoc xml yaml
+      toml tsx typescript vim vimdoc xml yaml nix
   ]);
 
 # This derivation places all parsers in $out/parser/
