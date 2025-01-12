@@ -17,8 +17,12 @@ return {
     event = { 'InsertEnter' }
   },
   {
-    'echasnovski/mini.files', opts = {},
-    cond = false,
+    'echasnovski/mini.files', opts = {
+      options = {
+        use_as_default_explorer = false;
+      }
+    },
+    lazy = false,
   },
   {
     'echasnovski/mini.splitjoin', opts = {},
