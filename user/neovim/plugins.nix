@@ -22,6 +22,11 @@ with pkgs.vimPlugins;
   # My PR is still in nixpkgs/master.
   extras.pkgs-master.vimPlugins.mini-snippets
 
+  # Colorschemes and icons
+  onedarkpro-nvim
+  night-owl-nvim
+  mini-base16
+  nvim-web-devicons
 
   # Mini.nvim
   mini-ai
