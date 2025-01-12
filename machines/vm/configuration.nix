@@ -1,4 +1,4 @@
-inputs @ {self, config, pkgs, ... }: let
+inputs @ {self, config, pkgs, extras, ... }: let
   modules.system = import ../../system inputs;
 
   profiles = import ../../profiles;
@@ -29,5 +29,5 @@ in {
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.${username} = import ./home.nix;
-  home-manager.extraSpecialArgs = with mmfallacy; { inherit const; baseConfig = homeConfig; };
+  home-manager.extraSpecialArgs = with mmfallacy; { inherit const extras; baseConfig = homeConfig;};
 }
