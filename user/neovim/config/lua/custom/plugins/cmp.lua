@@ -6,5 +6,5 @@ return {
   },
   opts = {},
   -- Enable completion only on text input.
-  event = "InsertEnter",
+  event = 'InsertEnter',
 }

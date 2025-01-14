@@ -1,7 +1,7 @@
 local M = {}
 
 M.spec = {
-  { import = "custom.plugins" }
+  { import = 'custom.plugins' },
 }
 
 M.opts = {
@@ -16,23 +16,22 @@ M.opts = {
       disabled_plugins = {
         -- From :Lazy profile
         -- "editorconfig",
-        "gzip",
-        "man",
+        'gzip',
+        'man',
         -- "matchit",
         -- "matchparen",
-        "netrwPlugin",
-        "osc52",
-        "rplugin",
-        "shada",
-        "spellfile",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
+        'netrwPlugin',
+        'osc52',
+        'rplugin',
+        'shada',
+        'spellfile',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
       },
-    }
-  }
-
+    },
+  },
 }
 
 function M.setup(_spec, _opts)
@@ -42,10 +41,10 @@ function M.setup(_spec, _opts)
   local opts = vim.tbl_deep_extend('force', M.opts, _opts or {})
 
   -- Set options for the leader keys, then set up lazy, then set up keybinds and commands
-  require("custom.options")
-  require("lazy").setup(spec, opts)
-  require("custom.keybinds")
-  require("custom.commands")
+  require('custom.options')
+  require('lazy').setup(spec, opts)
+  require('custom.keybinds')
+  require('custom.commands')
 end
 
 return M

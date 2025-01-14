@@ -52,4 +52,3 @@ vim.o.history = 1024
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.updatetime = 250
-

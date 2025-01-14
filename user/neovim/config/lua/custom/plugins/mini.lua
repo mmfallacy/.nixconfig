@@ -1,31 +1,34 @@
-local utils = require("custom.utils")
+local utils = require('custom.utils')
 
-local FileMinis = utils.map_event('BufReadPost', 'BufNewFile') {
+local FileMinis = utils.map_event('BufReadPost', 'BufNewFile')({
   { 'echasnovski/mini.ai', opts = {} },
   { 'echasnovski/mini.cursorword', opts = {} },
   { 'echasnovski/mini.hipatterns', opts = {} },
   { 'echasnovski/mini.surround', opts = {} },
-}
+})
 
-local VeryLazyMinis = utils.map_event('VeryLazy') {
+local VeryLazyMinis = utils.map_event('VeryLazy')({
   { 'echasnovski/mini.statusline', opts = {} },
-}
+})
 
 return {
   {
-    'echasnovski/mini.pairs', opts = {},
-    event = { 'InsertEnter' }
+    'echasnovski/mini.pairs',
+    opts = {},
+    event = { 'InsertEnter' },
   },
   {
-    'echasnovski/mini.files', opts = {
+    'echasnovski/mini.files',
+    opts = {
       options = {
-        use_as_default_explorer = false;
-      }
+        use_as_default_explorer = false,
+      },
     },
     lazy = false,
   },
   {
-    'echasnovski/mini.splitjoin', opts = {},
+    'echasnovski/mini.splitjoin',
+    opts = {},
     keys = { 'gS' },
   },
   FileMinis,
