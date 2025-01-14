@@ -31,6 +31,11 @@ return {
     opts = {},
     keys = { 'gS' },
   },
+  {
+    'echasnovski/mini.base16',
+    config = nil,
+    lazy = false,
+  },
   FileMinis,
   VeryLazyMinis,
 }

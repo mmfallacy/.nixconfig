@@ -1,10 +1,20 @@
-inputs @ {self, config, pkgs, extras, ... }: let
+inputs@{
+  self,
+  config,
+  pkgs,
+  extras,
+  ...
+}:
+let
   modules.system = import ../../system inputs;
 
   profiles = import ../../profiles;
   inherit (profiles) mmfallacy;
   inherit (mmfallacy.const) username name;
-in {
+
+  themes = import ../../themes;
+in
+{
   imports = [
     modules.system.base
     modules.system.audio.pipewire
@@ -13,6 +23,8 @@ in {
     modules.system.login.gdm
     modules.system.wm.gnome
     ./hardware-configuration.nix
+
+    themes.catpuccin
   ];
 
   time.timeZone = "Asia/Manila";
@@ -22,12 +34,20 @@ in {
   users.users.${username} = {
     isNormalUser = true;
     description = name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     useDefaultShell = true;
   };
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.users.${username} = import ./home.nix;
-  home-manager.extraSpecialArgs = with mmfallacy; { inherit const extras; baseConfig = homeConfig;};
+  home-manager.extraSpecialArgs = with mmfallacy; {
+    inherit const extras;
+    baseConfig = homeConfig;
+  };
+
+  stylix.enable = true;
 }
