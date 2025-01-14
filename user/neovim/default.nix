@@ -7,6 +7,8 @@
   lazypath = import ./lazy.nix { inherit lib pkgs extras; };
   # Compute parserpath
   parserpath = import ./treesitter.nix { inherit lib pkgs extras; };
+  # LSPs
+  lsps = import ./lsp.nix { inherit lib pkgs extras; };
 in {
 
   programs.neovim = {
@@ -14,12 +16,12 @@ in {
     defaultEditor = true;
 
     extraPackages = with pkgs; [
-	  # Clipboard provider for Neovim
-	  xclip
+	    # Clipboard provider for Neovim
+	    xclip
       # Required by telescope
       ripgrep
       fd
-    ];
+    ] ++ lsps;
 
     # Create a nix-compatible entry point.
     extraLuaConfig = ''
