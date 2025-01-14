@@ -47,6 +47,12 @@ in with pkgs.vimPlugins;
   nvim-treesitter
   nvim-treesitter-context
   # NOTE: Parsers are handled by ./treesiter.nix.
+
+  # LSP and other configuration
+  nvim-lspconfig
+  lazydev-nvim
+  # NOTE: LSP installation is handled by ./lsp.nix.
+
 ] ++ (builtins.map (name: { inherit name; path = mini-nvim; }) [
   # mini.nvim. The following are sourced from mini-nvim as currently, they are unavailable in nixpkgs
 ])
