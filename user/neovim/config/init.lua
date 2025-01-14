@@ -1,13 +1,13 @@
 if vim.env.IS_NIXOS ~= nil then
   return vim.notify(
-    "You are currently running in a NixOS environment.
+    [[ You are currently running in a NixOS environment,
     This init.lua manually installs lazy.nvim,
-    which might lead to an impure Nix configuration.",
+    which might lead to an impure Nix configuration. ]],
     vim.log.levels.ERROR
   )
 end
 
-# From https://lazy.folke.io/installation
+-- From https://lazy.folke.io/installation
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -25,4 +25,3 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("custom.lazy").setup()
-
