@@ -5,6 +5,11 @@ return {
     event = "VeryLazy"
   },
   {
+    'nvim-tree/nvim-web-devicons',
+    opts = {},
+    event = "VeryLazy"
+  },
+  {
     'folke/snacks.nvim',
     -- According to its README, a couple plugins might require snacks.nvim to be setup early.
     lazy = false,
@@ -14,7 +19,6 @@ return {
       },
       notifier  = {
         enabled = true,
-        timeout = 1500,
       },
       styles = {
         notification = {

@@ -51,6 +51,7 @@ in with pkgs.vimPlugins;
   # LSP and other configuration
   nvim-lspconfig
   lazydev-nvim
+  unstable.conform-nvim
   # NOTE: LSP installation is handled by ./lsp.nix.
 
 ] ++ (builtins.map (name: { inherit name; path = mini-nvim; }) [
