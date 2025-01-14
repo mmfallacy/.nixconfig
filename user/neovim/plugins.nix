@@ -1,8 +1,10 @@
-{ pkgs, extras } :
+{ pkgs, extras } : let
 # NOTE: Preference is stable -> unstable -> master.
+  master = extras.pkgs-master.vimPlugins;
+  unstable = extras.pkgs-unstable.vimPlugins;
 # At least fallback to unstable in the case some plugins do not get backported.
 # Immediately update once nixpkgs-master gets merged to unstable after a few days.
-with pkgs.vimPlugins;
+in with pkgs.vimPlugins;
 [
   lazy-nvim
 
@@ -13,14 +15,12 @@ with pkgs.vimPlugins;
   oil-nvim
   gitsigns-nvim
 
-  # nixpkgs-stable is outdated. (<2024-11-13)
-  extras.pkgs-master.vimPlugins.snacks-nvim
+  unstable.snacks-nvim
 
   # blink-cmp and other snippet sources
-  blink-cmp
+  unstable.blink-cmp
   friendly-snippets
-  # My PR is still in nixpkgs/master.
-  extras.pkgs-master.vimPlugins.mini-snippets
+  unstable.mini-snippets
 
   # Colorschemes and icons
   onedarkpro-nvim
