@@ -1,4 +1,6 @@
-{ ... }:
+{ pkgs, ... }:
+let
+in
 {
   stylix.base16Scheme = {
     # scheme: "Catppuccin Macchiato"
@@ -23,4 +25,5 @@
 
   # https://github.com/zhichaoh/catppuccin-wallpapers/blob/main/landscapes/forrest.png
   stylix.image = ./wallpaper.png;
+
 }
