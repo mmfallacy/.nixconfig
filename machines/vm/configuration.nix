@@ -1,7 +1,4 @@
 inputs@{
-  self,
-  config,
-  pkgs,
   extras,
   ...
 }:
@@ -22,6 +19,7 @@ in
     modules.system.locales.en_PH
     modules.system.login.gdm
     modules.system.wm.gnome
+    modules.system.wm.niri
     ./hardware-configuration.nix
 
     themes.catpuccin
