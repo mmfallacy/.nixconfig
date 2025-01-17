@@ -2,19 +2,16 @@
 # At the moment, this user module is intended to be used only by machines and their entry-point home.nix.
 # This module is not yet made for home-manager-only use cases.
 { lib, pkgs, ... }:
-let
-in
 {
   # programs.niri.enable = true; should be enabled by configuration.nix
+  imports = [
+    ./startup.nix
+    ./binds.nix
+    ./appearance.nix
+  ];
 
-  programs.niri.settings = {
-    spawn-at-startup = [
-      {
-        # Spawn default terminal or kitty on startup.
-        command = [ "kitty" ];
-      }
-    ];
-  };
-
-  home.packages = [ pkgs.kitty ];
+  home.packages = with pkgs; [
+    kitty
+    xwayland-satellite
+  ];
 }
