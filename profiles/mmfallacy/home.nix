@@ -1,8 +1,10 @@
-inputs @ { pkgs, ... } : let
+inputs@{ pkgs, ... }:
+let
   const = import ./const.nix;
   modules.user = import ../../user inputs;
   inherit (const) username;
-in {
+in
+{
   _module.args = { inherit const; };
 
   imports = [
@@ -10,6 +12,7 @@ in {
     modules.user.shell.zsh
     modules.user.shell.starship
     modules.user.neovim
+    modules.user.kitty
   ];
 
   home.username = username;

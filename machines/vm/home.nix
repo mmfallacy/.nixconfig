@@ -20,6 +20,4 @@ in
     TERMINAL = "kitty";
   };
 
-  home.packages = [ pkgs.kitty ];
-
 }

@@ -8,4 +8,5 @@
   neovim = ./neovim;
   niri = ./niri;
   ssh = ./ssh.nix;
+  kitty = ./kitty;
 }

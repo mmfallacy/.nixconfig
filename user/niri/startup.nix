@@ -3,6 +3,7 @@
   programs.niri.settings.spawn-at-startup = [
     {
       # Spawn default terminal or kitty on startup.
+      # TODO: This should start default terminal, instead of hardcoded kitty
       command = [ "kitty" ];
     }
     {
