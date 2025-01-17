@@ -46,12 +46,13 @@ in
       # Workspace binds
       # map attrset to range [1...9]
       let
+        # We cannot straight coalesce an integer to a string, for brevity we alias builtins.toString
+        ts = builtins.toString;
         per-workspace-binds =
           lib.range 1 9
-          |> builtins.map builtins.toString
           |> builtins.map (i: {
-            "${Mod}+${i}".action = actions.focus-workspace i;
-            "${Mod}+Ctrl+${i}".action = actions.move-column-to-workspace i;
+            "${Mod}+${ts i}".action = actions.focus-workspace i;
+            "${Mod}+Ctrl+${ts i}".action = actions.move-column-to-workspace i;
           });
       in
       lib.mergeAttrsList per-workspace-binds
