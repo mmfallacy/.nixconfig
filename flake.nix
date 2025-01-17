@@ -18,9 +18,13 @@
       pkgs = import nixpkgs default;
       # Link input to extras to explicitly pass to modules.
       # This attribute set will contain extra package sources.
-      extras.pkgs-unstable = import inputs.nixpkgs-unstable default;
-      extras.pkgs-master = import inputs.nixpkgs-master default;
-      extras.niri = inputs.niri;
+      extras = {
+        pkgs-unstable = import inputs.nixpkgs-unstable default;
+        pkgs-master = import inputs.nixpkgs-master default;
+        nil = inputs.nil.packages.${system}.nil;
+
+        inherit (inputs) niri;
+      };
 
       # Load profiles.
       profiles = import ./profiles;
@@ -66,6 +70,9 @@
     stylix.url = "github:danth/stylix/release-24.11";
 
     niri.url = "github:sodiboo/niri-flake/main";
+
+    # Add nil upstream as input. Some changes are still not part of a release, e.g. pipe-operator support
+    nil.url = "github:oxalica/nil/main";
   };
 
 }
