@@ -11,6 +11,7 @@ in
   imports = [
     baseConfig
     modules.user.niri
+    modules.user.ssh
   ];
 
   home.sessionVariables = rec {
