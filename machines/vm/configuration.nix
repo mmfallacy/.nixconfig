@@ -1,4 +1,5 @@
 inputs@{
+  lib,
   extras,
   ...
 }:
@@ -17,8 +18,9 @@ in
     modules.system.audio.pipewire
     modules.system.boot.grub
     modules.system.locales.en_PH
-    modules.system.login.gdm
-    modules.system.wm.gnome
+    # modules.system.login.gdm
+    # modules.system.wm.gnome
+    modules.system.login.ly
     modules.system.wm.niri
     ./hardware-configuration.nix
 
@@ -48,4 +50,5 @@ in
   };
 
   stylix.enable = true;
+
 }
