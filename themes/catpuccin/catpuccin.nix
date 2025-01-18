@@ -1,6 +1,4 @@
 { pkgs, ... }:
-let
-in
 {
   stylix.base16Scheme = {
     # scheme: "Catppuccin Macchiato"
@@ -25,5 +23,11 @@ in
 
   # https://github.com/zhichaoh/catppuccin-wallpapers/blob/main/landscapes/forrest.png
   stylix.image = ./wallpaper.png;
+
+  stylix.cursor.package = pkgs.bibata-cursors;
+  stylix.cursor.name = "Bibata-Modern-Ice";
+  # Based https://github.com/termbox/termbox2/blob/master/termbox2.h
+  # Use Magenta (6) equivalent color in scheme
+  services.displayManager.ly.settings.cmatrix_fg = 6;
 
 }
