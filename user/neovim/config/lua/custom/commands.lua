@@ -8,5 +8,11 @@ vim.api.nvim_create_autocmd('User', {
     -- Override colors for Line Number Column
     vim.api.nvim_set_hl(0, 'LineNrAbove', { bg = 'NONE' })
     vim.api.nvim_set_hl(0, 'LineNrBelow', { bg = 'NONE' })
+    -- Create and hightlight color column for max line width
+    vim.o.textwidth = 120
+    vim.o.colorcolumn = '+0' -- Relative to textwidth
+
+    local palette = require('mini.base16').config.palette
+    vim.api.nvim_set_hl(0, 'ColorColumn', { bg = palette.base02 })
   end,
 })
