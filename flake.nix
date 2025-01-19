@@ -16,6 +16,7 @@
       };
       # Use stable nixpkgs as main pkgs.
       pkgs = import nixpkgs default;
+      lib = nixpkgs.lib;
       # Link input to extras to explicitly pass to modules.
       # This attribute set will contain extra package sources.
       extras = {
@@ -25,13 +26,11 @@
 
         inherit (inputs) niri;
       };
-
-      # Load profiles.
-      profiles = import ./profiles;
     in
-    {
+    # Load profiles. profiles = import ./profiles;
+    rec {
       # Set up nixosConfigurations (machines)
-      nixosConfigurations.vm = nixpkgs.lib.nixosSystem rec {
+      nixosConfigurations.vm = lib.nixosSystem {
         inherit system;
         modules = [
           inputs.stylix.nixosModules.stylix
@@ -40,9 +39,22 @@
           ./machines/vm/configuration.nix
         ];
         # Do not forget to also pass this to home-manager!
-        specialArgs = { inherit extras; };
+        specialArgs = { inherit extras mylib units; };
       };
 
+      # mylib contains my own helper functions!
+      mylib = {
+        autowire = import ./lib/autowire.nix { inherit pkgs lib; };
+      };
+
+      # Autowire units. Units := my very own nix modules.
+      units = with mylib; {
+        themes = autowire ./themes;
+        user = autowire ./user;
+        system = autowire ./system;
+      };
+
+      profiles = mylib.autowire ./profiles;
       # Set up homeConfigurations (profiles)
       homeConfigurations.mmfallacy = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
