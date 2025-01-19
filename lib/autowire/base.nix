@@ -1,27 +1,7 @@
 # Require pkgs and lib (so lib/default.nix can wire it first)
 { pkgs, lib }:
 
-# Autowire function
-# Given a directory, returns an attribute set mimicking the directory's tree
-# i.e. Given the ./animal directory:
-# -- animal/
-# ----- fish.nix
-# ----- mammal/
-# -------- cow.nix
-# ----- snake/
-# -------- default.nix
-# -------- README.md
-# Get
-# {
-#   animal = {
-#     fish = import ./fish.nix;
-#     mammal = {
-#       cow = import ./mammal/cow.nix;
-#     };
-#     snake = import ./snake;
-#   };
-# }
-
+# The directory where we want to start recursing
 directory:
 let
   hasFile = file: dir: dir |> builtins.readDir |> builtins.hasAttr file;
@@ -66,3 +46,24 @@ let
     |> lib.filterAttrsRecursive (k: v: v != null);
 in
 recurse directory
+
+# Autowire function
+# Given a directory, returns an attribute set mimicking the directory's tree
+# i.e. Given the ./animal directory:
+# -- animal/
+# ----- fish.nix
+# ----- mammal/
+# -------- cow.nix
+# ----- snake/
+# -------- default.nix
+# -------- README.md
+# Get
+# {
+#   animal = {
+#     fish = import ./fish.nix;
+#     mammal = {
+#       cow = import ./mammal/cow.nix;
+#     };
+#     snake = import ./snake;
+#   };
+# }
