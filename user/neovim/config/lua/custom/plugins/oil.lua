@@ -1,6 +1,11 @@
 local M = {
   'stevearc/oil.nvim',
   lazy = false,
+  opts = {
+    view_options = {
+      show_hidden = true,
+    },
+  },
 }
 
 function M.config(_, opts)
