@@ -17,6 +17,8 @@
       # Use stable nixpkgs as main pkgs.
       pkgs = import nixpkgs default;
       lib = nixpkgs.lib;
+
+      autowire = import ./lib/autowire.nix { inherit pkgs lib; };
       # Link input to extras to explicitly pass to modules.
       # This attribute set will contain extra package sources.
       extras = {
@@ -43,18 +45,18 @@
       };
 
       # mylib contains my own helper functions!
-      mylib = {
-        autowire = import ./lib/autowire.nix { inherit pkgs lib; };
-      };
+      # Autowire only returns a recursive attrset of paths.
+      # We then will use those paths to wire pkgs and lib to get the actual functions
+      mylib = lib.mapAttrs (k: v: import v { inherit pkgs lib; }) (autowire ./lib);
 
       # Autowire units. Units := my very own nix modules.
-      units = with mylib; {
+      units = {
         themes = autowire ./themes;
         user = autowire ./user;
         system = autowire ./system;
       };
 
-      profiles = mylib.autowire ./profiles;
+      profiles = autowire ./profiles;
       # Set up homeConfigurations (profiles)
       homeConfigurations.mmfallacy = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
