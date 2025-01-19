@@ -14,4 +14,8 @@ with pkgs;
   extras.nil
   alejandra
   unstable.nixfmt-rfc-style
+
+  # Markdown
+  # stable has version 2024-10-07 which is 3 releases behind latest (2024-12-18) at the time of writing.
+  unstable.marksman
 ]
