@@ -21,14 +21,13 @@
     base0F = "f0c6c6"; # #f0c6c6 flamingo
   };
 
-  # https://github.com/zhichaoh/catppuccin-wallpapers/blob/main/landscapes/forrest.png
-  stylix.image = ./wallpaper.png;
+  stylix.image = ./wallpaper.jpg;
 
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Ice";
   stylix.cursor.size = 20;
   # Based https://github.com/termbox/termbox2/blob/master/termbox2.h
-  # Use Magenta (6) equivalent color in scheme
-  services.displayManager.ly.settings.cmatrix_fg = 6;
+  # Use blue (5) equivalent color in scheme
+  services.displayManager.ly.settings.cmatrix_fg = 5;
 
 }
