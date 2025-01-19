@@ -1,30 +1,26 @@
-inputs@{
-  lib,
+{
+  units,
   extras,
   ...
 }:
 let
-  modules.system = import ../../system inputs;
-
   profiles = import ../../profiles;
   inherit (profiles) mmfallacy;
   inherit (mmfallacy.const) username name;
-
-  themes = import ../../themes;
 in
 {
   imports = [
-    modules.system.base
-    modules.system.audio.pipewire
-    modules.system.boot.grub
-    modules.system.locales.en_PH
-    # modules.system.login.gdm
-    # modules.system.wm.gnome
-    modules.system.login.ly
-    modules.system.wm.niri
+    units.system.base
+    units.system.audio.pipewire
+    units.system.boot.grub
+    units.system.locales.en_PH
+    # units.system.login.gdm
+    # units.system.wm.gnome
+    units.system.login.ly
+    units.system.wm.niri
     ./hardware-configuration.nix
 
-    themes.catpuccin
+    units.themes.catpuccin
   ];
 
   time.timeZone = "Asia/Manila";
