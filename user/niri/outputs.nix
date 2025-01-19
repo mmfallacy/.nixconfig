@@ -3,9 +3,9 @@
   programs.niri.settings.outputs = {
     "Virtual-1" = {
       enable = true;
-      mode.width = 2560;
-      mode.height = 1600;
-      scale = 1.5;
+      mode.width = 4096;
+      mode.height = 2160;
+      scale = 2;
     };
   };
 }

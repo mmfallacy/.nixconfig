@@ -25,7 +25,7 @@
 
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Ice";
-  stylix.cursor.size = 20;
+  stylix.cursor.size = 24;
   # Based https://github.com/termbox/termbox2/blob/master/termbox2.h
   # Use blue (5) equivalent color in scheme
   services.displayManager.ly.settings.cmatrix_fg = 5;
