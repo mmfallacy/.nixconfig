@@ -1,10 +1,12 @@
-{ pkgs, extras } : let
-# NOTE: Preference is stable -> unstable -> master.
+{ pkgs, extras }:
+let
+  # NOTE: Preference is stable -> unstable -> master.
   master = extras.pkgs-master.vimPlugins;
   unstable = extras.pkgs-unstable.vimPlugins;
+in
 # At least fallback to unstable in the case some plugins do not get backported.
 # Immediately update once nixpkgs-master gets merged to unstable after a few days.
-in with pkgs.vimPlugins;
+with pkgs.vimPlugins;
 [
   lazy-nvim
 
@@ -14,6 +16,7 @@ in with pkgs.vimPlugins;
   # Plugins
   oil-nvim
   gitsigns-nvim
+  unstable.render-markdown-nvim
 
   unstable.snacks-nvim
 
@@ -54,6 +57,13 @@ in with pkgs.vimPlugins;
   unstable.conform-nvim
   # NOTE: LSP installation is handled by ./lsp.nix.
 
-] ++ (builtins.map (name: { inherit name; path = mini-nvim; }) [
-  # mini.nvim. The following are sourced from mini-nvim as currently, they are unavailable in nixpkgs
-])
+]
+++ (builtins.map
+  (name: {
+    inherit name;
+    path = mini-nvim;
+  })
+  [
+    # mini.nvim. The following are sourced from mini-nvim as currently, they are unavailable in nixpkgs
+  ]
+)
