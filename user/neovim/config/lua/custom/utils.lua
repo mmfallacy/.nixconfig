@@ -15,4 +15,19 @@ function M.map_event(...)
   end
 end
 
+function M.map_ft(...)
+  -- Stash varargs to events
+  local ft = { ... }
+
+  -- Return driver function
+  return function(tbl)
+    -- For every entry in tbl set the event
+    for _, v in ipairs(tbl) do
+      v.ft = ft
+    end
+    -- Return mutated table
+    return tbl
+  end
+end
+
 return M
