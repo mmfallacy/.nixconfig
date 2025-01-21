@@ -8,7 +8,8 @@ in
 # Immediately update once nixpkgs-master gets merged to unstable after a few days.
 with pkgs.vimPlugins;
 [
-  lazy-nvim
+  # stable is outdated. Need release 11.16.2 (2024-12-13)
+  unstable.lazy-nvim
 
   # Common Dependencies
   plenary-nvim
