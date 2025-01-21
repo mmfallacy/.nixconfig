@@ -40,8 +40,8 @@ local function create_prettier_md()
     -- .editorconfigs are resolved as prettierconfig
     "--no-editorconfig",
     -- Define overrides here!
-    "--print-width", "120",
-    "--prose-wrap", "always", -- No need to manually `gq`. Auto reflow on save
+    -- "--print-width", "120",
+    -- "--prose-wrap", "always", -- No need to manually `gq`. Auto reflow on save
   }
 
   require('conform.util').add_formatter_args(prettier_md, overrides, { append = false })
