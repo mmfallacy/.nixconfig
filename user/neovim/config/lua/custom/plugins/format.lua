@@ -20,6 +20,7 @@ M.opts = {
     lua = { 'stylua' },
     nix = { 'nixfmt' },
     markdown = { 'prettier_md' },
+    ['*'] = { 'injected' },
   },
   default_format_opts = {
     lsp_format = 'fallback',
