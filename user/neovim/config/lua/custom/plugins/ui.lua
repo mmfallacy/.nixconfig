@@ -26,5 +26,10 @@ return {
         },
       },
     },
+    init = function()
+      vim.api.nvim_create_user_command('NotifierHistory', function()
+        Snacks.notifier.show_history()
+      end, {})
+    end,
   },
 }
