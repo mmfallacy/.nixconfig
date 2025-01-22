@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  extras,
+  ...
+}:
 {
   stylix.base16Scheme = {
     # scheme: "Catppuccin Macchiato"
@@ -26,6 +31,20 @@
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Ice";
   stylix.cursor.size = 24;
+
+  stylix.fonts = {
+    sansSerif = {
+      package = extras.mypkgs.font-space-grotesk { follows = pkgs; };
+      name = "SpaceGrotesk";
+    };
+
+    monospace = {
+      package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+      name = "JetBrainsMono Nerd Font Mono";
+    };
+
+    sizes.terminal = 18;
+  };
   # Based https://github.com/termbox/termbox2/blob/master/termbox2.h
   # Use blue (5) equivalent color in scheme
   services.displayManager.ly.settings.cmatrix_fg = 5;
