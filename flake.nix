@@ -18,6 +18,22 @@
       pkgs = import nixpkgs default;
       lib = nixpkgs.lib;
 
+      # mylib contains my own helper functions!
+      # Use autowire/autoimport.nix to autowire mylib
+      mylib = (import ./lib/autowire/autoimport.nix) { inherit pkgs lib; } ./lib;
+      # mypkgs contains my own package definitions
+      # Map { name = path } to  { name = fn } where fn takes parameters:
+      # follows := which nixpkgs version should we follow? (pass pkgs/ extra.pkgs-*)
+      # ... = additional parameters to pass package
+      mypkgs = mylib.autowire.withMap ./packages (
+        k: v:
+        { follows, ... }@params:
+        let
+          rest = builtins.removeAttrs params [ "follows" ];
+        in
+        follows.callPackage v rest
+      );
+
       # Link input to extras to explicitly pass to modules.
       # This attribute set will contain extra package sources.
       extras = {
@@ -26,6 +42,7 @@
         nil = inputs.nil.packages.${system}.nil;
 
         inherit (inputs) niri;
+        inherit mypkgs;
       };
     in
     # Load profiles. profiles = import ./profiles;
@@ -43,16 +60,15 @@
         specialArgs = { inherit extras mylib units; };
       };
 
-      # mylib contains my own helper functions!
-      # Use autowire/autoimport.nix to autowire mylib
-      mylib = (import ./lib/autowire/autoimport.nix) { inherit pkgs lib; } ./lib;
-
       # Autowire units. Units := my very own nix modules.
       units = with mylib; {
         themes = autowire.base ./themes;
         user = autowire.base ./user;
         system = autowire.base ./system;
       };
+
+      # Export mypkgs and mylib as flake outputs
+      inherit mypkgs mylib;
 
       profiles = mylib.autowire.base ./profiles;
       # Set up homeConfigurations (profiles)
