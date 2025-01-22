@@ -5,7 +5,7 @@
       enable = true;
       mode.width = 4096;
       mode.height = 2160;
-      scale = 2;
+      scale = 1.5;
     };
   };
 }
