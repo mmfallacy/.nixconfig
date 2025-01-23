@@ -1,17 +1,15 @@
-inputs@{
+{
   pkgs,
   baseConfig,
   const,
+  units,
   ...
 }:
-let
-  modules.user = import ../../user inputs;
-in
 {
   imports = [
     baseConfig
-    modules.user.niri
-    modules.user.ssh
+    units.user.niri
+    units.user.ssh
   ];
 
   home.sessionVariables = rec {

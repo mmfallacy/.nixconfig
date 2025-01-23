@@ -1,18 +1,17 @@
-inputs@{ pkgs, ... }:
+inputs@{ pkgs, units, ... }:
 let
   const = import ./const.nix;
-  modules.user = import ../../user inputs;
   inherit (const) username;
 in
 {
   _module.args = { inherit const; };
 
   imports = [
-    modules.user.git
-    modules.user.shell.zsh
-    modules.user.shell.starship
-    modules.user.neovim
-    modules.user.kitty
+    units.user.git
+    units.user.shell.zsh
+    units.user.shell.starship
+    units.user.neovim
+    units.user.kitty
   ];
 
   home.username = username;

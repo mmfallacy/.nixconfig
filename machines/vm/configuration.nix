@@ -41,7 +41,7 @@ in
   home-manager.useUserPackages = true;
   home-manager.users.${username} = import ./home.nix;
   home-manager.extraSpecialArgs = with mmfallacy; {
-    inherit const extras;
+    inherit const extras units;
     baseConfig = homeConfig;
   };
 
