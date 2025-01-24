@@ -34,7 +34,7 @@
 
   stylix.fonts = {
     sansSerif = {
-      package = extras.mypkgs.font-space-grotesk { follows = pkgs; };
+      package = extras.mypkgs.fonts.space-grotesk { follows = pkgs; };
       name = "SpaceGrotesk";
     };
 
