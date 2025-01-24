@@ -36,9 +36,14 @@ vim.o.cursorline = true
 vim.o.termguicolors = true
 
 -- Indentation
+-- Take these options with a grain of salt
+-- Most will be overriden by vim-sleuth
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
+vim.o.expandtab = true
+vim.o.autoindent = true
+vim.o.smartindent = true
 
 -- Prioritize right split.
 vim.o.splitbelow = false

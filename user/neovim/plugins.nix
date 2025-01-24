@@ -22,6 +22,7 @@ with pkgs.vimPlugins;
   gitsigns-nvim
   unstable.render-markdown-nvim
   mypkgs.live-preview-nvim
+  vim-sleuth
 
   unstable.snacks-nvim
 

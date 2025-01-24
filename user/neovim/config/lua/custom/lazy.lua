@@ -15,7 +15,8 @@ M.opts = {
     rtp = {
       disabled_plugins = {
         -- From :Lazy profile
-        -- "editorconfig",
+        -- Disabling as vim-sleuth will consult editorconfigs by default
+        'editorconfig',
         'gzip',
         'man',
         -- "matchit",
