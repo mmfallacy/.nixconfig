@@ -5,7 +5,7 @@ local M = {
   cmd = 'ConformInfo',
   keys = {
     {
-      '<leader>f',
+      '<leader>fd',
       function()
         require('conform').format({ async = true })
       end,
