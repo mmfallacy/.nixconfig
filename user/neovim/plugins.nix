@@ -3,6 +3,9 @@ let
   # NOTE: Preference is stable -> unstable -> master.
   master = extras.pkgs-master.vimPlugins;
   unstable = extras.pkgs-unstable.vimPlugins;
+
+  # Create plugin source from mypkgs and set to follow pkgs stable
+  mypkgs = pkgs.lib.mapAttrsRecursive (k: v: v { follows = pkgs; }) extras.mypkgs.vimPlugins;
 in
 # At least fallback to unstable in the case some plugins do not get backported.
 # Immediately update once nixpkgs-master gets merged to unstable after a few days.
@@ -18,6 +21,7 @@ with pkgs.vimPlugins;
   oil-nvim
   gitsigns-nvim
   unstable.render-markdown-nvim
+  mypkgs.live-preview-nvim
 
   unstable.snacks-nvim
 
