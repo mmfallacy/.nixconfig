@@ -20,6 +20,8 @@ in
     units.system.wm.niri
     ./hardware-configuration.nix
 
+    units.system.nix.nh
+
     units.themes.catpuccin
   ];
 
