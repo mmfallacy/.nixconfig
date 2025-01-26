@@ -12,7 +12,7 @@ This directory holds my very own helper functions. Most of the functions inside 
 
 This folder holds the nixosConfigurations (i.e. configuration for my hosts/machines) that I import in flake.nix Current machines defined:
 
-- `vm`: My NixOS VM in VMWare Workstation. I am currently developing this `.nixconfig` here.
+- `vesperon`: My NixOS VM in VMWare Workstation. I am currently developing this `.nixconfig` here.
 
 ### `./packages`
 

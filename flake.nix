@@ -48,13 +48,13 @@
     # Load profiles. profiles = import ./profiles;
     rec {
       # Set up nixosConfigurations (machines)
-      nixosConfigurations.vm = lib.nixosSystem {
+      nixosConfigurations.vesperon = lib.nixosSystem {
         inherit system;
         modules = [
           inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
 
-          ./machines/vm/configuration.nix
+          ./machines/vesperon/configuration.nix
         ];
         # Do not forget to also pass this to home-manager!
         specialArgs = { inherit extras mylib units; };
