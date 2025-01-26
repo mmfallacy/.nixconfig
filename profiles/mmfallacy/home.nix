@@ -10,6 +10,7 @@ in
     units.user.git
     units.user.shell.zsh
     units.user.shell.starship
+    units.user.shell.direnv
     units.user.neovim
     units.user.kitty
   ];
