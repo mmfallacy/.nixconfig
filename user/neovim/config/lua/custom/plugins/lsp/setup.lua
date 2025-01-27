@@ -23,8 +23,11 @@ end
 return function(_, _)
   local on_attach = require('custom.plugins.lsp.keybinds')
 
-  global = {
+  local global = {
     on_attach = on_attach,
+    -- Setup nvim-lspconfig capabilities
+    -- See https://github.com/neovim/nvim-lspconfig/issues/3494; https://cmp.saghen.dev/installation.html
+    capabilities = require('blink.cmp').get_lsp_capabilities(),
   }
 
   local handlers = {
