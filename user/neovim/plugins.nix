@@ -23,12 +23,12 @@ with pkgs.vimPlugins;
   mypkgs.live-preview-nvim
   vim-sleuth
 
-  unstable.snacks-nvim # unstable: 2025-01-06
+  unstable.snacks-nvim # unstable: 2025-01-06;
 
   # blink-cmp and other snippet sources
   unstable.blink-cmp # unstable: 2025-01-06;
-  friendly-snippets
-  unstable.mini-snippets # unstable: 2025-01-11
+  unstable.friendly-snippets # unstable: 2024-12-02;
+  unstable.mini-snippets # unstable: 2025-01-11;
 
   # Colorschemes and icons
   onedarkpro-nvim
@@ -59,7 +59,7 @@ with pkgs.vimPlugins;
   # LSP and other configuration
   nvim-lspconfig
   lazydev-nvim
-  unstable.conform-nvim # unstable: 2025-01-03
+  unstable.conform-nvim # unstable: 2025-01-03;
   # NOTE: LSP installation is handled by ./lsp.nix.
 
 ]
