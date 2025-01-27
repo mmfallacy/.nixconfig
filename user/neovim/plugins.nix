@@ -11,8 +11,7 @@ in
 # Immediately update once nixpkgs-master gets merged to unstable after a few days.
 with pkgs.vimPlugins;
 [
-  # stable is outdated. Need release 11.16.2 (2024-12-13)
-  unstable.lazy-nvim
+  unstable.lazy-nvim # unstable: 2025-01-06;
 
   # Common Dependencies
   plenary-nvim
@@ -20,16 +19,16 @@ with pkgs.vimPlugins;
   # Plugins
   oil-nvim
   gitsigns-nvim
-  unstable.render-markdown-nvim
+  unstable.render-markdown-nvim # unstable: 2025-01-09;
   mypkgs.live-preview-nvim
   vim-sleuth
 
-  unstable.snacks-nvim
+  unstable.snacks-nvim # unstable: 2025-01-06
 
   # blink-cmp and other snippet sources
-  unstable.blink-cmp
+  unstable.blink-cmp # unstable: 2025-01-06;
   friendly-snippets
-  unstable.mini-snippets
+  unstable.mini-snippets # unstable: 2025-01-11
 
   # Colorschemes and icons
   onedarkpro-nvim
@@ -60,7 +59,7 @@ with pkgs.vimPlugins;
   # LSP and other configuration
   nvim-lspconfig
   lazydev-nvim
-  unstable.conform-nvim
+  unstable.conform-nvim # unstable: 2025-01-03
   # NOTE: LSP installation is handled by ./lsp.nix.
 
 ]
