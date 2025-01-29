@@ -35,6 +35,7 @@ return function(_, _)
     ['marksman'] = {},
     ['nil_ls'] = {},
     ['zls'] = {},
+    ['rust_analyzer'] = {},
   }
 
   lsp_setup_handlers(handlers, global)
