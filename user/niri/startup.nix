@@ -10,6 +10,7 @@
       command = [ "xwayland-satellite" ];
     }
   ];
+  programs.niri.settings.environment.DISPLAY = ":0";
 
   # Disable starting screen hotkey-overlay.
   programs.niri.settings.hotkey-overlay.skip-at-startup = true;
