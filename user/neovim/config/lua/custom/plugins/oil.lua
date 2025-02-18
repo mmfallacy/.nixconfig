@@ -12,6 +12,7 @@ function M.config(_, opts)
   require('oil').setup(opts)
 
   vim.api.nvim_create_user_command('Explore', 'Oil', {})
+  vim.api.nvim_create_user_command('Rexplore', 'Oil .', {})
   vim.api.nvim_create_user_command('Vexplore', function()
     vim.cmd.vsplit({ mods = { split = 'botright' } })
     vim.cmd('Oil')
