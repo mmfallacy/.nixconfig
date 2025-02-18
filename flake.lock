@@ -282,8 +282,8 @@
       },
       "original": {
         "owner": "oxalica",
-        "ref": "main",
         "repo": "nil",
+        "rev": "2e24c9834e3bb5aa2a3701d3713b43a6fb106362",
         "type": "github"
       }
     },
