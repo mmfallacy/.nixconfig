@@ -100,7 +100,9 @@
     niri.url = "github:sodiboo/niri-flake/main";
 
     # Add nil upstream as input. Some changes are still not part of a release, e.g. pipe-operator support
-    nil.url = "github:oxalica/nil/main";
+    # Lock to current (19/02/2025) main to temporarily detatch from flake updating
+    # Consider moving this to npins in the future or partially update flake.lock via `nix flake update <inputs...>`
+    nil.url = "github:oxalica/nil?rev=2e24c9834e3bb5aa2a3701d3713b43a6fb106362";
   };
 
 }
