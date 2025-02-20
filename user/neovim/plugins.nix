@@ -22,6 +22,7 @@ with pkgs.vimPlugins;
   unstable.render-markdown-nvim # unstable: 2025-02-12;
   mypkgs.live-preview-nvim
   vim-sleuth
+  image-nvim
 
   unstable.snacks-nvim # unstable: 2025-02-15;
 

@@ -34,6 +34,9 @@ in
         # Required by telescope
         ripgrep
         fd
+
+        # Required by image-nvim
+        imagemagick
       ]
       ++ lsps;
 
