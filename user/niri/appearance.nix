@@ -7,9 +7,6 @@
   programs.niri.settings.layout = {
     gaps = 4;
     border.width = 2;
-    default-column-width = {
-      proportion = 0.45;
-    };
     always-center-single-column = true;
   };
 
@@ -30,6 +27,10 @@
         };
       clip-to-geometry = true;
       opacity = 0.9;
+    }
+    {
+      matches = [ { app-id = "^kitty$"; } ];
+      default-column-width.proportion = 0.45;
     }
   ];
 
