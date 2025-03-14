@@ -19,6 +19,7 @@ in
     units.system.login.ly
     units.system.wm.niri
     ./hardware-configuration.nix
+    units.system.vmware.shared
 
     units.system.nix.nh
 
