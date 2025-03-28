@@ -43,3 +43,4 @@ This folder holds the user modules (i.e. modules imported and installed user-lev
 - [youtube:Vimjoyer/Nix tutorials](https://www.youtube.com/playlist?list=PLko9chwSoP-15ZtZxu64k_CuTzXrFpxPE)
 - [youtube:LibrePhoneix/NixOS Config Guides for NHerds and Other Cool People](https://www.youtube.com/playlist?list=PL_WcXIXdDWWpuypAEKzZF2b5PijTluxRG)
 - [github:librephoenix/nixos-config](https://github.com/librephoenix/nixos-config)
+- [github:NotAShelf/nyx](https://github.com/notashelf/nyx)
