@@ -5,7 +5,7 @@
 directory:
 let
   hasFile = file: dir: dir |> builtins.readDir |> builtins.hasAttr file;
-  hasIgnore = hasFile ".noautoignore";
+  hasIgnore = hasFile ".noautowire";
   hasDefault = hasFile "default.nix";
   getExt = name: builtins.elemAt (lib.splitString "." name) 1;
   getName = name: builtins.head (lib.splitString "." name);
