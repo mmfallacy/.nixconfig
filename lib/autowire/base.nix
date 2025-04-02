@@ -6,12 +6,17 @@ directory:
 let
   hasFile = file: dir: dir |> builtins.readDir |> builtins.hasAttr file;
   hasIgnore = hasFile ".noautowire";
+  # This file contains line of POSIX Extended RegEx; File names that match these expressions are automatically ignored from autowiring
+  autowireIgnore = ".autowireignore";
+  hasIgnoreList = hasFile autowireIgnore;
   hasDefault = hasFile "default.nix";
   getExt = name: builtins.elemAt (lib.splitString "." name) 1;
   getName = name: builtins.head (lib.splitString "." name);
+  regexMatch = name: regex: builtins.isList (builtins.match regex name);
+  matchIgnores = name: ignoreList: builtins.any (regexMatch name) ignoreList;
   nv = lib.nameValuePair;
   recurse =
-    dir:
+    dir: ignores:
     dir
     |> builtins.readDir
     |> lib.mapAttrs' (
@@ -27,8 +32,18 @@ let
         else if hasDefault next then
           nv fname next
         # Recurse!
+        else if hasIgnoreList next then
+          let
+            ignoreList =
+              "${next}/${autowireIgnore}"
+              |> builtins.readFile
+              |> builtins.split "[\n]+"
+              # Remove empty strings and capture groups
+              |> builtins.filter (el: !builtins.isList el && el != "");
+          in
+          nv fname (recurse next ignoreList)
         else
-          nv fname (recurse next)
+          nv fname (recurse next [ ])
       else if type == "regular" then
         let
           name = getName fname;
@@ -37,6 +52,9 @@ let
         # Strip extension from name
         # Is not nix file? Ignore by returning { file = null }
         if ext != "nix" then
+          nv name null
+        # Is file in ignore list? Ignore by returning { file = null }
+        else if matchIgnores fname ignores then
           nv name null
         # return { file = path_to file }
         else
@@ -47,7 +65,7 @@ let
     # Filter all null attrsets (non-nix or ignored directories)
     |> lib.filterAttrsRecursive (k: v: v != null);
 in
-recurse directory
+recurse directory [ ]
 
 # Autowire function
 # Given a directory, returns an attribute set mimicking the directory's tree
