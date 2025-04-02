@@ -41,6 +41,9 @@ in
       "${Mod}+f".action = actions.maximize-column;
       "${Mod}+Shift+f".action = actions.fullscreen-window;
 
+      # Hotkey Overlay
+      "${Mod}+Shift+Slash".action = actions.show-hotkey-overlay;
+
     }
     // (
       # Workspace binds
