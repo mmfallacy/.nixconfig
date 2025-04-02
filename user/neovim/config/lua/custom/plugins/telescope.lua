@@ -41,7 +41,7 @@ function M.config()
     pickers = {
       -- Default
       find_files = {
-        find_command = fd({ '--type', 'f' }),
+        find_command = fd('--type', 'f'),
       },
     },
   })
@@ -68,7 +68,7 @@ M.keys = {
     function()
       require('telescope.builtin').find_files({
         -- Remove --type f as arguments to allow telescope to call oil.nvim on directory select
-        find_command = fd({}),
+        find_command = fd('--hidden', '--exclude', '.git'),
       })
     end,
   },
