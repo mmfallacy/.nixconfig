@@ -7,6 +7,7 @@ let
   hasFile = file: dir: dir |> builtins.readDir |> builtins.hasAttr file;
   hasIgnore = hasFile ".noautowire";
   # This file contains line of POSIX Extended RegEx; File names that match these expressions are automatically ignored from autowiring
+  # Note that autowires only apply to siblings. It checks for filename matching only and doesn't match the whole path.
   autowireIgnore = ".autowireignore";
   hasIgnoreList = hasFile autowireIgnore;
   hasDefault = hasFile "default.nix";
@@ -24,8 +25,13 @@ let
       let
         next = dir + "/${fname}";
       in
-      if type == "directory" then
-        # Should ignore? return { dirname  = null }
+      # Should ignore due to autowireignore? return { fname = null }
+      if matchIgnores fname ignores then
+        nv fname null
+
+      # Process directories
+      else if type == "directory" then
+        # Should ignore due to .noautowire? return { dirname  = null }
         if hasIgnore next then
           nv fname null
         # Has default? return { dirname = path_to_directory };
@@ -44,6 +50,8 @@ let
           nv fname (recurse next ignoreList)
         else
           nv fname (recurse next [ ])
+
+      # Process normal files
       else if type == "regular" then
         let
           name = getName fname;
@@ -52,9 +60,6 @@ let
         # Strip extension from name
         # Is not nix file? Ignore by returning { file = null }
         if ext != "nix" then
-          nv name null
-        # Is file in ignore list? Ignore by returning { file = null }
-        else if matchIgnores fname ignores then
           nv name null
         # return { file = path_to file }
         else
