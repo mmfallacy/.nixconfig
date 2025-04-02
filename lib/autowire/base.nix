@@ -29,7 +29,7 @@ let
         # Recurse!
         else
           nv fname (recurse next)
-      else
+      else if type == "regular" then
         let
           name = getName fname;
           ext = getExt fname;
@@ -41,6 +41,8 @@ let
         # return { file = path_to file }
         else
           nv name next
+      else
+        throw "Unsupported file type! Not \"regular\" or \"directory\"."
     )
     # Filter all null attrsets (non-nix or ignored directories)
     |> lib.filterAttrsRecursive (k: v: v != null);
