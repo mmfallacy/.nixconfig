@@ -61,9 +61,12 @@
       };
 
       # Autowire units. Units := my very own nix modules.
-      units = with mylib; {
+      units = with mylib; rec {
         themes = autowire.base ./themes;
         user = autowire.base ./user;
+        userprofiles = autowire.base ./userprofiles // {
+          common = user;
+        };
         system = autowire.base ./system;
       };
 
