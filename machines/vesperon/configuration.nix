@@ -4,8 +4,11 @@
   ...
 }:
 let
-  profiles = import ../../profiles;
-  inherit (profiles) mmfallacy;
+  # profiles = import ../../profiles;
+  # inherit (profiles) mmfallacy;
+  # inherit (mmfallacy.const) username name;
+
+  inherit (units.userprofiles) mmfallacy;
   inherit (mmfallacy.const) username name;
 in
 {
@@ -45,7 +48,7 @@ in
   home-manager.users.${username} = import ./home.nix;
   home-manager.extraSpecialArgs = with mmfallacy; {
     inherit const extras units;
-    baseConfig = homeConfig;
+    baseConfig = profile;
   };
 
   stylix.enable = true;
