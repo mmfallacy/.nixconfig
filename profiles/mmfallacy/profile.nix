@@ -7,13 +7,13 @@ in
   _module.args = { inherit const; };
 
   imports = [
-    units.userprofiles.mmfallacy.git
-    units.userprofiles.mmfallacy.ssh
-    units.userprofiles.common.shell.zsh
-    units.userprofiles.common.shell.starship
-    units.userprofiles.common.shell.direnv
-    units.userprofiles.common.neovim
-    units.userprofiles.common.kitty
+    units.profiles.mmfallacy.git
+    units.profiles.mmfallacy.ssh
+    units.profiles.common.shell.zsh
+    units.profiles.common.shell.starship
+    units.profiles.common.shell.direnv
+    units.profiles.common.neovim
+    units.profiles.common.kitty
   ];
 
   home.username = username;

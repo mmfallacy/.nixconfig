@@ -2,7 +2,7 @@
 {
   # Import base git config
   imports = [
-    units.userprofiles.common.git
+    units.profiles.common.git
   ];
 
   # Set url aliases for mmfallacy-extra account.

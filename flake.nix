@@ -64,8 +64,7 @@
       # Autowire units. Units := my very own nix modules.
       units = with mylib; {
         themes = autowire.base ./themes;
-        user = autowire.base ./user;
-        userprofiles = autowire.withMap ./userprofiles (
+        profiles = autowire.withMap ./profiles (
           # Import and inherit const for all users.
           k: v: if mylib.last k == "const" then import v else v
         );
@@ -81,7 +80,7 @@
         inherit pkgs;
         modules = [
           inputs.stylix.homeManagerModules.stylix
-          units.userprofiles.mmfallacy.profile
+          units.profiles.mmfallacy.profile
         ];
         extraSpecialArgs = { inherit extras units mylib; };
       };

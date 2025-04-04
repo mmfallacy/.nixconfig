@@ -1,7 +1,7 @@
 { units, ... }:
 {
   imports = [
-    units.userprofiles.common.niri
+    units.profiles.common.niri
   ];
 
   programs.niri.settings.outputs = {

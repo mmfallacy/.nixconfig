@@ -7,7 +7,7 @@ let
   # profiles = import ../../profiles;
   # inherit (profiles) mmfallacy;
   # inherit (mmfallacy.const) username name;
-  inherit (units.userprofiles) mmfallacy;
+  inherit (units.profiles) mmfallacy;
   inherit (mmfallacy.const) username name;
 in
 {
