@@ -49,7 +49,7 @@
     # Load profiles. profiles = import ./profiles;
     rec {
       # Set up nixosConfigurations (machines)
-      nixosConfigurations.vesperon = lib.nixosSystem rec {
+      nixosConfigurations.vesperon = lib.nixosSystem {
         inherit system;
         modules = [
           inputs.stylix.nixosModules.stylix
@@ -62,7 +62,7 @@
       };
 
       # Autowire units. Units := my very own nix modules.
-      units = with mylib; rec {
+      units = with mylib; {
         themes = autowire.base ./themes;
         user = autowire.base ./user;
         userprofiles = autowire.withMap ./userprofiles (
@@ -81,9 +81,9 @@
         inherit pkgs;
         modules = [
           inputs.stylix.homeManagerModules.stylix
-          profiles.mmfallacy.homeConfig
+          units.userprofiles.mmfallacy.profile
         ];
-        extraSpecialArgs = { inherit extras; };
+        extraSpecialArgs = { inherit extras units mylib; };
       };
     };
 
