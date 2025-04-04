@@ -9,7 +9,6 @@
   imports = [
     baseConfig
     units.user.niri
-    units.user.ssh
   ];
 
   home.sessionVariables = rec {
