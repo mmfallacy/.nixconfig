@@ -9,11 +9,11 @@ in
   imports = [
     units.userprofiles.mmfallacy.git
     units.userprofiles.mmfallacy.ssh
-    units.user.shell.zsh
-    units.user.shell.starship
-    units.user.shell.direnv
-    units.user.neovim
-    units.user.kitty
+    units.userprofiles.common.shell.zsh
+    units.userprofiles.common.shell.starship
+    units.userprofiles.common.shell.direnv
+    units.userprofiles.common.neovim
+    units.userprofiles.common.kitty
   ];
 
   home.username = username;
