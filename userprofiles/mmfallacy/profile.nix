@@ -7,7 +7,7 @@ in
   _module.args = { inherit const; };
 
   imports = [
-    units.user.git
+    units.userprofiles.mmfallacy.git
     units.user.shell.zsh
     units.user.shell.starship
     units.user.shell.direnv
