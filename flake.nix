@@ -64,9 +64,7 @@
       units = with mylib; rec {
         themes = autowire.base ./themes;
         user = autowire.base ./user;
-        userprofiles = autowire.base ./userprofiles // {
-          common = user;
-        };
+        userprofiles = autowire.base ./userprofiles;
         system = autowire.base ./system;
       };
 
