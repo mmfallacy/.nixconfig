@@ -87,7 +87,7 @@ in
 
   # Symlink the configuration folder, excluding init.lua
   xdg.configFile."nvim/lua".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/user/neovim/config/lua";
+    config.lib.file.mkOutOfStoreSymlink "${dotfiles}/profiles/common/neovim/config/lua";
   # Symlink lazypath to $XDG_DATA_HOME/nvim/lazy recursively to mimic a normal lazy installation
   xdg.dataFile."nvim/lazy".source = lazypath;
   xdg.dataFile."nvim/lazy".recursive = true;

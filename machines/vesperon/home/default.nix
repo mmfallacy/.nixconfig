@@ -1,15 +1,13 @@
 {
-  pkgs,
   baseConfig,
   const,
-  units,
   ...
 }:
 {
   imports = [
     baseConfig
-    units.user.niri
-    units.user.ssh
+
+    ./niri.nix
   ];
 
   home.sessionVariables = rec {

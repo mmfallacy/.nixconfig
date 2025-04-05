@@ -1,0 +1,6 @@
+config/
+default.nix
+lazy.nix
+lsp.nix
+plugins.nix
+treesitter.nix

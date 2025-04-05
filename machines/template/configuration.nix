@@ -1,43 +1,60 @@
-inputs @ {self, config, pkgs, ... }: let
-  # Import modules.system to prevent ../ hell;
-  modules.system = import ../../system inputs;
+{
+  units,
+  extras,
+  ...
+}:
+let
 
-  # Import profiles and put a specific user into scope
-  profiles = import ../../profiles inputs;
-  # inherit (profiles) <user>
+  # Place specified <user profile> into scope;
+  # inherit (units.profiles) <user profile>;
+  # inherit (<user profile>.const) username name;
+  username = "nixos-user";
+  name = username;
 
-  # Place constants such as username, name from the profile in scope
-  # inherit (<user>.const) username name;
-in {
+in
+{
+  # Set up included units as well as hardware configuration
   imports = [
-    # Include your system modules here
-    # e.g. module.system.grub, module.system.locale.en_PH, etc.
-
-    # Do not forget to generate your hardware configuration and import here
-    # sudo nixos-generate-config --show-hardware-config > ./hardware-configuration.nix;
     ./hardware-configuration.nix
+    # units.system.base
+    # units.system.audio.pipewire
+    # units.system.boot.grub
+    # units.system.locales.en_PH
+    # units.system.login.gdm
+    # units.system.wm.gnome
+    # units.system.login.ly
+    # units.system.wm.niri
+    # units.system.vmware.shared
+    #
+    # units.system.nix.nh
+    #
+    # units.themes.catpuccin
   ];
 
-  # Set your timezone.
+  # Setup timezone and hostname
   time.timeZone = "Asia/Manila";
-
-  # Set hostname
   networking.hostName = "nixos";
 
-  # Create user based on consts
+  # Bootstrap Linux user from <user profile>.const
   users.users.${username} = {
     isNormalUser = true;
     description = name;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    useDefaultShell = true;
   };
 
-  # Bootstrap home manager
+  # Bootstrap home-manager!
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  # Use ./home as primary entry point with <user profile>.profile as the base configuration
+  home-manager.users.${username} = import ./home;
 
-  # Create a new entry point that builds off on the chosen profile and pass profile information.
-  # This is intended as there might be system-specific configuration overrides
-  # (e.g. git signing key format, gpg key ID, ssh key path etc.)
-  home-manager.users.${username} = import ./home.nix;
-  home-manager.extraSpecialArgs = with mmfallacy; { inherit const; baseConfig = homeConfig; };
+  # home-manager.extraSpecialArgs = with <user_profile>; {
+  #   inherit const extras units;
+  #   baseConfig = profile;
+  # };
+
 }

@@ -25,6 +25,7 @@
       # Map { name = path } to  { name = fn } where fn takes parameters:
       # follows := which nixpkgs version should we follow? (pass pkgs/ extra.pkgs-*)
       # ... = additional parameters to pass package
+      # TODO: Reconsider follows argument. Do I really need it?
       mypkgs = mylib.autowire.withMap ./packages (
         k: v:
         { follows, ... }@params:
@@ -63,7 +64,10 @@
       # Autowire units. Units := my very own nix modules.
       units = with mylib; {
         themes = autowire.base ./themes;
-        user = autowire.base ./user;
+        profiles = autowire.withMap ./profiles (
+          # Import and inherit const for all users.
+          k: v: if mylib.last k == "const" then import v else v
+        );
         system = autowire.base ./system;
       };
 
@@ -76,9 +80,9 @@
         inherit pkgs;
         modules = [
           inputs.stylix.homeManagerModules.stylix
-          profiles.mmfallacy.homeConfig
+          units.profiles.mmfallacy.profile
         ];
-        extraSpecialArgs = { inherit extras; };
+        extraSpecialArgs = { inherit extras units mylib; };
       };
     };
 

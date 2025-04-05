@@ -8,7 +8,6 @@
     ./startup.nix
     ./binds.nix
     ./appearance.nix
-    ./outputs.nix
   ];
 
   home.packages = with pkgs; [

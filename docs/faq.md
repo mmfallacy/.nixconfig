@@ -12,12 +12,17 @@ Currently, most of the programs I use are supported in home-manager. HM's module
 
 ## 3. Why do you want to support a multi-user environment?
 
-Honestly, I don't know. I might need a configuration for multiple users in the future. Despite having `profiles/` though, my configuration largely revolves around my `mmfallacy` profile. This means that majority of the system and user units are written in the context of my use case, hence this configuration really doesn't have multi-user support yet. I'm considering revising `profiles` into `user` where the user programs and user profiles reside in a single unit structure. More like the following:
+Honestly, I don't know. I might need a configuration for multiple users in the future. Despite having `profiles/` though, my configuration largely revolves around my `mmfallacy` profile. This means that majority of the system and user units are written in the context of my use case, hence this configuration really doesn't have multi-user support yet. As of writing, I have already migrated into the new `profiles` (See PR #1).
 
-- `user` contains profile directories. e.g `user/mmfallacy`
-- `user/<profile>` contains a `home.nix`, a `const.nix` and user program configurations.
-- `user/common` hosts the user program configurations I wish to share across profiles. Majority of these configurations should be set as `mkDefault`.
-- `user/<profile>/**/<program>.nix` contains the profile-specific configuration (e.g. Git credentials, etc.) although it builds the configuration based of `user/common/**/<program>.nix`. The profile-specific config only overrides the default values.
+With this new structure, it is possible to run into duplicate declaration errors as configuration might conflict between the three separated user-level setups. This can be addressed by being intentional in writing the configurations. That is, to set a convention in writing config as such:
+
+- `profiles/common/*` should have the lowest priority (either `lib.mkDefault` at 1000 or a lower priority value)
+- `profiles/<profile>/*` should have the [default priority of 100](https://github.com/NixOS/nixpkgs/blob/f8b8860d1bbd654706ae21017bd8da694614c440/lib/modules.nix#L1375C29-L1375C30).
+- `machines/<machine>/home/*` should have the highest priority (either through `lib.mkForce` at 50 or a higher priority value).
+
+See [`nixpkgs/lib/modules.nix`](https://github.com/NixOS/nixpkgs/blob/f8b8860d1bbd654706ae21017bd8da694614c440/lib/modules.nix#L1373) for more info on priority and order.
+
+On the other hand for non primitive attributes like lists and attrsets, the discretion on order should follow the same hierarchy. That is, `profiles/common/*` should be overridable by both `profiles/<profile>/*` and `machines/<machine>/home/*`.
 
 ## 4. Why do you have `home.nix` in machine-specific configuration?
 

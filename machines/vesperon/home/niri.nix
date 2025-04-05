@@ -1,5 +1,9 @@
-{ ... }:
+{ units, ... }:
 {
+  imports = [
+    units.profiles.common.niri
+  ];
+
   programs.niri.settings.outputs = {
     "Virtual-1" = {
       enable = true;
