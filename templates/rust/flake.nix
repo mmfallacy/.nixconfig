@@ -2,13 +2,11 @@
   description = "rust-template";
   inputs = {
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    systems.url = "github:nix-systems/default";
   };
 
   outputs =
-    { nixpkgs-stable, ... }:
-    let
-      supportedSystems = [ "x86_64-linux" ];
-    in
+    { nixpkgs-stable, systems, ... }:
     builtins.foldl' (a: b: a // b) { } (
       builtins.map (
         system:
@@ -18,6 +16,6 @@
         {
           devShells.${system}.default = import ./nix/devShell.nix { pkgs = pkgs-stable; };
         }
-      ) supportedSystems
+      ) (import systems)
     );
 }
