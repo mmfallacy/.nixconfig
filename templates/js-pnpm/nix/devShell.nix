@@ -2,7 +2,7 @@
   pkgs,
 }:
 pkgs.mkShell {
-  name = "js-pnpm-starter";
+  name = "js-pnpm-template";
 
   nativeBuildInputs =
     [
