@@ -16,6 +16,10 @@ Also, direnv [#73](https://github.com/direnv/direnv/issues/73) does not currentl
 
 > TODO^: Investigate this further!
 
+For `create-*` apps bootstrapped through `pnpm create`, clone the template first then run the command. Ensure that the command bootstraps the project into a temporary folder in the case where it refuses to run on a non-empty directory.
+
+> An alternative method for this is to start a shell first via `nix-shell` with packages `nodePackages.pnpm` and `nodejs_xx`. This lets the user use both NodeJS and PNPM temporarily to bootstrap the project before setting the devShell up. Do note that `pnpm` is installed here explicitly rather than using `corepack` as some `create-*` apps require `pnpm` to be available in the path. The flake template works around this by adding aliases via scripts in PATH.
+
 ### 3. Python `uv`
 
 This template includes Python 3.10 (`python310Full`, which packages TKinter) and [`github:astral-sh/uv`](https://github.com/astral-sh/uv). Environment variables are also set to tweak `uv`'s behavior to adhere to a nix system's constraints. That is, `uv` must not handle Python binary downloads and `uv` should use the nix-installed python binary as its interpreter.
