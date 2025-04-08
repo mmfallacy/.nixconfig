@@ -34,6 +34,7 @@
 
   # Git diff
   df = "diff";
+  dfc = "diff --cached";
   # Git diff using difftool
   dfv = "difftool -y";
 
