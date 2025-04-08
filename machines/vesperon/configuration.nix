@@ -1,6 +1,7 @@
 {
   units,
   extras,
+  pkgs,
   ...
 }:
 let
@@ -31,6 +32,25 @@ in
   time.timeZone = "Asia/Manila";
   networking.hostName = "MMFALLACY-NixVM";
   virtualisation.vmware.guest.enable = true;
+
+  # Export certain ports used by dev environments to local subnet.
+  # TODO: Investigate necessity. Since I do not have any port forwarded, do I really need this? Or can I just disable the firewall or explicitly allow via allowed{TCP/UDP}Ports?
+  # TODO: Investigate if I need to migrate to nftables.
+  networking.firewall = {
+    enable = true; # By default, all ports are blocked.
+    extraCommands =
+      let
+        localSubnet = "192.168.18.0/24";
+        ports = [
+          3000
+          5173
+        ];
+      in
+      pkgs.lib.concatMapStrings (port: ''
+        iptables -A INPUT -p tcp -s ${localSubnet} --dport ${builtins.toString port} -j ACCEPT
+
+      '') ports;
+  };
 
   users.users.${username} = {
     isNormalUser = true;
