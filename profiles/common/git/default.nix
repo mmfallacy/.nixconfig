@@ -26,7 +26,8 @@
 
     # TODO: Think of a way to make this not user-specific.
     extraConfig.url = {
-      "https://github.com/".insteadOf = "github:";
+      # Explicit https alias for public repo cloning for systems without git configured
+      "https://github.com/".insteadOf = "gh-https:";
       "ssh://git@github.com/".insteadOf = "github:";
     };
 
