@@ -20,5 +20,7 @@
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
+    # TODO: xdg-desktop-portals reworked how portal implementations are loaded. The following line keeps pre 1.17 behavior. Investigate whether it is worth migrating, or keep this in the meantime.
+    config.common.default = "*";
   };
 }
