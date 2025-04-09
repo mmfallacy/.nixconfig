@@ -9,5 +9,9 @@
     agents = pkgs.lib.mkBefore [
       "ssh"
     ];
+    extraFlags = [
+      "--quiet"
+      "--ignore-missing"
+    ];
   };
 }
