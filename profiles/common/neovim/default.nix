@@ -83,7 +83,15 @@ in
             -- Set lazy.nvim up using custom wrapper
             require("custom.lazy").setup(spec , opts)
     '';
+
   };
+
+  # Create scripts
+  home.packages = [
+    (pkgs.writeShellScriptBin "nvcd" ''
+      pushd "$1" && nvim . "''${@:2}" && popd
+    '')
+  ];
 
   # Symlink the configuration folder, excluding init.lua
   xdg.configFile."nvim/lua".source =
