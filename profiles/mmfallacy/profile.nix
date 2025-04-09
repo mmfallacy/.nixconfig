@@ -9,6 +9,7 @@ in
   imports = [
     units.profiles.mmfallacy.git
     units.profiles.mmfallacy.ssh
+    units.profiles.mmfallacy.keychain
     units.profiles.common.shell.zsh
     units.profiles.common.shell.starship
     units.profiles.common.shell.direnv

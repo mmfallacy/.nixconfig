@@ -1,7 +1,7 @@
 { units, ... }:
 {
   imports = [
-    units.profiles.common.ssh
+    units.profiles.common.security.ssh
   ];
 
   # Set up keys to use per host
