@@ -9,6 +9,7 @@ let
 in
 # At least fallback to unstable in the case some plugins do not get backported.
 # Immediately update once nixpkgs-master gets merged to unstable after a few days.
+# i.e. when `nixos-xx.xx` (stable branch) supports the version indicated beside unstable.<plugin>
 with pkgs.vimPlugins;
 [
   unstable.lazy-nvim # unstable: 2025-02-15;
@@ -25,6 +26,10 @@ with pkgs.vimPlugins;
   image-nvim
 
   unstable.snacks-nvim # unstable: 2025-02-15;
+  unstable.nvim-config-local # unstable: 2025-01-21;
+
+  # Local used plugins:
+  follow-md-links-nvim
 
   # blink-cmp and other snippet sources
   unstable.blink-cmp # unstable: 2025-01-06;
