@@ -1,4 +1,4 @@
-{ units, ... }:
+{ units, pkgs, ... }:
 {
   # Import base git config
   imports = [
@@ -12,4 +12,13 @@
     # Refer to ssh config on how to make this work!
     "ssh://git@mmfallacy-extra.github.com/".InsteadOf = "gh-extra:";
   };
+
+  # Create quick script to make local git config use mmfallacy-extra credentials
+  home.packages = [
+    (pkgs.writeShellScriptBin "git-mmfallacy-extra" ''
+      git config --local user.name "mmfallacy-extra"
+      git config --local user.email "205347616+mmfallacy-extra@users.noreply.github.com"
+      git config --local user.signingKey "~/.ssh/mmfallacy-extra_ed25519"
+    '')
+  ];
 }
