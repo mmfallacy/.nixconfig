@@ -6,11 +6,13 @@ This repository also holds project starter templates per language. The templates
 
 This template includes Rust cli tools (`cargo`, `rustc`) and other development tooling (LSP:`rust-analyzer`, Formatter: `rustfmt`, Linter: `clippy`) as native build inputs. Other project dependencies are handled through Cargo. Also, `RUST_SRC_PATH` is set as it is required by `rust-analyzer`.
 
-### 2. JavaScript `pnpm`
+### 2. JavaScript `npm/pnpm/yarn`
 
-This template includes NodeJS (v23 of `nixpkgs-stable`). Also, it creates script aliases for `corepack pnpm/pnpx`.
+This template includes NodeJS (v23 of `nixpkgs-stable`). Also, it creates script aliases for the `npm` `pnpm` and `yarn` package managers through `corepack`.
 
-> NOTE: Should I use corepack pnpm or stick to the nixpkgs `pnpm`? Currently, I think it's better to
+> NOTE: Should I use corepack pnpm or stick to the nixpkgs `pnpm`?
+
+Currently, I think it's better to stick with corepack as of the moment. I have not yet encountered any problems with using corepack. However for cases where build hooks are needed, I might need to use the nixpkgs alternative.
 
 Also, direnv [#73](https://github.com/direnv/direnv/issues/73) does not currently support functions and aliases as .envrc is loaded in a separate bash process. Consequently, since the flake and its aliases are loaded via direnv, we lose much of the `shellAliases` functionality. To work around this we create a new script and add it in path in place of the aliases.
 
