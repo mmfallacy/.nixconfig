@@ -39,6 +39,8 @@ return function(_, _)
     ['rust_analyzer'] = {},
     ['ts_ls'] = {},
     ['emmet_ls'] = {},
+    ['cssls'] = {},
+    ['eslint'] = {},
   }
 
   lsp_setup_handlers(handlers, global)
