@@ -3,6 +3,7 @@ local M = {
 }
 
 M.event = { 'BufReadPre', 'BufNewFile' }
+M.dependencies = { 'saghen/blink.cmp' }
 
 M.config = require('custom.plugins.lsp.setup')
 
