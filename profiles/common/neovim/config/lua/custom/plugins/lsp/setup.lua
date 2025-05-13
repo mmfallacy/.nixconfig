@@ -21,6 +21,8 @@ local function lsp_setup_handlers(handlers, global)
 end
 
 return function(_, _)
+  local lsp = require('lspconfig')
+
   local on_attach = require('custom.plugins.lsp.keybinds')
 
   local global = {
@@ -36,6 +38,9 @@ return function(_, _)
     ['nil_ls'] = {},
     ['zls'] = {},
     ['rust_analyzer'] = {},
+    ['ts_ls'] = {},
+    ['emmet_ls'] = {},
+    ['eslint'] = {},
   }
 
   lsp_setup_handlers(handlers, global)

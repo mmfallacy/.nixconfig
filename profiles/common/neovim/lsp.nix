@@ -1,4 +1,5 @@
 { pkgs, extras, ... }:
+# NOTE: If possible, please include only global LSPs here. Per-project language servers and formatters should reside in each project's respective devShell!
 let
   master = extras.pkgs-master;
   unstable = extras.pkgs-unstable;
@@ -23,6 +24,6 @@ with pkgs;
   # stable has version 2024-10-07 which is 3 releases behind latest (2024-12-18) at the time of writing.
   unstable.marksman
 
-  # Prettier
+  # Typescript
   nodePackages.prettier
 ]
