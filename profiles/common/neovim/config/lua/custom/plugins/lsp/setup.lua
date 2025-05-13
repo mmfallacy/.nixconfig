@@ -1,6 +1,5 @@
 local function lsp_setup_handlers(handlers, global)
   local lsp = require('lspconfig')
-
   local not_installed = {}
 
   for server, _opts in pairs(handlers) do
@@ -40,7 +39,6 @@ return function(_, _)
     ['rust_analyzer'] = {},
     ['ts_ls'] = {},
     ['emmet_ls'] = {},
-    ['eslint'] = {},
   }
 
   lsp_setup_handlers(handlers, global)
