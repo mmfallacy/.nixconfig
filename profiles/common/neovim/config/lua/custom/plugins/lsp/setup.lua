@@ -37,7 +37,7 @@ return function(_, _)
     ['nil_ls'] = {},
     ['zls'] = {},
     ['rust_analyzer'] = {},
-    ['ts_ls'] = {},
+    ['vtsls'] = {},
     ['emmet_ls'] = {},
     ['cssls'] = {},
     ['eslint'] = {},
