@@ -6,6 +6,9 @@
   pom = "push origin main";
   # Push current branch to remote origin (same branch name)
   poh = "push origin HEAD";
+  # same as `poh` but force push when with lease (i.e. latest commit is same as local copy)
+  pohfl = "push origin HEAD --force-with-lease";
+
   # Push specified branch to remote origin
   po = "push origin";
   # Get current branch name
