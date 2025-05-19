@@ -6,7 +6,7 @@ local function emmetsort(a, b)
   if a.client_name == b.client_name then
     return
   end
-  return b.client_name == 'emmet_ls'
+  return b.client_name == 'emmet_language_server'
 end
 
 return {
