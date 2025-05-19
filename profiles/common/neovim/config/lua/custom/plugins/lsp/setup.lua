@@ -8,10 +8,6 @@ local function lsp_setup_handlers(handlers, global)
     if vim.fn.executable(lsp[server].cmd[1]) ~= 1 then
       vim.list_extend(not_installed, { server })
     end
-
-    if server == 'emmet_language_server' then
-      vim.notify(vim.inspect(opts))
-    end
   end
 
   if #not_installed > 0 then
