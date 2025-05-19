@@ -12,4 +12,4 @@ map({ 'n', 'v', 'c', 'i' }, '<C-c>', '<nop>')
 map({ 'n', 'v', 'c', 'i' }, '<leader>bd', ':bp | bd # <CR>')
 
 -- Toggle between current and last buffer
-map({ 'n', 'v', 'c', 'i' }, '<leader>bb', ':b# <CR>')
+map({ 'n', 'v', 'c', 'i' }, '<leader>bp', ':b# <CR>')
