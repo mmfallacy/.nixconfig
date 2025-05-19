@@ -13,3 +13,11 @@ map({ 'n', 'v', 'c', 'i' }, '<leader>bd', ':bp | bd # <CR>')
 
 -- Toggle between current and last buffer
 map({ 'n', 'v', 'c', 'i' }, '<leader>bp', ':b# <CR>')
+
+-- FIX: This might produce an error as Re is a user command which depends on a lazy-loaded Oil.nvim.
+-- Delete all buffers and open Oil on root
+map({ 'n', 'v', 'c', 'i' }, '<leader>bda', ':%bd | Re<CR>')
+
+-- Delete all buffers except current
+-- delete all | open last |  delete [No Name]
+map({ 'n', 'v', 'c', 'i' }, '<leader>bde', ':%bd | e# | bd# <CR>')
