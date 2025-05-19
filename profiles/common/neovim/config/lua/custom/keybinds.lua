@@ -8,5 +8,8 @@ local map = vim.keymap.set
 -- I already have hardware-level remapped my Capslock to Esc
 map({ 'n', 'v', 'c', 'i' }, '<C-c>', '<nop>')
 
+-- Delete buffer but keep split
 map({ 'n', 'v', 'c', 'i' }, '<leader>bd', ':bp | bd # <CR>')
-map({ 'n', 'v', 'c', 'i' }, '<leader>bp', ':bp <CR>')
+
+-- Toggle between current and last buffer
+map({ 'n', 'v', 'c', 'i' }, '<leader>bb', ':b# <CR>')
