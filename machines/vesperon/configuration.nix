@@ -18,7 +18,9 @@ in
     units.system.boot.grub
     units.system.locales.en_PH
     # units.system.login.gdm
-    units.system.wm.gnome
+    # units.system.wm.gnome
+    units.system.wm.weston
+
     units.system.login.ly
     units.system.wm.niri
     ./hardware-configuration.nix
