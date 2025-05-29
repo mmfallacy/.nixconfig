@@ -12,7 +12,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/f48c81c5-1c39-431f-b24f-55efd9d472bb";
+    { device = "/dev/disk/by-uuid/599d8df8-dba0-4e44-a97d-da570ba26b87";
       fsType = "ext4";
     };
 
