@@ -37,4 +37,13 @@ in
   # Enable direnv integration
   programs.direnv.enableZshIntegration = true;
 
+  # Enable any-nix-shell
+  home.packages = [
+    pkgs.any-nix-shell
+  ];
+
+  programs.zsh.initExtra = ''
+    ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
+  '';
+
 }
