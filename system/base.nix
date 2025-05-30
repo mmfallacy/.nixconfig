@@ -10,13 +10,6 @@
   # environment.defaultPackages ships with packages by default hence the need to override them.
   environment.defaultPackages = [ ];
 
-  # Nix flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-    "pipe-operators"
-  ];
-
   # Networking
   networking.hostName = lib.mkDefault "nixos";
   networking.networkmanager.enable = true;
