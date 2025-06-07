@@ -42,7 +42,7 @@ in
     pkgs.any-nix-shell
   ];
 
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
   '';
 
