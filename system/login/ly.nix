@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  extras,
+  ...
+}:
 {
   services.displayManager.ly = {
     enable = true;
@@ -13,7 +18,11 @@
 
     };
     # Temporarily use own fork until v1.0.3 release.
-    package = pkgs.ly.overrideAttrs {
+    # Use last working nixpkgs version (24.11) since 25.05 causes build errors!
+    # TODO: Write a proper package.nix for my `ly` fork!
+    package = extras.pkgs-last.ly.overrideAttrs {
+      pname = "mypkg-ly";
+      version = "0.0.0";
       src = pkgs.fetchFromGitHub {
         # Use own fork.
         # Resolve build.zig.zon to reuse previous url.
