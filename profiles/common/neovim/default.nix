@@ -34,11 +34,14 @@ in
         # Required by telescope
         ripgrep
         fd
-
-        # Required by image-nvim
-        imagemagick
       ]
       ++ lsps;
+
+    extraLuaPackages =
+      luapkgs: with luapkgs; [
+        # Required by image-nvim (rocks)
+        magick
+      ];
 
     # Create a nix-compatible entry point.
     extraLuaConfig = ''
