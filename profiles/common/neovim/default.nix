@@ -36,13 +36,6 @@ in
         fd
       ]
       ++ lsps;
-
-    extraLuaPackages =
-      luapkgs: with luapkgs; [
-        # Required by image-nvim (rocks)
-        magick
-      ];
-
     # Create a nix-compatible entry point.
     extraLuaConfig = ''
             vim.opt.rtp:prepend("${lazypath}/lazy.nvim")

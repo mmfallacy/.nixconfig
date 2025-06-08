@@ -23,7 +23,6 @@ with pkgs.vimPlugins;
   render-markdown-nvim
   mypkgs.live-preview-nvim
   vim-sleuth
-  image-nvim
 
   snacks-nvim
   nvim-config-local
