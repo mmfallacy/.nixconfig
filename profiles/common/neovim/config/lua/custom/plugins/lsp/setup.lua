@@ -34,7 +34,9 @@ return function(_, _)
   local handlers = {
     ['lua_ls'] = {},
     ['marksman'] = {},
-    ['nil_ls'] = {},
+    ['nil_ls'] = {
+      nix = { flake = { autoArchive = true } },
+    },
     ['zls'] = {},
     ['rust_analyzer'] = {},
     ['vtsls'] = {},
