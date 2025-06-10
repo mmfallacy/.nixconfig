@@ -34,12 +34,8 @@ in
         # Required by telescope
         ripgrep
         fd
-
-        # Required by image-nvim
-        imagemagick
       ]
       ++ lsps;
-
     # Create a nix-compatible entry point.
     extraLuaConfig = ''
             vim.opt.rtp:prepend("${lazypath}/lazy.nvim")

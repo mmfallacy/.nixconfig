@@ -39,7 +39,9 @@
     };
 
     monospace = {
-      package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+      #  25.05 introduces a package set for nerd-fonts.
+      # Refer to [this](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/fonts/nerd-fonts/manifests/fonts.json) for the included fonts and attribute name.
+      package = pkgs.nerd-fonts.jetbrains-mono;
       name = "JetBrainsMono Nerd Font Mono";
     };
 

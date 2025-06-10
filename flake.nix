@@ -40,6 +40,8 @@
       extras = {
         pkgs-unstable = import inputs.nixpkgs-unstable default;
         pkgs-master = import inputs.nixpkgs-master default;
+        pkgs-last = import inputs.nixpkgs-last default;
+
         nil = inputs.nil.packages.${system}.nil;
 
         inherit (inputs) niri;
@@ -88,18 +90,20 @@
 
   inputs = {
     # Used as main nixpkgs version
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    # Create an input pointing to last main nixpkgs version in case something breaks!
+    nixpkgs-last.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     # Used as main home-manager version
     # This should match main nixpkgs version
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Only used for package deduplication.
 
     # This should also match main nixpkgs home-manager version
-    stylix.url = "github:danth/stylix/release-24.11";
+    stylix.url = "github:danth/stylix/release-25.05";
 
     niri.url = "github:sodiboo/niri-flake/main";
 

@@ -25,6 +25,7 @@ return {
           },
         },
       },
+      image = {},
     },
     init = function()
       vim.api.nvim_create_user_command('NotifierHistory', function()

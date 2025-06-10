@@ -55,7 +55,12 @@ in
           lib.range 1 9
           |> builtins.map (i: {
             "${Mod}+${ts i}".action = actions.focus-workspace i;
-            "${Mod}+Ctrl+${ts i}".action = actions.move-column-to-workspace i;
+
+            # Currently, this option only works for niri-stable.
+            # Why? niri-master introduces a new parameter for  MoveColumnToWorkspace [niri/main#L360](https://github.com/YaLTeR/niri/blob/242ebf294514cc22f4f9d83c0566c8ffe1cb8d8a/niri-ipc/src/lib.rs#L360). This completely breaks sodiboo/niri-flake due to  a [regex parsing issue](https://github.com/sodiboo/niri-flake/commit/a7949bd0f5551fdfffd04cb9735ad3cd3167d624), hence it is removed temporarily in commit bb8dc85.
+            # TODO: Either do a PR or an overlay to temporarily fix this. Optionally, you can wait for sodiboo to fix it. Also, explore PR#1078 which temporarily revamps parse-binds.nix.
+
+            # "${Mod}+Ctrl+${ts i}".action = actions.move-column-to-workspace i
           });
       in
       lib.mergeAttrsList per-workspace-binds

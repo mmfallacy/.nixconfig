@@ -12,7 +12,7 @@ in
 # i.e. when `nixos-xx.xx` (stable branch) supports the version indicated beside unstable.<plugin>
 with pkgs.vimPlugins;
 [
-  unstable.lazy-nvim # unstable: 2025-02-15;
+  lazy-nvim
 
   # Common Dependencies
   plenary-nvim
@@ -20,21 +20,20 @@ with pkgs.vimPlugins;
   # Plugins
   oil-nvim
   gitsigns-nvim
-  unstable.render-markdown-nvim # unstable: 2025-02-12;
+  render-markdown-nvim
   mypkgs.live-preview-nvim
   vim-sleuth
-  image-nvim
 
-  unstable.snacks-nvim # unstable: 2025-02-15;
-  unstable.nvim-config-local # unstable: 2025-01-21;
+  snacks-nvim
+  nvim-config-local
 
   # Local used plugins:
   follow-md-links-nvim
 
   # blink-cmp and other snippet sources
-  unstable.blink-cmp # unstable: 2025-01-06;
-  unstable.friendly-snippets # unstable: 2024-12-02;
-  unstable.mini-snippets # unstable: 2025-02-13;
+  blink-cmp
+  friendly-snippets
+  mini-snippets
 
   # Colorschemes and icons
   onedarkpro-nvim
@@ -65,7 +64,7 @@ with pkgs.vimPlugins;
   # LSP and other configuration
   nvim-lspconfig
   lazydev-nvim
-  unstable.conform-nvim # unstable: 2025-02-13;
+  conform-nvim
   # NOTE: LSP installation is handled by ./lsp.nix.
 
 ]
