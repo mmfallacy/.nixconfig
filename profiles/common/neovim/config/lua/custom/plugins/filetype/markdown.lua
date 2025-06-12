@@ -1,4 +1,11 @@
 local utils = require('custom.utils')
+
+local supported_ft = {
+  'markdown',
+  -- Handle avante-nvim files
+  'Avante',
+}
+
 local M = utils.map_ft('markdown')({
   {
     'MeanderingProgrammer/render-markdown.nvim',
@@ -6,7 +13,10 @@ local M = utils.map_ft('markdown')({
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
     },
-    opts = {},
+    opts = {
+      file_types = supported_ft,
+    },
+    ft = supported_ft,
   },
 })
 
