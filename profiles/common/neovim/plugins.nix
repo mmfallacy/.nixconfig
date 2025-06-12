@@ -24,6 +24,10 @@ with pkgs.vimPlugins;
   mypkgs.live-preview-nvim
   vim-sleuth
 
+  # AI
+  avante-nvim
+  nui-nvim
+
   snacks-nvim
   nvim-config-local
 
@@ -34,6 +38,7 @@ with pkgs.vimPlugins;
   blink-cmp
   friendly-snippets
   mini-snippets
+  blink-cmp-avante
 
   # Colorschemes and icons
   onedarkpro-nvim
