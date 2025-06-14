@@ -8,6 +8,8 @@ local M = utils.map_ft('markdown')({
       'nvim-tree/nvim-web-devicons',
     },
     opts = {
+      -- Issue: URLs are hidden in links when in insert mode! Manually adding insert and visual solves this.
+      render_modes = { 'n', 'c', 't', 'i', 'v' },
       completions = {
         blink = { enabled = true },
       },
