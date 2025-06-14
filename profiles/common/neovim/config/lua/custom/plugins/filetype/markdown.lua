@@ -14,6 +14,9 @@ local M = utils.map_ft('markdown')({
       'nvim-tree/nvim-web-devicons',
     },
     opts = {
+      completions = {
+        blink = { enabled = true },
+      },
       file_types = supported_ft,
     },
     ft = supported_ft,
