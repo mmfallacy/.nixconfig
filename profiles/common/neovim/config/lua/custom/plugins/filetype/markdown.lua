@@ -1,11 +1,5 @@
 local utils = require('custom.utils')
 
-local supported_ft = {
-  'markdown',
-  -- Handle avante-nvim files
-  'Avante',
-}
-
 local M = utils.map_ft('markdown')({
   {
     'MeanderingProgrammer/render-markdown.nvim',
@@ -17,9 +11,8 @@ local M = utils.map_ft('markdown')({
       completions = {
         blink = { enabled = true },
       },
-      file_types = supported_ft,
     },
-    ft = supported_ft,
+    ft = { 'markdown', 'Avante' },
   },
 })
 

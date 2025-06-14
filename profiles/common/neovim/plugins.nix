@@ -20,7 +20,7 @@ with pkgs.vimPlugins;
   # Plugins
   oil-nvim
   gitsigns-nvim
-  render-markdown-nvim
+  unstable.render-markdown-nvim
   mypkgs.live-preview-nvim
   vim-sleuth
 
