@@ -51,6 +51,7 @@ return function(_, _)
     },
     ['cssls'] = {},
     ['eslint'] = {},
+    ['bashls'] = {},
   }
 
   lsp_setup_handlers(handlers, global)

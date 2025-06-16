@@ -26,4 +26,9 @@ with pkgs;
 
   # Typescript
   nodePackages.prettier
+
+  # Bash
+  shfmt
+  shellcheck
+  bash-language-server
 ]
