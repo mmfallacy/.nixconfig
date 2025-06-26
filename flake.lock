@@ -548,19 +548,14 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1750925056,
-        "narHash": "sha256-hPWpf/8tNtY2YBr5AdS73YbD4Tf7Wtun/06gjNoSgGc=",
-        "ref": "age",
-        "rev": "569b94495e2a4f0aee86e3cbc4b60f12fa4836e1",
-        "revCount": 20,
-        "type": "git",
-        "url": "file:./secrets"
+        "path": "./secrets",
+        "type": "path"
       },
       "original": {
-        "ref": "age",
-        "type": "git",
-        "url": "file:./secrets"
-      }
+        "path": "./secrets",
+        "type": "path"
+      },
+      "parent": []
     },
     "stylix": {
       "inputs": {
