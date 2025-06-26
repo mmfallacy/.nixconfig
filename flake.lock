@@ -453,6 +453,22 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1750838302,
+        "narHash": "sha256-aVkL3/yu50oQzi2YuKo0ceiCypVZpZXYd2P2p1FMJM4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "7284e2decc982b81a296ab35aa46e804baaa1cfe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1747610100,
         "narHash": "sha256-rpR5ZPMkWzcnCcYYo3lScqfuzEw5Uyfh+R0EKZfroAc=",
         "owner": "NixOS",
@@ -502,6 +518,7 @@
         "nixpkgs-last": "nixpkgs-last",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "secrets": "secrets",
         "stylix": "stylix"
       }
     },
@@ -526,6 +543,25 @@
         "type": "github"
       }
     },
+    "secrets": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1750925056,
+        "narHash": "sha256-hPWpf/8tNtY2YBr5AdS73YbD4Tf7Wtun/06gjNoSgGc=",
+        "ref": "age",
+        "rev": "569b94495e2a4f0aee86e3cbc4b60f12fa4836e1",
+        "revCount": 20,
+        "type": "git",
+        "url": "file:./secrets"
+      },
+      "original": {
+        "ref": "age",
+        "type": "git",
+        "url": "file:./secrets"
+      }
+    },
     "stylix": {
       "inputs": {
         "base16": "base16",
@@ -538,7 +574,7 @@
         "git-hooks": "git-hooks",
         "gnome-shell": "gnome-shell",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "nur": "nur",
         "systems": "systems_2",
         "tinted-foot": "tinted-foot",

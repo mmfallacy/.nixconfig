@@ -44,6 +44,7 @@
 
         nil = inputs.nil.packages.${system}.nil;
 
+        inherit (inputs.secrets.outputs) secrets;
         inherit (inputs) niri;
         inherit mypkgs;
       };
@@ -75,6 +76,7 @@
 
       # Export mypkgs and mylib as flake outputs
       inherit mypkgs mylib;
+      inherit extras;
 
       profiles = mylib.autowire.base ./profiles;
       # Set up homeConfigurations (profiles)
@@ -111,6 +113,9 @@
     # Lock to current (19/02/2025) main to temporarily detatch from flake updating
     # Consider moving this to npins in the future or partially update flake.lock via `nix flake update <inputs...>`
     nil.url = "github:oxalica/nil?rev=2e24c9834e3bb5aa2a3701d3713b43a6fb106362";
+
+    # Local git submodule flake.
+    secrets.url = "git+file:./secrets?ref=age";
   };
 
 }
