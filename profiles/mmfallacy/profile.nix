@@ -6,10 +6,14 @@ in
 {
   _module.args = { inherit const; };
 
+  # TODO: Autowire all files inside profile to be automatically imported
+  # Though for simplicity, I think this is enough
   imports = [
     units.profiles.mmfallacy.git
     units.profiles.mmfallacy.ssh
     units.profiles.mmfallacy.keychain
+    units.profiles.mmfallacy.secrets
+
     units.profiles.common.shell.zsh
     units.profiles.common.shell.starship
     units.profiles.common.shell.direnv
