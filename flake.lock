@@ -549,14 +549,19 @@
         "systems": "systems_2"
       },
       "locked": {
-        "path": "./secrets",
-        "type": "path"
+        "lastModified": 1751044561,
+        "narHash": "sha256-y/eDTg360F94zeVCMdvwsFWJ0Z8pahKeG+Zj6uN/8Wo=",
+        "ref": "age",
+        "rev": "55b4a5f1aba0ab4012dbd708105280581ff33c30",
+        "revCount": 25,
+        "type": "git",
+        "url": "file:./secrets"
       },
       "original": {
-        "path": "./secrets",
-        "type": "path"
-      },
-      "parent": []
+        "ref": "age",
+        "type": "git",
+        "url": "file:./secrets"
+      }
     },
     "stylix": {
       "inputs": {

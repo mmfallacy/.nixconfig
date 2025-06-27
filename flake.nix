@@ -116,8 +116,10 @@
 
     # Local secret git submodule flake.
     # See NixOS/nix/issues/12281 for more information
-    self.submodules = true;
-    secrets.url = "./secrets";
+    # self.submodules = true;
+    # secrets.url = "./secrets";
+
+    secrets.url = "git+file:./secrets?ref=age";
   };
 
 }
