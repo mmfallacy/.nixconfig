@@ -83,10 +83,14 @@ in
   };
 
   # Create scripts
-  home.packages = [
-    (pkgs.writeShellScriptBin "nvcd" ''
+  home.packages = with pkgs; [
+    (writeShellScriptBin "nvcd" ''
       pushd "$1" && nvim . "''${@:2}" && popd
     '')
+
+    # JIT Key Decryption
+    sops
+    age
   ];
 
   # Symlink the configuration folder, excluding init.lua

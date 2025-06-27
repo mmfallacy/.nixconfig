@@ -21,6 +21,7 @@ M.opts = {
     nix = { 'nixfmt' },
     markdown = { 'prettier_md' },
     ['*'] = { 'injected' },
+    bash = { 'shfmt' },
   },
   default_format_opts = {
     lsp_format = 'fallback',
