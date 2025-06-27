@@ -12,6 +12,7 @@ in
     units.profiles.mmfallacy.git
     units.profiles.mmfallacy.ssh
     units.profiles.mmfallacy.keychain
+    units.profiles.mmfallacy.neovim
 
     units.profiles.common.shell.zsh
     units.profiles.common.shell.starship

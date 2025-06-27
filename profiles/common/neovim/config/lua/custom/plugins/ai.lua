@@ -22,7 +22,7 @@ function has_missing_key(provider)
   if provider == 'openai' and vim.env.OPENAI_API_KEY ~= nil then
     return false
   end
-  if provider == 'gemini' and vim.env.GOOGLE_API_KEY ~= nil then
+  if provider == 'gemini' and vim.env.GEMINI_API_KEY ~= nil then
     return false
   end
 
@@ -30,6 +30,13 @@ function has_missing_key(provider)
 end
 
 function M.config(_, opts)
+  -- NIXOS AGE JIT KEY DECRYPTION
+  if vim.env.IS_NIXOS == '1' and vim.env.AGE_GEMINI_API_KEY ~= nil then
+    local handle = io.popen('age --decrypt -i ~/.ssh/age.key ' .. vim.env.AGE_GEMINI_API_KEY)
+    vim.env.GEMINI_API_KEY = handle:read('*a'):gsub('%s+$', '')
+    handle.close()
+  end
+
   -- ENV KEY checking prior to staring avante
   if has_missing_key(opts.provider) then
     return vim.notify(
@@ -42,7 +49,7 @@ function M.config(_, opts)
 end
 
 M.opts = {
-  provider = 'claude',
+  provider = 'gemini',
 }
 
 return M
