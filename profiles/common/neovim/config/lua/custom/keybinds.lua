@@ -4,8 +4,7 @@ local silent_noremap = { noremap = true, silent = true }
 
 local map = vim.keymap.set
 
--- Unbind Ctrl+C to unlearn Ctrl+C=Esc keymap from before
--- I already have hardware-level remapped my Capslock to Esc
+-- Unbind Ctrl+C to unlearn Ctrl+C=Esc keymap from before I already have hardware-level remapped my Capslock to Esc
 map({ 'n', 'v', 'c', 'i' }, '<C-c>', '<nop>')
 
 -- Delete buffer but keep split
@@ -21,3 +20,9 @@ map({ 'n', 'v', 'c', 'i' }, '<leader>bda', ':%bd | Re<CR>')
 -- Delete all buffers except current
 -- delete all | open last |  delete [No Name]
 map({ 'n', 'v', 'c', 'i' }, '<leader>bde', ':%bd | e# | bd# <CR>')
+
+-- Ctrl+D/U/B/F then recenter
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
+map('n', '<C-b>', '<C-b>zz')
+map('n', '<C-f>', '<C-f>zz')
