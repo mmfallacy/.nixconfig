@@ -20,6 +20,8 @@ local M = {
   event = 'InsertEnter',
 }
 
+local N = {}
+
 M.opts = {}
 M.opts.fuzzy = {
   sorts = {
