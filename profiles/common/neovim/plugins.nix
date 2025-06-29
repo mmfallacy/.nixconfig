@@ -34,11 +34,26 @@ with pkgs.vimPlugins;
   # Local used plugins:
   follow-md-links-nvim
 
-  # blink-cmp and other snippet sources
+  # blink-cmp
   blink-cmp
-  friendly-snippets
-  mini-snippets
+  blink-emoji-nvim
   blink-cmp-avante
+
+  # snippets
+  friendly-snippets
+  {
+    # Set luasnip to what neovim expects (L3MON4D3/LuaSnip).
+    name = "LuaSnip";
+    path = luasnip;
+  }
+
+  # nvim-cmp
+  nvim-cmp
+  cmp-nvim-lsp
+  cmp-buffer
+  cmp-path
+  cmp-emoji
+  cmp_luasnip
 
   # Colorschemes and icons
   onedarkpro-nvim

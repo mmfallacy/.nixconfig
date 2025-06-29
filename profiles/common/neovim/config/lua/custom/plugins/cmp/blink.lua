@@ -13,12 +13,13 @@ local M = {
   'saghen/blink.cmp',
   dependencies = {
     'rafamadriz/friendly-snippets',
-    'echasnovski/mini.snippets',
+    -- TODO: Reintroduce snippets via luasnip!
     'Kaiser-Yang/blink-cmp-avante',
+    'moyiz/blink-emoji.nvim',
   },
-  -- Enable completion only on text input.
-  event = 'InsertEnter',
 }
+
+local N = {}
 
 M.opts = {}
 M.opts.fuzzy = {
@@ -36,6 +37,7 @@ M.opts.sources = {
     'lsp',
     'path',
     'buffer',
+    'emoji',
   },
 }
 
@@ -44,6 +46,10 @@ M.opts.sources.providers = {
     module = 'blink-cmp-avante',
     name = 'Avante',
     opts = {},
+  },
+  emoji = {
+    module = 'blink-emoji',
+    name = 'Emoji',
   },
 }
 
