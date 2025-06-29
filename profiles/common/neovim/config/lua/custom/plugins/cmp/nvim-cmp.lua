@@ -7,24 +7,43 @@ local M = {
     'hrsh7th/cmp-path',
     --
     'hrsh7th/cmp-emoji',
+
+    -- Snippets
+    'rafamadriz/friendly-snippets',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
   },
   -- Enable completion only on text input.
   event = 'InsertEnter',
 }
+
 function M.config(_, _opts)
   local cmp = require('cmp')
+  local snip = require('luasnip')
+
+  -- Load friendly-snippets via LuaSnip
+  require('luasnip.loaders.from_vscode').lazy_load()
 
   local opts = _opts or {}
-  opts.view = { entries = 'native' }
-  -- opts.completion = { completeopt = 'menu,menuone,noselect,noinsert,preview' }
-  opts.snippets = {
+  -- menu,menuone default nvim-cmp
+  -- select enables first item selection
+  -- noinsert disables autocompletion
+  opts.completion = { completeopt = 'menu,menuone,select,noinsert' }
+  opts.view = {
+    docs = {
+      auto_open = false,
+    },
+  }
+
+  opts.snippet = {
     expand = function(args)
-      vim.snippet.expand(args.body)
+      snip.lsp_expand(args.body)
     end,
   }
 
   opts.sources = cmp.config.sources({
     { name = 'nvim_lsp', max_item_count = 15 },
+    { name = 'luasnip', max_item_count = 5 },
     { name = 'buffer', max_item_count = 10, keyword_length = 5 },
     { name = 'path', max_item_count = 5 },
     { name = 'emoji', max_item_count = 10 },
@@ -38,35 +57,26 @@ function M.config(_, _opts)
       behavior = cmp.ConfirmBehavior.Replace,
     }),
 
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
 
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
     ['<C-k>'] = cmp.mapping.open_docs(),
-
     -- Snippets
 
-    ['<Tab>'] = function(fallback)
-      if not cmp.select_next_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
+    ['<Tab>'] = cmp.mapping(function()
+      if snip.expand_or_locally_jumpable() then
+        snip.expand_or_jump()
       end
-    end,
+    end, { 'i', 's' }),
 
-    ['<S-Tab>'] = function(fallback)
-      if not cmp.select_prev_item() then
-        if vim.bo.buftype ~= 'prompt' and has_words_before() then
-          cmp.complete()
-        else
-          fallback()
-        end
+    ['<S-Tab>'] = cmp.mapping(function()
+      if snip.locally_jumpable(-1) then
+        snip.jump(-1)
       end
-    end,
+    end, { 'i', 's' }),
   }
 
   cmp.setup(opts)
