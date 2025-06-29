@@ -1,2 +1,2 @@
-return require('custom.plugins.cmp.blink')
--- return require('custom.plugins.cmp.nvim-cmp')
+-- return require('custom.plugins.cmp.blink')
+return require('custom.plugins.cmp.nvim-cmp')
