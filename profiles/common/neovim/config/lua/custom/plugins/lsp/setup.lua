@@ -24,6 +24,25 @@ local function lsp_setup_handlers(handlers, global)
   end
 end
 
+-- This function returns a table of client capabilities. The capabilities depend on which completion engine is used.
+local function get_capabilities()
+  local has_cmp, cmp = pcall(require, 'cmp')
+  local has_blink, blink = pcall(require, 'blink.cmp')
+
+  if has_cmp then
+    return require('cmp_nvim_lsp').default_capabilities()
+  elseif has_blink then
+    -- See https://github.com/neovim/nvim-lspconfig/issues/3494; https://cmp.saghen.dev/installation.html
+    return blink.get_lsp_capabilities()
+  else
+    vim.notify(
+      [[ No registered completion engine found! Defaulting to vim LSP Client Capabilities. ]],
+      vim.log.levels.WARN
+    )
+    return vim.lsp.protocol.make_client_capabilities()
+  end
+end
+
 return function(_, _)
   local lsp = require('lspconfig')
 
@@ -31,9 +50,7 @@ return function(_, _)
 
   local global = {
     on_attach = on_attach,
-    -- Setup nvim-lspconfig capabilities
-    -- See https://github.com/neovim/nvim-lspconfig/issues/3494; https://cmp.saghen.dev/installation.html
-    capabilities = require('blink.cmp').get_lsp_capabilities(),
+    capabilities = get_capabilities(),
   }
 
   local handlers = {
