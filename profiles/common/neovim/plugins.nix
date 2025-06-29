@@ -40,6 +40,13 @@ with pkgs.vimPlugins;
   mini-snippets
   blink-cmp-avante
 
+  # nvim-cmp
+  nvim-cmp
+  cmp-nvim-lsp
+  cmp-buffer
+  cmp-path
+  cmp-emoji
+
   # Colorschemes and icons
   onedarkpro-nvim
   night-owl-nvim
