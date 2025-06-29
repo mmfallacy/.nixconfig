@@ -13,7 +13,7 @@ local M = {
   'saghen/blink.cmp',
   dependencies = {
     'rafamadriz/friendly-snippets',
-    'echasnovski/mini.snippets',
+    -- TODO: Reintroduce snippets via luasnip!
     'Kaiser-Yang/blink-cmp-avante',
   },
   -- Enable completion only on text input.
