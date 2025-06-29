@@ -13,8 +13,6 @@ local M = {
     'saadparwaiz1/cmp_luasnip',
     'L3MON4D3/LuaSnip',
   },
-  -- Enable completion only on text input.
-  event = 'InsertEnter',
 }
 
 function M.config(_, _opts)

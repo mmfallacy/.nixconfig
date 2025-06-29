@@ -17,8 +17,6 @@ local M = {
     'Kaiser-Yang/blink-cmp-avante',
     'moyiz/blink-emoji.nvim',
   },
-  -- Enable completion only on text input.
-  event = 'InsertEnter',
 }
 
 local N = {}
