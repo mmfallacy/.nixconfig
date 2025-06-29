@@ -52,10 +52,6 @@ function M.config(_, _opts)
   opts.mapping = {
     ['<C-Space>'] = cmp.mapping.open_docs(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<C-y>'] = cmp.mapping.confirm({
-      select = true,
-      behavior = cmp.ConfirmBehavior.Replace,
-    }),
 
     ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
     ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
@@ -64,17 +60,34 @@ function M.config(_, _opts)
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
     ['<C-k>'] = cmp.mapping.open_docs(),
-    -- Snippets
 
-    ['<Tab>'] = cmp.mapping(function()
+    -- Snippets
+    ['<C-y>'] = cmp.mapping(function(fallback)
+      if not cmp.visible() then
+        fallback()
+      elseif snip.expandable() then
+        snip.expand()
+      else
+        cmp.confirm({
+          select = true,
+          behavior = cmp.ConfirmBehavior.Replace,
+        })
+      end
+    end),
+
+    ['<Tab>'] = cmp.mapping(function(fallback)
       if snip.expand_or_locally_jumpable() then
         snip.expand_or_jump()
+      else
+        fallback()
       end
     end, { 'i', 's' }),
 
-    ['<S-Tab>'] = cmp.mapping(function()
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
       if snip.locally_jumpable(-1) then
         snip.jump(-1)
+      else
+        fallback()
       end
     end, { 'i', 's' }),
   }
