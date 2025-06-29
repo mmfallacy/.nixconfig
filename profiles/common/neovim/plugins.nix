@@ -36,6 +36,7 @@ with pkgs.vimPlugins;
 
   # blink-cmp
   blink-cmp
+  blink-emoji-nvim
   blink-cmp-avante
 
   # snippets

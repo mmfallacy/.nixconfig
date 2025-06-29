@@ -15,6 +15,7 @@ local M = {
     'rafamadriz/friendly-snippets',
     -- TODO: Reintroduce snippets via luasnip!
     'Kaiser-Yang/blink-cmp-avante',
+    'moyiz/blink-emoji.nvim',
   },
   -- Enable completion only on text input.
   event = 'InsertEnter',
@@ -38,6 +39,7 @@ M.opts.sources = {
     'lsp',
     'path',
     'buffer',
+    'emoji',
   },
 }
 
@@ -46,6 +48,10 @@ M.opts.sources.providers = {
     module = 'blink-cmp-avante',
     name = 'Avante',
     opts = {},
+  },
+  emoji = {
+    module = 'blink-emoji',
+    name = 'Emoji',
   },
 }
 
