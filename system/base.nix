@@ -29,4 +29,9 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
+  security.sudo.extraConfig = ''
+    Defaults pwfeedback
+    Defaults timestamp_timeout=30 # mins
+  '';
+
 }
