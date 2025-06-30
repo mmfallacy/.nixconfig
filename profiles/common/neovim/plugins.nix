@@ -19,6 +19,7 @@ with pkgs.vimPlugins;
 
   # Plugins
   oil-nvim
+  snipe-nvim
   gitsigns-nvim
   unstable.render-markdown-nvim
   mypkgs.live-preview-nvim
