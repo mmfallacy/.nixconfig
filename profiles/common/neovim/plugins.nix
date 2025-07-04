@@ -1,7 +1,6 @@
 { pkgs, extras }:
 let
-  # NOTE: Preference is stable -> unstable -> master.
-  master = extras.pkgs-master.vimPlugins;
+  # NOTE: Preference is stable -> unstable -> master. master = extras.pkgs-master.vimPlugins;
   unstable = extras.pkgs-unstable.vimPlugins;
 
   # Create plugin source from mypkgs and set to follow pkgs stable
@@ -20,7 +19,6 @@ with pkgs.vimPlugins;
   # Plugins
   oil-nvim
   snipe-nvim
-  gitsigns-nvim
   unstable.render-markdown-nvim
   mypkgs.live-preview-nvim
   vim-sleuth
@@ -34,6 +32,11 @@ with pkgs.vimPlugins;
 
   # Local used plugins:
   follow-md-links-nvim
+
+  # Git integration
+  neogit
+  diffview-nvim
+  gitsigns-nvim
 
   # blink-cmp
   blink-cmp

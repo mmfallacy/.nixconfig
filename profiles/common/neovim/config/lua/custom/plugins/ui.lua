@@ -1,10 +1,5 @@
 return {
   {
-    'lewis6991/gitsigns.nvim',
-    opts = {},
-    event = 'VeryLazy',
-  },
-  {
     'nvim-tree/nvim-web-devicons',
     opts = {},
     event = 'VeryLazy',
