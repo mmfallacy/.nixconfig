@@ -1,26 +1,21 @@
 -- Sets up lsp servers based on handlers table
 local function lsp_setup_handlers(handlers, global)
   local lsp = require('lspconfig')
-  local not_installed = {}
+  local installed = {}
 
   for server, _opts in pairs(handlers) do
     -- Extend handler-specific opts with global
     local opts = vim.tbl_deep_extend('force', global, _opts)
     lsp[server].setup(opts)
-    -- Track servers that are not installed!
-    -- TODO: Instead output servers installed as most LSPs are installed through nix-shells
-    if vim.fn.executable(lsp[server].cmd[1]) ~= 1 then
-      vim.list_extend(not_installed, { server })
+    -- Track servers that are installed!
+    if vim.fn.executable(lsp[server].cmd[1]) == 1 then
+      vim.list_extend(installed, { server })
     end
   end
 
-  -- Warn when there are LSP servers that are not yet installed
-  if #not_installed > 0 then
-    vim.notify_once(
-      'Some configured language servers are not accessible!\nCheck if lsp executables are installed.\nMissing LSPS:'
-        .. vim.inspect(not_installed),
-      vim.log.levels.WARN
-    )
+  -- Log the LSPs installed and configured.
+  if #installed > 0 then
+    vim.notify_once('LSPs found and configured:\n' .. vim.inspect(installed))
   end
 end
 
