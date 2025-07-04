@@ -10,10 +10,10 @@ local N = {
     'nvim-lua/plenary.nvim',
     'sindrets/diffview.nvim',
   },
-  cmd = { 'Neogit', 'Git' },
+  cmd = { 'Neogit', 'G' },
   opts = function()
     -- Create :Git alias for :Neogit
-    vim.api.nvim_create_user_command('Git', 'Neogit', {})
+    vim.api.nvim_create_user_command('G', 'Neogit', {})
     return {}
   end,
 }
