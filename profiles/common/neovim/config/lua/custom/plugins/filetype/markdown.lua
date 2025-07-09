@@ -10,11 +10,30 @@ local M = utils.map_ft('markdown')({
     opts = {
       -- Issue: URLs are hidden in links when in insert mode! Manually adding insert and visual solves this.
       render_modes = { 'n', 'c', 't', 'i', 'v' },
-      completions = {
-        blink = { enabled = true },
-      },
     },
     ft = { 'markdown', 'Avante' },
+
+    config = function(_, opts)
+      -- Enable blink integration if blink is used.
+      -- NOTE: When opts.completions.blink.enabled is true, nvim-cmp source integrations is not available.
+      local has_blink, blink = pcall(require, 'blink.cmp')
+      if has_blink then
+        opts.completions = { blink = { enabled = true } }
+      end
+
+      require('render-markdown').setup(opts)
+
+      -- Set up render-markdown as completion source
+      local has_cmp, cmp = pcall(require, 'cmp')
+      if has_cmp then
+        local sources = cmp.get_config().sources
+        -- Add render-markdown as source for nvim-cmp
+        sources[#sources + 1] = { name = 'render-markdown', group_index = 1 }
+        cmp.setup.filetype('markdown', {
+          sources = sources,
+        })
+      end
+    end,
   },
 })
 
