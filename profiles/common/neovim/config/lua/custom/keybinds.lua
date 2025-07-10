@@ -26,3 +26,9 @@ map('n', '<C-d>', '<C-d>zz')
 map('n', '<C-u>', '<C-u>zz')
 map('n', '<C-b>', '<C-b>zz')
 map('n', '<C-f>', '<C-f>zz')
+
+-- Ctrl+Arrow for resizing splits
+map('n', '<C-Up>', ':resize +2<CR>', silent_noremap)
+map('n', '<C-Down>', ':resize -2<CR>', silent_noremap)
+map('n', '<C-Left>', ':vertical resize -2<CR>', silent_noremap)
+map('n', '<C-Right>', ':vertical resize +2<CR>', silent_noremap)
