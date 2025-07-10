@@ -119,7 +119,7 @@
     # self.submodules = true;
     # secrets.url = "./secrets";
 
-    secrets.url = "git+file:./secrets?ref=age";
+    secrets.url = "git+file:./secrets";
   };
 
 }
