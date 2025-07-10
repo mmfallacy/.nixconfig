@@ -57,6 +57,7 @@
         modules = [
           inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
+          inputs.lix-module.nixosModules.default
 
           ./machines/vesperon/configuration.nix
         ];
@@ -98,6 +99,13 @@
 
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+
+    # Use lix instead of nix via lix-module
+    # Refer to docs/lix-vs-nix.md for a list of known discrepancies when migrating from nix to lix
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Used as main home-manager version
     # This should match main nixpkgs version
