@@ -9,7 +9,15 @@ in
   programs.niri.settings.binds =
     {
       # Start
-      "${Mod}+T".action = actions.spawn "kitty";
+      "${Mod}+T" = {
+        action = actions.spawn "kitty";
+        repeat = false;
+      };
+      "${Mod}+Ctrl+T" = {
+        # Assumes $FLAKE is set.
+        action = actions.spawn "kitty" "-d" "$FLAKE";
+        repeat = false;
+      };
       "${Mod}+Q".action = actions.close-window;
       "${Mod}+Shift+E".action = actions.quit;
 
