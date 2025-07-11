@@ -3,7 +3,7 @@
 }:
 with pkgs;
 mkShell {
-  name = "clink";
+  name = ".nixconfig rust template";
 
   nativeBuildInputs = [
     # Rust
