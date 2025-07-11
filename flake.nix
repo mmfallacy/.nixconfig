@@ -89,6 +89,9 @@
         ];
         extraSpecialArgs = { inherit extras units mylib; };
       };
+
+      # Flake templates:
+      templates = import ./templates { inherit pkgs lib; };
     };
 
   inputs = {
