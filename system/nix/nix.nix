@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
 
   nix.settings = {
@@ -27,4 +27,6 @@
     ];
 
   };
+
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 }

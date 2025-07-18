@@ -62,7 +62,14 @@
           ./machines/vesperon/configuration.nix
         ];
         # Do not forget to also pass this to home-manager!
-        specialArgs = { inherit extras mylib units; };
+        specialArgs = {
+          inherit
+            extras
+            mylib
+            units
+            inputs # Only use this for setting nixpath
+            ;
+        };
       };
 
       # Autowire units. Units := my very own nix modules.
