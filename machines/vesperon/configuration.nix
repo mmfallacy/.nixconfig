@@ -10,6 +10,9 @@ let
   # inherit (mmfallacy.const) username name;
   inherit (units.profiles) mmfallacy;
   inherit (mmfallacy.const) username name;
+
+  # Vesperon is a VMWare Guest which runs the current iteration (2025) of .nixconfig
+  HOSTNAME = "vesperon";
 in
 {
   imports = [
@@ -33,8 +36,8 @@ in
   ];
 
   time.timeZone = "Asia/Manila";
-  networking.hostName = "MMFALLACY-NixVM";
-  environment.sessionVariables.FLAKE_HOSTNAME = "vesperon";
+  networking.hostName = HOSTNAME;
+  environment.sessionVariables.FLAKE_HOSTNAME = HOSTNAME;
 
   virtualisation.vmware.guest.enable = true;
 
