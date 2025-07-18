@@ -57,7 +57,7 @@
         modules = [
           inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
-          inputs.lix-module.nixosModules.default
+          # inputs.lix-module.nixosModules.default
 
           ./machines/vesperon/configuration.nix
         ];

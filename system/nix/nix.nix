@@ -9,8 +9,8 @@
     experimental-features = [
       "nix-command"
       "flakes"
-      # "pipe-operators"
-      "pipe-operator"
+      "pipe-operators"
+      # "pipe-operator"
     ];
 
     # Use nix-community cachix by default
