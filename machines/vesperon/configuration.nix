@@ -34,6 +34,8 @@ in
 
   time.timeZone = "Asia/Manila";
   networking.hostName = "MMFALLACY-NixVM";
+  environment.sessionVariables.FLAKE_HOSTNAME = "vesperon";
+
   virtualisation.vmware.guest.enable = true;
 
   # Export certain ports used by dev environments to local subnet.
