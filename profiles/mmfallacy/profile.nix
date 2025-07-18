@@ -20,6 +20,7 @@ in
     units.profiles.common.shell.misc
     units.profiles.common.shell.tmux
     units.profiles.common.kitty
+    units.profiles.common.browsers.chromium
   ];
 
   home.username = username;
