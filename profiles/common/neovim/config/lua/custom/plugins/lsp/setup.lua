@@ -48,11 +48,36 @@ return function(_, _)
     capabilities = get_capabilities(),
   }
 
+  local const = {
+    hostname = vim.env.FLAKE_HOSTNAME,
+    flake = vim.env.FLAKE,
+  }
+
   local handlers = {
     ['lua_ls'] = {},
     ['marksman'] = {},
     ['nil_ls'] = {
-      nix = { flake = { autoArchive = true } },
+      settings = {
+        nix = { flake = { autoArchive = true } },
+      },
+    },
+    ['nixd'] = {
+      settings = {
+        nixd = {
+          options = {
+            nixos = {
+              expr = '(builtins.getFlake "' .. const.flake .. '").nixosConfigurations.' .. const.hostname .. '.options',
+            },
+            home_manager = {
+              expr = '(builtins.getFlake "'
+                .. const.flake
+                .. '").nixosConfigurations.'
+                .. const.hostname
+                .. '.options.home-manager.users.type.getSubOptions []',
+            },
+          },
+        },
+      },
     },
     ['zls'] = {},
     ['rust_analyzer'] = {},

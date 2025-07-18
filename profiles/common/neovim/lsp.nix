@@ -13,6 +13,7 @@ with pkgs;
 
   # Nix
   extras.nil
+  nixd
   alejandra
   unstable.nixfmt-rfc-style
 
