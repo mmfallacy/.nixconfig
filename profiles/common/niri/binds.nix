@@ -53,6 +53,10 @@ in
       "${Mod}+Shift+Slash".action = actions.show-hotkey-overlay;
 
     }
+
+    // lib.optionalAttrs config.programs.chromium.enable {
+      "${Mod}+c".action = actions.spawn "chromium" "--app=https://chatgpt.com/";
+    }
     // (
       # Workspace binds
       # map attrset to range [1...9]
