@@ -14,7 +14,6 @@ local M = {
     'L3MON4D3/LuaSnip',
   },
 }
-
 function M.config(_, _opts)
   local cmp = require('cmp')
   local snip = require('luasnip')
@@ -48,7 +47,6 @@ function M.config(_, _opts)
   })
 
   opts.mapping = {
-    ['<C-Space>'] = cmp.mapping.open_docs(),
     ['<C-e>'] = cmp.mapping.abort(),
 
     ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
