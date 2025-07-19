@@ -16,5 +16,6 @@ mkShell {
     rustfmt
   ];
 
-  env.RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+  RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+  RUST_BACKTRACE = 1;
 }
