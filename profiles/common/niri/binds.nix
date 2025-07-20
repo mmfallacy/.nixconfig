@@ -2,6 +2,7 @@
 let
   actions = config.lib.niri.actions;
   Mod = "Mod";
+  bin = program: lib.getExe config.programs.${program}.package;
 in
 {
   # Scrap usage of ./default-binds.nix
@@ -55,7 +56,10 @@ in
     }
 
     // lib.optionalAttrs config.programs.chromium.enable {
-      "${Mod}+c".action = actions.spawn "chromium" "--app=https://chatgpt.com/";
+      "${Mod}+c".action.spawn = [
+        (bin "chromium")
+        "--app=https://chatgpt.com/"
+      ];
     }
     // (
       # Workspace binds
