@@ -61,6 +61,13 @@ in
         "--app=https://chatgpt.com/"
       ];
     }
+    // lib.optionalAttrs config.programs.rofi.enable {
+      "${Mod}+d".action.spawn = [
+        (bin "rofi")
+        "-show"
+        "drun"
+      ];
+    }
     // (
       # Workspace binds
       # map attrset to range [1...9]
