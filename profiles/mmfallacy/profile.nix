@@ -22,6 +22,9 @@ in
     units.profiles.common.kitty
     units.profiles.common.rofi
     units.profiles.common.browsers.chromium
+
+    units.profiles.common.applications.chatgpt
+    units.profiles.common.applications.gemini
   ];
 
   home.username = username;
