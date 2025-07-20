@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   extras,
   ...
@@ -46,6 +45,8 @@
     };
 
     sizes.terminal = 18;
+    sizes.applications = 18;
+    sizes.popups = 18;
   };
   # Based https://github.com/termbox/termbox2/blob/master/termbox2.h
   # Use blue (5) equivalent color in scheme
