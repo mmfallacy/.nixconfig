@@ -1,5 +1,12 @@
 This repository also holds project starter templates per language. The templates are loosely based on [Mitchel H.'s ghostty](https://github.com/ghostty-org/ghostty) nix shell configuration.
 
+## How to use?
+
+Run `nix flake init -t $FLAKE#<template>`
+
+> [!NOTE]
+> This presumes that you have the environment variable `$FLAKE` set to the `.nixconfig` repository.
+
 ## Supported Languages
 
 ### 1. Rust
