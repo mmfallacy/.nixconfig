@@ -29,6 +29,7 @@ in
     units.system.wm.niri
     ./hardware-configuration.nix
     units.system.vmware.shared
+    units.system.oci.podman
 
     units.system.nix.nh
 
