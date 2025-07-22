@@ -9,8 +9,9 @@
     defaultNetwork.settings.dns_enabled = true;
   };
 
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     # Add more development tools here!
+    podman-compose
   ];
 
 }
