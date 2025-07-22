@@ -23,3 +23,5 @@ dir
           '';
     }
 )
+# Filter all null attrsets (non-nix or ignored directories)
+|> lib.filterAttrsRecursive (k: v: v != null)
