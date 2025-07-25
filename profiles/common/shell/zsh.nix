@@ -32,6 +32,10 @@ in
         my.zsh-fzf-tab
         zsh-vi-mode
       ];
+
+    shellAliases = {
+      ndr = "nix-direnv-reload";
+    };
   };
 
   # Enable direnv integration
