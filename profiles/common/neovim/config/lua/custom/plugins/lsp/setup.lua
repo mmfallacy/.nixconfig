@@ -94,6 +94,7 @@ return function(_, _)
     ['cssls'] = {},
     ['eslint'] = {},
     ['bashls'] = {},
+    ['buf_ls'] = {},
   }
 
   lsp_setup_handlers(handlers, global)
