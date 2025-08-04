@@ -100,6 +100,9 @@
 
       # Flake templates:
       templates = import ./templates { inherit pkgs lib; };
+
+      # Flake packages:
+      packages.${system}.neovim = import ./packages/neovim/package.nix { inherit pkgs lib extras; };
     };
 
   inputs = {
