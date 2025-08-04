@@ -43,6 +43,7 @@
         pkgs-last = import inputs.nixpkgs-last default;
 
         nil = inputs.nil.packages.${system}.nil;
+        mnw = inputs.mnw;
 
         inherit (inputs.secrets.outputs) secrets;
         inherit (inputs) niri;
@@ -132,6 +133,8 @@
     # Consider moving this to npins in the future or partially update flake.lock via `nix flake update <inputs...>`
     nil.url = "github:oxalica/nil?rev=2e24c9834e3bb5aa2a3701d3713b43a6fb106362";
 
+    # Minimal neovim wrapper by Gerg-L
+    mnw.url = "github:Gerg-L/mnw";
     # Local secret git submodule flake.
     # See NixOS/nix/issues/12281 for more information
     # self.submodules = true;

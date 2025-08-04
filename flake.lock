@@ -244,6 +244,21 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.93.2-1.tar.gz"
       }
     },
+    "mnw": {
+      "locked": {
+        "lastModified": 1748710831,
+        "narHash": "sha256-eZu2yH3Y2eA9DD3naKWy/sTxYS5rPK2hO7vj8tvUCSU=",
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "rev": "cff958a4e050f8d917a6ff3a5624bc4681c6187d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "type": "github"
+      }
+    },
     "nil": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -496,6 +511,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "lix-module": "lix-module",
+        "mnw": "mnw",
         "nil": "nil",
         "niri": "niri",
         "nixpkgs": "nixpkgs_3",
