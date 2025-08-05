@@ -15,4 +15,7 @@
     "--run"
     ''export GEMINI_API_KEY="$(age --decrypt -i ~/.ssh/age.key ${extras.secrets.mmfallacy.GEMINI_API_KEY} | tr -d '\n')"''
   ];
+
+  # Set vim alias for mmfallacy profile.
+  programs.neovim.vimAlias = true;
 }
