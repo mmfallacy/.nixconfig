@@ -19,6 +19,7 @@ let
   lsps = import ./lsp.nix { inherit lib pkgs extras; };
 in
 {
+  warnings = [ " profiles/common/neovim: This submodule is now deprecated. Use .nixnvim instead!" ];
 
   programs.neovim = {
     enable = true;
@@ -103,4 +104,5 @@ in
   xdg.dataFile."nvim/lazy-plugins".source = lazypath;
   # Symlink parserpath to $XDG_DATA_HOME/nvim/nvim-treesitter-grammars for debugging purposes;
   xdg.dataFile."nvim/nvim-treesitter-grammars".source = parserpath;
+
 }

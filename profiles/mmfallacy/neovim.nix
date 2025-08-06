@@ -6,10 +6,6 @@
   ...
 }:
 {
-  imports = [
-    units.profiles.common.neovim
-  ];
-
   home.packages =
     let
       nixnvim = extras.nixnvim.overrideAttrs {
