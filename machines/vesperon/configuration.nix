@@ -61,6 +61,11 @@ in
       '') ports;
   };
 
+  services.openssh.enable = true;
+  services.openssh.settings = {
+    PermitRootLogin = "prohibit-password";
+  };
+
   users.users.${username} = {
     isNormalUser = true;
     description = name;
@@ -69,6 +74,10 @@ in
       "wheel"
     ];
     useDefaultShell = true;
+    openssh.authorizedKeys.keys = [
+      # WSL host for clipboard syncing
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICc3ZSMJCScdRBrjB/4fnLyExAywVVUKjtRGVi9ozsIA mmfallacy@MMFALLACY"
+    ];
   };
 
   home-manager.useGlobalPkgs = true;
