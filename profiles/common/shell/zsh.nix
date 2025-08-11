@@ -35,6 +35,7 @@ in
 
     shellAliases = {
       ndr = "nix-direnv-reload";
+      compose = "podman-compose";
     };
   };
 
