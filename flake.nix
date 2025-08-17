@@ -134,7 +134,13 @@
     nil.url = "github:oxalica/nil?rev=2e24c9834e3bb5aa2a3701d3713b43a6fb106362";
 
     # My .nixnvim
-    nixnvim.url = "github:mmfallacy/.nixnvim/main";
+    nixnvim = {
+      url = "github:mmfallacy/.nixnvim/main";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+      inputs.nixpkgs-master.follows = "nixpkgs-master";
+      inputs.nixpkgs-last.follows = "nixpkgs-last";
+    };
 
     # Local secret git submodule flake.
     # See NixOS/nix/issues/12281 for more information

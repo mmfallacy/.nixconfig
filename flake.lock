@@ -359,18 +359,26 @@
       "inputs": {
         "mnw": "mnw",
         "nil": "nil_2",
-        "nixpkgs-last": "nixpkgs-last",
-        "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-stable": "nixpkgs-stable_2",
-        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixpkgs-last": [
+          "nixpkgs-last"
+        ],
+        "nixpkgs-master": [
+          "nixpkgs-master"
+        ],
+        "nixpkgs-stable": [
+          "nixpkgs"
+        ],
+        "nixpkgs-unstable": [
+          "nixpkgs-unstable"
+        ],
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1755420111,
-        "narHash": "sha256-pXboWeMqralhCbjgEEbBlitF0Q5sJyCwuuZX9GWlkUo=",
+        "lastModified": 1755426658,
+        "narHash": "sha256-lpTXF/BeGvSmAchal5CAb7Qubjh44+JxJ2M2zZSV7B0=",
         "owner": "mmfallacy",
         "repo": ".nixnvim",
-        "rev": "ffece3b1321dbd82df1ca5bfbe94faf7c0d05cf3",
+        "rev": "d0a8d2e8c9860d5a176d37957313fffdf44182d3",
         "type": "github"
       },
       "original": {
@@ -412,45 +420,13 @@
         "type": "github"
       }
     },
-    "nixpkgs-last_2": {
-      "locked": {
-        "lastModified": 1751274312,
-        "narHash": "sha256-/bVBlRpECLVzjV19t5KMdMFWSwKLtb5RyXdjz3LJT+g=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "50ab793786d9de88ee30ec4e4c24fb4236fc2674",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-24.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1754413433,
-        "narHash": "sha256-WPJO1RBhMiescsHGY0IMfa3Y4OlQBsbiRq7HGx6JC+E=",
+        "lastModified": 1755426549,
+        "narHash": "sha256-ETi9d7gYacQlNSRoiCf/ZcDw+U/Njuv/7zEZY3YvFeo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "38e72a1ce2b4b6f2ac860a6c946070dcbf252cfe",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-master_2": {
-      "locked": {
-        "lastModified": 1752112910,
-        "narHash": "sha256-UaDYq75RcfSdKdckAL9AAzXGhx71GbpUWPB41ad6tn4=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "f57d56dfea848ea37efdf3633f454a8b4ef7c51b",
+        "rev": "155f51a6d11587138e357ce8f7c7b61135c43996",
         "type": "github"
       },
       "original": {
@@ -476,45 +452,13 @@
         "type": "github"
       }
     },
-    "nixpkgs-stable_2": {
-      "locked": {
-        "lastModified": 1754292888,
-        "narHash": "sha256-1ziydHSiDuSnaiPzCQh1mRFBsM2d2yRX9I+5OPGEmIE=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "ce01daebf8489ba97bd1609d185ea276efdeb121",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-25.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1754214453,
-        "narHash": "sha256-Q/I2xJn/j1wpkGhWkQnm20nShYnG7TI99foDBpXm1SY=",
+        "lastModified": 1755186698,
+        "narHash": "sha256-wNO3+Ks2jZJ4nTHMuks+cxAiVBGNuEBXsT29Bz6HASo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5b09dc45f24cf32316283e62aec81ffee3c3e376",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-unstable_2": {
-      "locked": {
-        "lastModified": 1751984180,
-        "narHash": "sha256-LwWRsENAZJKUdD3SpLluwDmdXY9F45ZEgCb0X+xgOL0=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "9807714d6944a957c2e036f84b0ff8caf9930bc0",
+        "rev": "fbcf476f790d8a217c3eab4e12033dc4a0f6d23c",
         "type": "github"
       },
       "original": {
@@ -638,9 +582,9 @@
         "niri": "niri",
         "nixnvim": "nixnvim",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-last": "nixpkgs-last_2",
-        "nixpkgs-master": "nixpkgs-master_2",
-        "nixpkgs-unstable": "nixpkgs-unstable_2",
+        "nixpkgs-last": "nixpkgs-last",
+        "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "secrets": "secrets",
         "stylix": "stylix"
       }
