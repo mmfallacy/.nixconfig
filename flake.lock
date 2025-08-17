@@ -366,11 +366,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1754510549,
-        "narHash": "sha256-aAAUcln7l2KwsHDThbMHUoHiruSqNmlZTcjDVx2yfo4=",
+        "lastModified": 1755420111,
+        "narHash": "sha256-pXboWeMqralhCbjgEEbBlitF0Q5sJyCwuuZX9GWlkUo=",
         "owner": "mmfallacy",
         "repo": ".nixnvim",
-        "rev": "5c3c23f03f53584e94f2f8434fd04cb309074a8d",
+        "rev": "ffece3b1321dbd82df1ca5bfbe94faf7c0d05cf3",
         "type": "github"
       },
       "original": {
