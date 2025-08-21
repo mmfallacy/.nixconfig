@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  systemConfig,
+  ...
+}:
 let
   # Generate home-manager plugin entry given the package.
   plug = pkg: rec {
@@ -33,10 +38,31 @@ in
         zsh-vi-mode
       ];
 
-    shellAliases = {
-      ndr = "nix-direnv-reload";
-      compose = "podman-compose";
-    };
+    shellAliases =
+      let
+        homeInstalled = pkg: builtins.elem pkg config.home.packages;
+        sysInstalled = pkg: builtins.elem pkg config.environment.systemPackages;
+      in
+      {
+      }
+      // pkgs.lib.optionalAttrs systemConfig.virtualisation.podman.enable {
+        pd = "podman";
+        pc = "podman-compose";
+      }
+      // pkgs.lib.optionalAttrs config.programs.direnv.nix-direnv.enable {
+        ndr = "nix-direnv-reload";
+      }
+      // (
+        let
+          eza = "eza --icons --header --git-ignore";
+        in
+        pkgs.lib.optionalAttrs (homeInstalled pkgs.eza) {
+          ls = "${eza} --tree";
+          lso = eza;
+          lsl = "${eza} -l";
+          lsta = "eza --tree --icons --header";
+        }
+      );
   };
 
   # Enable direnv integration
