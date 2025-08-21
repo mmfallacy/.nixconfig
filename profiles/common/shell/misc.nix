@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     tldr
+    eza
   ];
 
   home.sessionVariables = {
