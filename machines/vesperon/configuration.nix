@@ -41,6 +41,7 @@ in
   environment.sessionVariables.FLAKE_HOSTNAME = HOSTNAME;
 
   virtualisation.vmware.guest.enable = true;
+  virtualisation.waydroid.enable = true;
 
   # Export certain ports used by dev environments to local subnet.
   # TODO: Investigate necessity. Since I do not have any port forwarded, do I really need this? Or can I just disable the firewall or explicitly allow via allowed{TCP/UDP}Ports?
