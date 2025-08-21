@@ -57,9 +57,9 @@ in
           eza = "eza --icons --header --git-ignore";
         in
         pkgs.lib.optionalAttrs (homeInstalled pkgs.eza) {
-          ls = "${eza} --tree";
+          ls = "${eza} -l";
           lso = eza;
-          lsl = "${eza} -l";
+          lst = "${eza} --tree";
           lsta = "eza --tree --icons --header";
         }
       );
