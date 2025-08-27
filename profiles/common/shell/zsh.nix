@@ -72,12 +72,11 @@ in
   # Enable any-nix-shell
   home.packages = [
     pkgs.any-nix-shell
+    pkgs.fastfetch
   ];
 
   programs.zsh.initContent = ''
     ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
-
-    echo test
+    ${pkgs.fastfetch}/bin/fastfetch --config examples/21.jsonc
   '';
-
 }
