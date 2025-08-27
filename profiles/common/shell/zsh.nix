@@ -67,6 +67,7 @@ in
 
   # Enable direnv integration
   programs.direnv.enableZshIntegration = true;
+  programs.atuin.enableZshIntegration = true;
 
   # Enable any-nix-shell
   home.packages = [
@@ -75,6 +76,8 @@ in
 
   programs.zsh.initContent = ''
     ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
+
+    echo test
   '';
 
 }
