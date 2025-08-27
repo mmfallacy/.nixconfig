@@ -43,6 +43,7 @@
         pkgs-last = import inputs.nixpkgs-last default;
 
         nil = inputs.nil.packages.${system}.nil;
+        nh = inputs.nh.packages.${system}.nh;
         nixnvim = inputs.nixnvim.packages.${system}.neovim;
 
         inherit (inputs.secrets.outputs) secrets;
@@ -132,6 +133,11 @@
     # Lock to current (19/02/2025) main to temporarily detatch from flake updating
     # Consider moving this to npins in the future or partially update flake.lock via `nix flake update <inputs...>`
     nil.url = "github:oxalica/nil?rev=2e24c9834e3bb5aa2a3701d3713b43a6fb106362";
+
+    nh = {
+      url = "github:nix-community/nh?ref=v4.2.0-beta2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # My .nixnvim
     nixnvim = {
