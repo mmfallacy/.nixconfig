@@ -31,4 +31,7 @@
       nixnvim
       nvcd
     ];
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }
