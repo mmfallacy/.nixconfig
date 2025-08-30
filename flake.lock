@@ -395,11 +395,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1756532459,
-        "narHash": "sha256-heOWR2zZbd3e5g5pROwNDYfuVryW8SUNXf8PAh3ZjKE=",
+        "lastModified": 1756566754,
+        "narHash": "sha256-Qe7ZfKBLwy1fp/Sg8e+wfvR30oSrwJhkxHIV/VwdIDI=",
         "owner": "mmfallacy",
         "repo": ".nixnvim",
-        "rev": "89234bf96ae5fcd65b6e82f2e5156481dee6b24c",
+        "rev": "b1d8a3c9896f6beaa8161697c49fc506ab5eecfd",
         "type": "github"
       },
       "original": {
