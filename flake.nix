@@ -44,7 +44,7 @@
 
         nil = inputs.nil.packages.${system}.nil;
         nh = inputs.nh.packages.${system}.nh;
-        nixnvim = inputs.nixnvim.packages.${system}.neovim;
+        nixnvim = inputs.nixnvim.packages.${system};
 
         inherit (inputs.secrets.outputs) secrets;
         inherit (inputs) niri;

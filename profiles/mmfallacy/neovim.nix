@@ -12,7 +12,7 @@
 
       bin = pkg: lib.getExe pkg;
 
-      nixnvim = extras.nixnvim.override {
+      nixnvim = extras.nixnvim.neovim.override {
         wrapperArgs = [
           # Do note that --set VAR VAL treats VAL as an explicit string, hence no runtime evaluation.
           "--run"
@@ -39,6 +39,7 @@
     in
     [
       nixnvim
+      extras.nixnvim.aider
       nvcd
       nvdv
     ];
