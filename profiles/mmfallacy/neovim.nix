@@ -56,6 +56,7 @@
     in
     [
       nixnvim
+      extras.nixnvim.gemini-cli
       aider
       nvcd
       nvdv
