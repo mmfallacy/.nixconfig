@@ -52,6 +52,8 @@ in
         ports = [
           3000
           5173
+          9229
+          9230
         ];
       in
       pkgs.lib.concatMapStrings (port: ''
