@@ -35,11 +35,28 @@
           # Rename nvim output to name
           mv $out/bin/nvim $out/bin/${name}
         '';
+
+      };
+
+      aider = pkgs.stdenvNoCC.mkDerivation {
+        name = "aider-wrapped";
+        dontUnpack = true;
+        buildInputs = [
+          pkgs.makeWrapper
+        ];
+        runtimeInputs = [
+          pkgs.age
+        ];
+        installPhase = ''
+          mkdir -p $out/bin
+          makeWrapper ${bin extras.nixnvim.aider} $out/bin/aider \
+            --run 'export GEMINI_API_KEY="$(${bin age} --decrypt -i ~/.ssh/age.key ${extras.secrets.mmfallacy.GEMINI_API_KEY} | tr -d '\n')"'
+        '';
       };
     in
     [
       nixnvim
-      extras.nixnvim.aider
+      aider
       nvcd
       nvdv
     ];
