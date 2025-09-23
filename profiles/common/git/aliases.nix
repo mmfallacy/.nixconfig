@@ -49,7 +49,7 @@
   # Ignore current changes of specified file without untracking.
   igf = "update-index --skip-worktree";
   # Unignore current changes of specified file without untracking.
-  uigf = "update-inde]x --no-skip-worktree";
+  uigf = "update-index --no-skip-worktree";
   # Ignore all files that matches the specified pattern
   ig = "! git ls-files -z $1 | xargs -0 git igf";
   # Unignore all files that matches the specified pattern
