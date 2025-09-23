@@ -1,20 +1,26 @@
 {
-  inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    systems.url = "github:nix-systems/default";
-  };
+  description = "Ayusin.ph Web Backend";
 
   outputs =
-    { nixpkgs-stable, systems, ... }:
+    { nixpkgs-stable, systems, ... }@inputs:
     builtins.foldl' (a: b: a // b) { } (
       builtins.map (
         system:
         let
-          pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+          pkgs = nixpkgs-stable.legacyPackages.${system};
+          # extras = {
+          #   pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+          # };
         in
         {
-          devShells.${system}.default = import ./nix/devShell.nix { pkgs = pkgs-stable; };
+          devShells.${system}.default = import ./nix/devShell.nix { inherit pkgs; };
         }
       ) (import systems)
     );
+
+  inputs = {
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default";
+  };
 }
