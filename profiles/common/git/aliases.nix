@@ -27,7 +27,7 @@
   cmane = "commit --amend --no-edit";
 
   # Output git status more cleanly (changed, staged)
-  st = "status -sb";
+  st = "! git status -sb && git lig";
   # Output git branches more cleanly with additional information
   br = "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
   # Output git aliases as a list
@@ -49,12 +49,12 @@
   # Ignore current changes of specified file without untracking.
   igf = "update-index --skip-worktree";
   # Unignore current changes of specified file without untracking.
-  uigf = "update-index --no-skip-worktree";
+  uigf = "update-inde]x --no-skip-worktree";
   # Ignore all files that matches the specified pattern
   ig = "! git ls-files -z $1 | xargs -0 git igf";
   # Unignore all files that matches the specified pattern
   uig = "! git ls-files -z $1 | xargs -0 git uigf";
-  # List all ignored files
-  lig = "! git ls-files -v | grep ^S";
+  # List all ignored and assume-unchanged files
+  lig = "! echo -e \"\\033[34mIgnored and Assume-unchanged:\\033[0m\" && git ls-files -v | grep ^[Shc]";
 
 }
