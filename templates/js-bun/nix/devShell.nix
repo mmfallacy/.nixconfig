@@ -1,5 +1,6 @@
 {
   pkgs,
+  extras,
 }:
 with pkgs;
 mkShell {
