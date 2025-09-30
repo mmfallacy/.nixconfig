@@ -11,10 +11,10 @@ in
 
   programs.git = {
     # Disable autowire const.username and email
-    # These information will be wired per repo
-    # userName = lib.mkForce null;
-    # userEmail = lib.mkForce null;
-    # signing.key = lib.mkForce null;
+    # These information will be wired per repo instead of a global file
+    userName = lib.mkForce null;
+    userEmail = lib.mkForce null;
+    signing.key = lib.mkForce null;
 
     # Force global signingFormat
     extraConfig.gpg.format = lib.mkForce cfg.signingFormat;
