@@ -28,4 +28,6 @@
       git config --local user.signingKey "~/.ssh/ryuuudev_ed25519"
     '')
   ];
+
+  custom.multi-user-git.enable = true;
 }
