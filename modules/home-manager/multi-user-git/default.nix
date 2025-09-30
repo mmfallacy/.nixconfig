@@ -1,17 +1,18 @@
-{ config, lib, ... }:
+{ config, lib, ... }@args:
 let
   cfg = config.custom.multi-user-git;
 in
 {
-  config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = builtins.length cfg.users > 0;
-        message = "multi-user-git enabled but no additional users supplied";
-      }
-    ];
-
-  };
+  config =
+    lib.mkIf cfg.enable {
+      assertions = [
+        {
+          assertion = builtins.length cfg.users > 0;
+          message = "multi-user-git enabled but no additional users supplied";
+        }
+      ];
+    }
+    // import ./config.nix args;
 
   options.custom.multi-user-git =
     let
