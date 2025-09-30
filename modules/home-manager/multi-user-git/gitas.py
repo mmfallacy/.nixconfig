@@ -58,7 +58,7 @@ def log(msg, level="INFO",ctx="gitas"):
 # Panic if condition not met
 def panic(cond, msg, ctx="gitas"):
   if cond: return
-  print(c(f"${ctx}: {msg}",RED))
+  print(c(f"{ctx}: {msg}",RED))
   exit(1)
 
 def print_help():
@@ -95,7 +95,7 @@ def switch(user):
   panic(res[0], "set local config failed!", ctx="git")
   res = git("config", "--local", "core.sshCommand", get_ssh_command(user["authKey"]))
   panic(res[0], "set local config failed!", ctx="git")
-  log(f"Successfully switched repo credentials to ${user["username"]}", level="SUCCESS")
+  log(f"Successfully switched repo credentials to {user["username"]}", level="SUCCESS")
 
   return 0
 
@@ -112,7 +112,7 @@ def clone(user, repo, *extra_args):
 
   res = git("clone", repo, *extra_args or "", *append, env={"GIT_SSH_COMMAND":get_ssh_command(user["authKey"])})
   panic(res[0], "clone failed!", ctx="git")
-  log(f"Successfully cloned ${repo} repo!", level="SUCCESS")
+  log(f"Successfully cloned {repo} repo!", level="SUCCESS")
 
   return 0
   
