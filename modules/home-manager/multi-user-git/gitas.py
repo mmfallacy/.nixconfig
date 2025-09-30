@@ -100,10 +100,19 @@ def switch(user):
   return 0
 
 def clone(user, repo, *extra_args):
-  res = git("clone", repo, *extra_args or "", env={"GIT_SSH_COMMAND":get_ssh_command(user["authKey"])})
+  config_args = [
+    f"user.name={user["username"]}",
+    f"user.email={user["email"]}",
+    f"user.signingKey={user["signingKey"]}",
+    f"core.sshCommand={get_ssh_command(user["authKey"])}",
+  ]
+
+  # Set up local .gitconfig using --config flag of git clone
+  append = [item for entry in config_args for item in ("--config", entry)]
+
+  res = git("clone", repo, *extra_args or "", *append, env={"GIT_SSH_COMMAND":get_ssh_command(user["authKey"])})
   panic(res[0], "clone failed!", ctx="git")
   log(f"Successfully cloned ${repo} repo!", level="SUCCESS")
-  log(f"Please manually run `gitas {user["username"]}` within the cloned repo to update the local .gitconfig", level="WARN")
 
   return 0
   
