@@ -29,7 +29,8 @@ in
         # https://discourse.nixos.org/t/how-to-make-a-simple-substitution-when-using-pkgs-writers/32150/2
         buildCommand = old.buildCommand + ''
           substituteInPlace $out/bin/${old.name} \
-              --replace-fail '@@USERS@@' '${builtins.toJSON cfg.users}'
+              --replace-fail '@@USERS@@' '${builtins.toJSON cfg.users}' \
+              --replace-fail '@@development@@' '@@actual@@'
         '';
       });
     in

@@ -1,8 +1,13 @@
 #! /nix/store/vxl8pzgkkw8vdb4agzwm58imrfclmfrx-python3-3.12.11/bin/python3.12
 import json, sys
 
-# users = json.loads("""@@USERS@@""")
-users = json.loads("""[{"authKey":"~/.ssh/id_ed25519","email":"31348500+mmfallacy@users.noreply.github.com","signingKey":"~/.ssh/id_ed25519","username":"mmfallacy"}]""")
+users = []
+
+## Handle Nix Injection
+if "@@development@@" == "@@"+"development"+"@@":
+  users = json.loads("""[{"authKey":"~/.ssh/id_ed25519","email":"31348500+mmfallacy@users.noreply.github.com","signingKey":"~/.ssh/id_ed25519","username":"mmfallacy"},{"authKey":"~/.ssh/mmfallacy-extra_ed25519","email":"205347616+mmfallacy-extra@users.noreply.github.com","signingKey":"~/.ssh/mmfallacy-extra_ed25519","username":"mmfallacy-extra"},{"authKey":"~/.ssh/ryuuudev_ed25519","email":"211357809+ryuuudev@users.noreply.github.com","signingKey":"~/.ssh/ryuuudev_ed25519","username":"ryuuudev"}]""")
+else:
+  users = json.loads("""@@USERS@@""")
 
 RESET = "\033[0m"
 BOLD      = "\033[1m"
