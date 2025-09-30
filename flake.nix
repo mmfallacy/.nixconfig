@@ -60,9 +60,8 @@
           inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {
-            home-manager.sharedModules = lib.singleton {
-              imports = builtins.attrValues homeModules;
-            };
+            home-manager.sharedModules = builtins.attrValues homeModules;
+
           }
           # inputs.lix-module.nixosModules.default
 
