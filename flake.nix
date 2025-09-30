@@ -59,10 +59,16 @@
         modules = [
           inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
+          {
+            home-manager.sharedModules = builtins.attrValues homeModules;
+
+          }
           # inputs.lix-module.nixosModules.default
 
           ./machines/vesperon/configuration.nix
         ];
+        # Import all custom modules;
+
         # Do not forget to also pass this to home-manager!
         specialArgs = {
           inherit
@@ -89,6 +95,8 @@
       inherit extras;
 
       profiles = mylib.autowire.base ./profiles;
+
+      homeModules = mylib.autowire.base ./modules/home-manager;
       # Set up homeConfigurations (profiles)
       homeConfigurations.mmfallacy = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
