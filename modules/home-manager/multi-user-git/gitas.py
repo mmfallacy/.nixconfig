@@ -1,5 +1,5 @@
 #! /nix/store/vxl8pzgkkw8vdb4agzwm58imrfclmfrx-python3-3.12.11/bin/python3.12
-import json, sys
+import json, sys, subprocess, os
 
 users = []
 
@@ -20,6 +20,19 @@ YELLOW  = "\033[33m"
 BLUE    = "\033[34m"
 CYAN    = "\033[36m"
 
+def get_ssh_command(identityFile):
+  path = os.path.expanduser(identityFile)
+  panic(os.path.isfile(path), "Cannot find provided identity file")
+  return f"ssh -i {identityFile} -o IdentitiesOnly=yes"
+
+def git(*args,env=None):
+  try:
+    env = {**os.environ, **(env or {})}
+    ret = subprocess.run(["git", *args], check=True, env=env)
+    return (True, ret.returncode)
+  except Exception as err:
+    return (False, err)
+
 # Build pretty string using ANSI
 def c(string,pre,suf=RESET):
   _pre=""
@@ -29,8 +42,18 @@ def c(string,pre,suf=RESET):
     _pre = "".join(pre)
   return f"{_pre}{string}{suf}"
 
-def log(msg, ctx="gitas"):
-  return print(c(f"{ctx}: {msg}",GREEN))
+def log(msg, level="INFO",ctx="gitas"):
+  color = "";
+  match level:
+    case "WARN":
+      color = YELLOW
+    case "ERROR":
+      color = RED
+    case "SUCCESS":
+      color = GREEN
+    case "INFO" | _:
+      color = CYAN
+  return print(c(f"{ctx}: {msg}",color))
 
 # Panic if condition not met
 def panic(cond, msg, ctx="gitas"):
@@ -64,10 +87,26 @@ def get_user(key):
   return user
 
 def switch(user):
-  print(user)
+  res = git("config", "--local", "user.name", user["username"])
+  panic(res[0], "set local config failed!", ctx="git")
+  res = git("config", "--local", "user.email", user["email"])
+  panic(res[0], "set local config failed!", ctx="git")
+  res = git("config", "--local", "user.signingKey", user["signingKey"])
+  panic(res[0], "set local config failed!", ctx="git")
+  res = git("config", "--local", "core.sshCommand", get_ssh_command(user["authKey"]))
+  panic(res[0], "set local config failed!", ctx="git")
+  log(f"Successfully switched repo credentials to ${user["username"]}", level="SUCCESS")
 
-def clone(user, repo):
-  print(user, repo)
+  return 0
+
+def clone(user, repo, *extra_args):
+  res = git("clone", repo, *extra_args or "", env={"GIT_SSH_COMMAND":get_ssh_command(user["authKey"])})
+  panic(res[0], "clone failed!", ctx="git")
+  log(f"Successfully cloned ${repo} repo!", level="SUCCESS")
+  log(f"Please manually run `gitas {user["username"]}` within the cloned repo to update the local .gitconfig", level="WARN")
+
+  return 0
+  
 
 def main():
   args = sys.argv[1:];
@@ -81,13 +120,13 @@ def main():
    
   elif args[1] == "clone" or args[1] == "c":
     user = get_user(args[0])
-    panic(len(args) == 3, "Missing repository url")
+    panic(len(args) >= 3, "Missing repository url")
     repo = args[2]
     log(f"Cloning repository {repo} as user {user["username"]}")
-    return clone(user, repo)
+    return clone(user, repo, *args[3:])
 
   else:
     return panic(False, "Incorrect usage. Run gitas without arguments for the help file.")
 
 if __name__=="__main__":
-  main()
+  exit(main())
