@@ -5,7 +5,7 @@ users = []
 
 ## Handle Nix Injection
 if "@@development@@" == "@@"+"development"+"@@":
-  users = json.loads("""[{"authKey":"~/.ssh/id_ed25519","email":"31348500+mmfallacy@users.noreply.github.com","signingKey":"~/.ssh/id_ed25519","username":"mmfallacy"},{"authKey":"~/.ssh/mmfallacy-extra_ed25519","email":"205347616+mmfallacy-extra@users.noreply.github.com","signingKey":"~/.ssh/mmfallacy-extra_ed25519","username":"mmfallacy-extra"},{"authKey":"~/.ssh/ryuuudev_ed25519","email":"211357809+ryuuudev@users.noreply.github.com","signingKey":"~/.ssh/ryuuudev_ed25519","username":"ryuuudev"}]""")
+  panic("This shouldn't run!")
 else:
   users = json.loads("""@@USERS@@""")
 
