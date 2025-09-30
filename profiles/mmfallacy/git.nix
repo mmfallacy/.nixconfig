@@ -31,6 +31,12 @@
         signingKey = "~/.ssh/ryuuudev_ed25519";
         authKey = "~/.ssh/ryuuudev_ed25519";
       }
+      {
+        username = "harmoniq-solutions";
+        email = "235274822+harmoniq-solutions@users.noreply.github.com";
+        signingKey = "~/.ssh/harmoniq_ed25519";
+        authKey = "~/.ssh/harmoniq_ed25519";
+      }
     ];
   };
 
