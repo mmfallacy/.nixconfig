@@ -23,14 +23,19 @@
         aliases = [ "vim" ];
       };
 
+      # nixnvim based on ~/.nixnvim/nvimrc/
+      nvim = nixnvim.devMode;
+
+      # Nvim but temporarily check out given dir
       nvcd = pkgs.writeShellScriptBin "nvcd" ''
-        pushd "$1" && ${bin nixnvim} . "''${@:2}" && popd
+        pushd "$1" && ${bin nvim} . "''${@:2}" && popd
       '';
 
-      nvdv = pkgs.symlinkJoin rec {
-        name = "nvdv";
+      # Flake-locked nixnvim
+      nvfl = pkgs.symlinkJoin rec {
+        name = "nvfl";
         meta.mainProgram = name;
-        paths = [ nixnvim.devMode ];
+        paths = [ nixnvim ];
         postBuild = ''
           # Rename nvim output to name
           mv $out/bin/nvim $out/bin/${name}
@@ -55,11 +60,11 @@
       };
     in
     [
-      nixnvim
+      nvim
       extras.nixnvim.gemini-cli
       aider
       nvcd
-      nvdv
+      nvfl
     ];
   home.sessionVariables = {
     EDITOR = "nvim";
