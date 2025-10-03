@@ -31,6 +31,11 @@
         pushd "$1" && ${bin nvim} . "''${@:2}" && popd
       '';
 
+      # Neogit from CLI
+      ngit = pkgs.writeShellScriptBin "ngit" ''
+        ${bin nvim} . -c ":execute 'Neogit' | tabprevious | tabclose"
+      '';
+
       # Flake-locked nixnvim
       nvfl = pkgs.symlinkJoin rec {
         name = "nvfl";
@@ -63,6 +68,7 @@
       nvim
       extras.nixnvim.gemini-cli
       aider
+      ngit
       nvcd
       nvfl
     ];
