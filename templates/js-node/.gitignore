@@ -1,5 +1,4 @@
+# Nix
 .direnv/
-
-# Nix build result symlink
 result
 
