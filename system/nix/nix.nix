@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 {
 
   nix.settings = {
@@ -25,8 +25,11 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       # "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
     ];
-
   };
 
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+  # Remove NIX_PATH and legacy channels
+  nix.nixPath = [ ];
+  nix.channel.enable = false;
+
+  system.rebuild.enableNg = true;
 }
