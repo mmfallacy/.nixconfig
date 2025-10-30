@@ -3,7 +3,6 @@
   outputs =
     {
       self,
-      nixpkgs,
       home-manager,
       ...
     }@inputs:
@@ -15,8 +14,8 @@
         config.allowUnfree = true;
       };
       # Use stable nixpkgs as main pkgs.
-      pkgs = import nixpkgs default;
-      lib = nixpkgs.lib;
+      pkgs = import inputs.nixpkgs default;
+      lib = inputs.nixpkgs.lib;
 
       # mylib contains my own helper functions!
       # Use autowire/autoimport.nix to autowire mylib
@@ -75,7 +74,6 @@
             extras
             mylib
             units
-            inputs # Only use this for setting nixpath
             ;
         };
       };
@@ -133,9 +131,16 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Only used for package deduplication.
 
     # This should also match main nixpkgs home-manager version
-    stylix.url = "github:danth/stylix/release-25.05";
+    stylix = {
+      url = "github:danth/stylix/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    niri.url = "github:sodiboo/niri-flake/main";
+    niri = {
+      url = "github:sodiboo/niri-flake/main";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
 
     # Add nil upstream as input. Some changes are still not part of a release, e.g. pipe-operator support
     # Lock to current (19/02/2025) main to temporarily detatch from flake updating
@@ -154,6 +159,7 @@
       inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
       inputs.nixpkgs-master.follows = "nixpkgs-master";
       inputs.nixpkgs-last.follows = "nixpkgs-last";
+      inputs.nil.follows = "nil";
     };
 
     # Local secret git submodule flake.
@@ -161,7 +167,10 @@
     # self.submodules = true;
     # secrets.url = "./secrets";
 
-    secrets.url = "git+file:./secrets";
+    secrets = {
+      url = "git+file:./secrets";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
 }
