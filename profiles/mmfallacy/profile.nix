@@ -18,7 +18,7 @@ in
     units.profiles.common.shell.direnv
     units.profiles.common.shell.atuin
     units.profiles.common.shell.misc
-    units.profiles.common.shell.tmux
+    units.profiles.common.shell.zellij
     units.profiles.common.kitty
     units.profiles.common.rofi
     units.profiles.common.browsers.chromium
