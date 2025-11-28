@@ -16,7 +16,6 @@ in
     units.profiles.common.shell.zsh
     units.profiles.common.shell.starship
     units.profiles.common.shell.direnv
-    units.profiles.common.shell.atuin
     units.profiles.common.shell.misc
     units.profiles.common.shell.zellij
     units.profiles.common.kitty

@@ -75,6 +75,12 @@ in
     pkgs.fastfetch
   ];
 
+  # Enable hstr
+  programs.hstr = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh.initContent = ''
     ${pkgs.any-nix-shell}/bin/any-nix-shell zsh --info-right | source /dev/stdin
     ${pkgs.fastfetch}/bin/fastfetch --config examples/21.jsonc
