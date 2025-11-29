@@ -40,6 +40,7 @@
         pkgs-unstable = import inputs.nixpkgs-unstable default;
         pkgs-master = import inputs.nixpkgs-master default;
         pkgs-last = import inputs.nixpkgs-last default;
+        hm = home-manager;
 
         nil = inputs.nil.packages.${system}.nil;
         nh = inputs.nh.packages.${system}.nh;
