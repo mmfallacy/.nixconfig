@@ -84,6 +84,13 @@
         '';
       };
 
+      opencode = extras.nixnvim.opencode.override {
+        wrapperArgs = [
+          "--run"
+          ''export GEMINI_API_KEY="$(${bin age} --decrypt -i ~/.ssh/age.key ${extras.secrets.mmfallacy.GEMINI_API_KEY} | tr -d '\n')"''
+        ];
+      };
+
     in
     [
       nvim
@@ -92,6 +99,7 @@
       ngit
       nvcd
       nvfl
+      opencode
     ];
   home.sessionVariables = {
     EDITOR = "nvim";
