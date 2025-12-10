@@ -42,7 +42,6 @@
         pkgs-last = import inputs.nixpkgs-last default;
         hm = home-manager;
 
-        nil = inputs.nil.packages.${system}.nil;
         nh = inputs.nh.packages.${system}.nh;
         nixnvim = inputs.nixnvim.packages.${system};
 
@@ -143,25 +142,14 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
-    # Add nil upstream as input. Some changes are still not part of a release, e.g. pipe-operator support
-    # Lock to current (19/02/2025) main to temporarily detatch from flake updating
-    # Consider moving this to npins in the future or partially update flake.lock via `nix flake update <inputs...>`
-    nil.url = "github:oxalica/nil?rev=2e24c9834e3bb5aa2a3701d3713b43a6fb106362";
-
     nh = {
       url = "github:nix-community/nh?ref=v4.2.0-beta2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # My .nixnvim
-    nixnvim = {
-      url = "github:mmfallacy/.nixnvim/main";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-      inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
-      inputs.nixpkgs-master.follows = "nixpkgs-master";
-      inputs.nixpkgs-last.follows = "nixpkgs-last";
-      inputs.nil.follows = "nil";
-    };
+    # This has its own nixpkgs input so behavior is consistent with .nixnvim dev environment
+    nixnvim.url = "github:mmfallacy/.nixnvim/main";
 
     # Local secret git submodule flake.
     # See NixOS/nix/issues/12281 for more information
