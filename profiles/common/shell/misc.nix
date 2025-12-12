@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     tldr
     eza
+    nix-output-monitor
   ];
 
   home.sessionVariables = {
