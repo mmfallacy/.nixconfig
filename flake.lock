@@ -334,11 +334,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1765387748,
-        "narHash": "sha256-f7pqi9ESnc0vOaPAK9jGLzDLCmzG7yGcc8M3nPRLDyg=",
+        "lastModified": 1766606084,
+        "narHash": "sha256-oSDA8eo7X5bVgl+wyBn6wKUXFylBJBFyEhkbkkunmvc=",
         "owner": "mmfallacy",
         "repo": ".nixnvim",
-        "rev": "01602f120df08002999a577740d03b213bdb10f3",
+        "rev": "4ffba0dd2d7dcb9bd299209ca8edcc83b6cfe8bb",
         "type": "github"
       },
       "original": {
@@ -398,11 +398,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1760974509,
-        "narHash": "sha256-QfgharuhSFe4VsdI0ICLuAkB6U+uP/HXuoxY/YrJaiA=",
+        "lastModified": 1765608041,
+        "narHash": "sha256-gDxtbe9d7DfzUrfIeqp8oLgTDT8KTa6pOP548SFLBQ4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2ad4dc8cfbb5954cb22ccf8f6adc9da1113b6482",
+        "rev": "68182b726e3ac8ef9d28197a2e9675733c8818d1",
         "type": "github"
       },
       "original": {
@@ -446,11 +446,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1760878510,
-        "narHash": "sha256-K5Osef2qexezUfs0alLvZ7nQFTGS9DL2oTVsIXsqLgs=",
+        "lastModified": 1765472234,
+        "narHash": "sha256-9VvC20PJPsleGMewwcWYKGzDIyjckEz8uWmT0vCDYK0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "5e2a59a5b1a82f89f2c7e598302a9cacebb72a67",
+        "rev": "2fbfb1d73d239d2402a8fe03963e37aab15abe8b",
         "type": "github"
       },
       "original": {
@@ -525,11 +525,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1760031970,
-        "narHash": "sha256-E6p2mQVCcMCfDrI2qg+NuKLDwpygRr0ZnKqR+XdLK98=",
+        "lastModified": 1765648706,
+        "narHash": "sha256-jI7h6d5HL/AEnEqe6tup4txIwT+WpgaRyAG4O0iSLpA=",
         "ref": "refs/heads/main",
-        "rev": "9d9e38506723612a09a6c27c0129e979ef13ad51",
-        "revCount": 28,
+        "rev": "39364960dd24512e4103b86835e4d5d5c7b78b08",
+        "revCount": 29,
         "type": "git",
         "url": "file:./secrets"
       },

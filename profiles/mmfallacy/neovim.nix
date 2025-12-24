@@ -91,6 +91,19 @@
         ];
       };
 
+      ocdv =
+        (opencode.override {
+          xdgConfig = "/home/mmfallacy/.nixnvim/";
+        }).overrideAttrs
+          (old: {
+            name = "ocdv";
+            postInstall = ''
+              ${old.postInstall or ""}
+              # Rename final binary name
+              mv $out/bin/opencode $out/bin/ocdv
+            '';
+          });
+
     in
     [
       nvim
@@ -99,7 +112,9 @@
       ngit
       nvcd
       nvfl
+
       opencode
+      ocdv
     ];
   home.sessionVariables = {
     EDITOR = "nvim";
