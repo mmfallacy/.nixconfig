@@ -84,26 +84,17 @@
         '';
       };
 
+      # NOTE: Opencode requires a writable XDG_CONFIG_HOME/opencode.
+      # Thus, my old way of injecting a config residing in the store will not work anymore.
+      # Instead, point opencode config to .nixnvim/opencode akin to mnw's neovim.devMode
       opencode = extras.nixnvim.opencode.override {
+        xdgConfig = "/home/mmfallacy/.nixnvim/";
+
         wrapperArgs = [
           "--run"
           ''export GEMINI_API_KEY="$(${bin age} --decrypt -i ~/.ssh/age.key ${extras.secrets.mmfallacy.GEMINI_API_KEY} | tr -d '\n')"''
         ];
       };
-
-      ocdv =
-        (opencode.override {
-          xdgConfig = "/home/mmfallacy/.nixnvim/";
-        }).overrideAttrs
-          (old: {
-            name = "ocdv";
-            postInstall = ''
-              ${old.postInstall or ""}
-              # Rename final binary name
-              mv $out/bin/opencode $out/bin/ocdv
-            '';
-          });
-
     in
     [
       nvim
@@ -114,7 +105,6 @@
       nvfl
 
       opencode
-      ocdv
     ];
   home.sessionVariables = {
     EDITOR = "nvim";
