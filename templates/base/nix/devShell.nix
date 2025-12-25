@@ -3,7 +3,7 @@
 }:
 with pkgs;
 mkShell {
-  name = ".nixconfig base template";
+  name = "@@PROJNAME@@ development shell";
 
   nativeBuildInputs = [
   ];

@@ -1,5 +1,5 @@
 {
-  description = "Ayusin.ph Web Backend";
+  description = "@@PROJNAME@@";
 
   outputs =
     { nixpkgs-stable, systems, ... }@inputs:

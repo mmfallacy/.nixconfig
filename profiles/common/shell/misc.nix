@@ -4,6 +4,7 @@
     tldr
     eza
     nix-output-monitor
+    extras.flakeup
   ];
 
   home.sessionVariables = {

@@ -4,7 +4,7 @@
 }:
 with pkgs;
 mkShell {
-  name = ".nixconfig js-bun template";
+  name = "@@PROJNAME@@ development shell";
 
   nativeBuildInputs = [
     extras.pkgs-unstable.bun

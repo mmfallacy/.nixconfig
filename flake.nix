@@ -43,6 +43,7 @@
         hm = home-manager;
 
         nh = inputs.nh.packages.${system}.nh;
+        flakeup = inputs.flakeup.packages.${system}.flakeup;
         nixnvim = inputs.nixnvim.packages.${system};
 
         inherit (inputs.secrets.outputs) secrets;
@@ -106,7 +107,7 @@
       };
 
       # Flake templates:
-      templates = import ./templates { inherit pkgs lib; };
+      flakeup = import ./templates { inherit pkgs lib; };
     };
 
   inputs = {
@@ -146,6 +147,10 @@
       url = "github:nix-community/nh?ref=v4.2.0-beta2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # flakeup
+    # A supercharged nix flake init -t
+    flakeup.url = "github:mmfallacy/flakeup/main";
 
     # My .nixnvim
     # This has its own nixpkgs input so behavior is consistent with .nixnvim dev environment

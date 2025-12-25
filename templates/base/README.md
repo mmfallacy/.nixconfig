@@ -1,3 +1,3 @@
-# `.nixconfig` base flake template.
+# @@PROJNAME@@
 
 This template bootstraps a flake with a sample devShell

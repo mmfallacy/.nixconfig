@@ -1,5 +1,5 @@
 {
-  description = ".nixconfig js-bun template";
+  description = "@@PROJNAME@@";
 
   outputs =
     { nixpkgs-stable, systems, ... }@inputs:
