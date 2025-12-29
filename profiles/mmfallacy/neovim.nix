@@ -12,6 +12,18 @@
 
       bin = pkg: lib.getExe pkg;
 
+      # Do note that --set VAR VAL treats VAL as an explicit string, hence no runtime evaluation.
+      # Returns a list
+      withRuntimeAPIKeyArgs = name: [
+        "--run"
+
+        ''export ${name}="$(${bin age} --decrypt -i ~/.ssh/age.key ${
+          extras.secrets.mmfallacy.${name}
+        } | tr -d '\n')"''
+      ];
+      # Returns a joined argument string (e.g. "--run export ....")
+      withRuntimeAPIKeyArg = name: lib.escapeShellArgs (withRuntimeAPIKeyArgs name);
+
       nixnvim = extras.nixnvim.neovim.override (prev: {
         wrapperArgs = [
           # Do note that --set VAR VAL treats VAL as an explicit string, hence no runtime evaluation.
@@ -91,9 +103,9 @@
         xdgConfig = "/home/mmfallacy/.nixnvim/";
 
         wrapperArgs = [
-          "--run"
-          ''export GEMINI_API_KEY="$(${bin age} --decrypt -i ~/.ssh/age.key ${extras.secrets.mmfallacy.GEMINI_API_KEY} | tr -d '\n')"''
-        ];
+        ]
+        ++ withRuntimeAPIKeyArgs "MINIMAX_API_KEY"
+        ++ withRuntimeAPIKeyArgs "GEMINI_API_KEY";
       };
     in
     [
