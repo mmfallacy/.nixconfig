@@ -129,11 +129,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1765559410,
-        "narHash": "sha256-3sixdck23WBJXodixUEzRzOfg/Hc1Y2e7fLKZ7ZhnJM=",
+        "lastModified": 1766692072,
+        "narHash": "sha256-NNwLpey+qqq3MxYhiCbDvivthCiWzFwD6O0CeYIF50A=",
         "owner": "mmfallacy",
         "repo": "flakeup",
-        "rev": "3cb8efacf56a87c2091d93ab1e954277006dcfbb",
+        "rev": "d3248db3d3b80625fa3ab8f431f5f553ae2e4ca2",
         "type": "github"
       },
       "original": {
@@ -562,11 +562,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1765648706,
-        "narHash": "sha256-jI7h6d5HL/AEnEqe6tup4txIwT+WpgaRyAG4O0iSLpA=",
+        "lastModified": 1767011481,
+        "narHash": "sha256-KujRZOdf6mA/A2mSlhCIaz7LxnjYvq7kHyM7PN37DLA=",
         "ref": "refs/heads/main",
-        "rev": "39364960dd24512e4103b86835e4d5d5c7b78b08",
-        "revCount": 29,
+        "rev": "b3c87c9019b9ceb9f7659c3ba25a2c332af7ad69",
+        "revCount": 31,
         "type": "git",
         "url": "file:./secrets"
       },
