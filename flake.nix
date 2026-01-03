@@ -49,6 +49,7 @@
         inherit (inputs.secrets.outputs) secrets;
         inherit (inputs) niri;
         inherit mypkgs;
+
       };
     in
     # Load profiles. profiles = import ./profiles;
@@ -75,6 +76,9 @@
             extras
             mylib
             units
+
+            # This will be used by system/nix.nix to set NIXPATH
+            inputs
             ;
         };
       };

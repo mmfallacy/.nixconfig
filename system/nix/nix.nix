@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
 
   nix.settings = {
@@ -28,7 +28,9 @@
   };
 
   # Remove NIX_PATH and legacy channels
-  nix.nixPath = [ ];
+  nix.nixPath = [
+    "nixpkgs=${inputs.nixpkgs}"
+  ];
   nix.channel.enable = false;
 
   system.rebuild.enableNg = true;
