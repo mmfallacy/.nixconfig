@@ -105,7 +105,8 @@
         wrapperArgs = [
         ]
         ++ withRuntimeAPIKeyArgs "MINIMAX_API_KEY"
-        ++ withRuntimeAPIKeyArgs "GEMINI_API_KEY";
+        ++ withRuntimeAPIKeyArgs "GEMINI_API_KEY"
+        ++ withRuntimeAPIKeyArgs "CONTEXT7_API_KEY";
       };
     in
     [
