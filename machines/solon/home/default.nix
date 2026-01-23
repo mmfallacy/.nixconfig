@@ -18,7 +18,7 @@
 
   # Set up session variables
   home.sessionVariables = rec {
-    DOTFILES_PATH = with const; "/home/${username}/${dotfiles}";
+    DOTFILES_PATH = with const; "/home/${username}/.nixconfig";
     FLAKE = DOTFILES_PATH;
     NH_FLAKE = DOTFILES_PATH;
   };
