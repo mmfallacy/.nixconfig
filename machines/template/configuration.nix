@@ -17,6 +17,7 @@ in
   imports = [
     ./hardware-configuration.nix
     # units.system.base
+    # units.system.nix.nix
     # units.system.audio.pipewire
     # units.system.boot.grub
     # units.system.locales.en_PH
