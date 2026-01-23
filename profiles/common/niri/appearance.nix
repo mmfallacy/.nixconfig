@@ -37,12 +37,12 @@
   # Set wallpaper thru swaybg based on what stylix has
   home.packages = [ pkgs.swaybg ];
   programs.niri.settings.spawn-at-startup = [
-    {
+    (pkgs.lib.mkIf config.stylix.enable {
       command = [
         "swaybg"
         "-i"
         "${config.stylix.image}"
       ];
-    }
+    })
   ];
 }
