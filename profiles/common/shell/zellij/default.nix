@@ -1,8 +1,5 @@
 { pkgs, extras, ... }:
 {
-  # Use self.homeModules.zellij.nix insetad of inputs.home-manager's zellij.nix
-  disabledModules = [ "${extras.hm}/modules/programs/zellij.nix" ];
-
   imports = [
     ./keybinds.nix
   ];

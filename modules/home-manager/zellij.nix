@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  extras,
   ...
 }:
 
@@ -21,6 +22,9 @@ let
     };
 in
 {
+  # Use self.homeModules.zellij.nix insetad of inputs.home-manager's zellij.nix
+  disabledModules = [ "${extras.hm}/modules/programs/zellij.nix" ];
+
   meta.maintainers = [
     lib.maintainers.khaneliman
     lib.hm.maintainers.mainrs
