@@ -68,4 +68,5 @@ in
       # baseConfig = profile;
     };
 
+  system.stateVersion = "25.05";
 }
