@@ -9,7 +9,7 @@
     enable = true;
     settings = {
       animation = "matrix";
-      initial_info_text = "Vesperon";
+      initial_info_text = pkgs.lib.mkDefault "Vesperon";
       text_in_center = "true";
       min_refresh_delta = 2;
 
