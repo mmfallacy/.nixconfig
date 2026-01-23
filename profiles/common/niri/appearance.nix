@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  osConfig,
+  ...
+}:
 {
   # Disable title-bars
   programs.niri.settings.prefer-no-csd = true;
@@ -37,7 +42,7 @@
   # Set wallpaper thru swaybg based on what stylix has
   home.packages = [ pkgs.swaybg ];
   programs.niri.settings.spawn-at-startup = [
-    (pkgs.lib.mkIf config.stylix.enable {
+    (pkgs.lib.mkIf osConfig.stylix.enable {
       command = [
         "swaybg"
         "-i"
