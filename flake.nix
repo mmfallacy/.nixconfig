@@ -86,7 +86,7 @@
       nixosConfigurations.solon = lib.nixosSystem {
         inherit system;
         modules = [
-          # inputs.stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
           {
             home-manager.sharedModules = builtins.attrValues homeModules;
