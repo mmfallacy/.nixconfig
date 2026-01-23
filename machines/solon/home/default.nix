@@ -2,6 +2,7 @@
   baseConfig,
   const,
   pkgs,
+  units,
   ...
 }:
 {
@@ -10,6 +11,8 @@
     # baseConfig
 
     # Add machine-specific override files here!
+    units.profiles.mmfallacy.neovim
+    units.profiles.mmfallacy.git
   ];
 
   # Set up session variables
@@ -19,7 +22,6 @@
   };
 
   home.packages = [
-    pkgs.neovim
   ];
 
 }
