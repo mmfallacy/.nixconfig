@@ -8,8 +8,12 @@ let
   # Place specified <user profile> into scope;
   # inherit (units.profiles) <user profile>;
   # inherit (<user profile>.const) username name;
-  username = "mmfallacy";
-  name = "Michael M.";
+  const = {
+    username = "mmfallacy";
+    name = "Michael M.";
+  };
+
+  inherit (const) username name;
 
 in
 {
@@ -64,7 +68,7 @@ in
     # with <user_profile>;
     {
       inherit extras units;
-      # inherit const;
+      inherit const;
       # baseConfig = profile;
     };
 
