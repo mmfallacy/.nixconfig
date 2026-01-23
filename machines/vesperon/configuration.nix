@@ -87,7 +87,6 @@ in
   home-manager.extraSpecialArgs = with mmfallacy; {
     inherit const extras units;
     baseConfig = profile;
-    systemConfig = config;
   };
 
   stylix.enable = true;

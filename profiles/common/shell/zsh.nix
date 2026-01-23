@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  systemConfig,
+  osConfig,
   ...
 }:
 let
@@ -45,7 +45,7 @@ in
       in
       {
       }
-      // pkgs.lib.optionalAttrs systemConfig.virtualisation.podman.enable {
+      // pkgs.lib.optionalAttrs osConfig.virtualisation.podman.enable {
         pd = "podman";
         pc = "podman-compose";
       }
