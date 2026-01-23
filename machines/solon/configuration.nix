@@ -23,7 +23,8 @@ in
     units.system.base
     units.system.nix.nix
     units.system.audio.pipewire
-    units.system.boot.grub
+    # units.system.boot.grub
+    units.system.boot.systemd-boot
     units.system.locales.en_PH
 
     # units.system.login.gdm
