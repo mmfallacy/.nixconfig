@@ -21,41 +21,51 @@ in
     units.system.audio.pipewire
     units.system.boot.grub
     units.system.locales.en_PH
-    units.system.login.gdm
-    units.system.wm.gnome
+
+    # units.system.login.gdm
     units.system.login.ly
+
+    # Add gnome for easy recovery
+    units.system.wm.gnome
     units.system.wm.niri
-    # units.system.vmware.shared
-    #
+
     units.system.nix.nh
-    #
-    units.themes.catpuccin
+
+    # Disable stylix first!
+    # units.themes.catpuccin
   ];
 
   # Setup timezone and hostname
   time.timeZone = "Asia/Manila";
   networking.hostName = "MMFALLACY-SOLON";
 
-  # Bootstrap Linux user from <user profile>.const
-  users.users.${username} = {
-    isNormalUser = true;
-    description = name;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
-    useDefaultShell = true;
-  };
+  # Set ly text
+  services.displayManager.ly.settings.initial_info_text = "Solon";
 
-  # Bootstrap home-manager!
+  # Bootstrap Linux user from <user profile>.const
+  users.users.${username} =
+    # with <user_profile>;
+    {
+      isNormalUser = true;
+      description = name;
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      useDefaultShell = true;
+    };
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   # Use ./home as primary entry point with <user profile>.profile as the base configuration
   home-manager.users.${username} = import ./home;
 
-  # home-manager.extraSpecialArgs = with <user_profile>; {
-  #   inherit const extras units;
-  #   baseConfig = profile;
-  # };
+  home-manager.extraSpecialArgs =
+    # with <user_profile>;
+    {
+      inherit extras units;
+      # inherit const;
+      # baseConfig = profile;
+    };
 
 }
