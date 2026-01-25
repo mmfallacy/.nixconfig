@@ -14,7 +14,23 @@
     # Add machine-specific override files here!
     # units.profiles.mmfallacy.neovim
     # units.profiles.mmfallacy.git
+    units.profiles.common.kitty
+    units.profiles.common.shell.zsh
+    units.profiles.common.niri
   ];
+
+  programs.git.enable = true;
+  custom.multi-user-git = {
+    enable = true;
+    users = [
+      {
+        username = "mmfallacy";
+        email = "31348500+mmfallacy@users.noreply.github.com";
+        signingKey = "~/.ssh/id_ed25519";
+        authKey = "~/.ssh/id_ed25519";
+      }
+    ];
+  };
 
   # Set up session variables
   home.sessionVariables = rec {
