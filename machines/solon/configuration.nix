@@ -1,6 +1,7 @@
 {
   units,
   extras,
+  pkgs,
   ...
 }:
 let
@@ -59,6 +60,23 @@ in
       ];
       useDefaultShell = true;
     };
+
+  services.openssh.enable = true;
+  networking.firewall = {
+    enable = true; # By default, all ports are blocked.
+    extraCommands =
+      let
+        localSubnet = "192.168.18.0/24";
+        ports = [
+          22
+        ];
+      in
+      # Expose SSH PORT to local subnet
+      pkgs.lib.concatMapStrings (port: ''
+        iptables -A INPUT -p tcp -s ${localSubnet} --dport ${builtins.toString port} -j ACCEPT
+
+      '') ports;
+  };
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
