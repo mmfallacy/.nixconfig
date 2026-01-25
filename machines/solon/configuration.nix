@@ -44,7 +44,7 @@ in
 
   # Setup timezone and hostname
   time.timeZone = "Asia/Manila";
-  networking.hostName = "MMFALLACY-SOLON";
+  networking.hostName = "solon";
 
   # Set ly text
   services.displayManager.ly.settings.initial_info_text = "Solon";
@@ -95,4 +95,5 @@ in
   # stylix.enable = false;
 
   system.stateVersion = "25.05";
+
 }
