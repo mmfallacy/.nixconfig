@@ -92,7 +92,7 @@ in
       # baseConfig = profile;
     };
 
-  stylix.enable = false;
+  # stylix.enable = false;
 
   system.stateVersion = "25.05";
 }
