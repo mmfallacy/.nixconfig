@@ -21,6 +21,7 @@ in
   # Set up included units as well as hardware configuration
   imports = [
     ./hardware-configuration.nix
+    ./esc-caps-remap.nix
     units.system.base
     units.system.nix.nix
     units.system.audio.pipewire
