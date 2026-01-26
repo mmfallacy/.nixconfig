@@ -59,5 +59,12 @@
         };
         parameters = defaultParameters;
       };
+      go = {
+        description = builtins.readFile ./go/README.md;
+        root = ./go;
+        rules = defaultRules // {
+        };
+        parameters = defaultParameters;
+      };
     };
 }
