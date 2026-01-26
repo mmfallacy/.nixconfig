@@ -8,6 +8,7 @@ mkShell {
   nativeBuildInputs = [
     go
     gopls
+    golangci-lint
   ];
 
 }
