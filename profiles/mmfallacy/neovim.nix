@@ -112,8 +112,6 @@
     in
     [
       nvim
-      gemini-cli
-      aider
       ngit
       nvcd
       nvfl
