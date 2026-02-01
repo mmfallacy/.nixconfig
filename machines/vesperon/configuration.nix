@@ -50,11 +50,8 @@ in
       let
         localSubnet = "192.168.18.0/24";
         ports = [
-          3000
-          9229
-          9230
-        ]
-        ++ pkgs.lib.range 5173 5176;
+          "3000:9000"
+        ];
       in
       pkgs.lib.concatMapStrings (port: ''
         iptables -A INPUT -p tcp -s ${localSubnet} --dport ${builtins.toString port} -j ACCEPT
