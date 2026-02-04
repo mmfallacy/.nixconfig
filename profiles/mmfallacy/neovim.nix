@@ -52,6 +52,15 @@
         ${bin nvim} . -c ":execute 'Neogit' | tabprevious | tabclose"
       '';
 
+      # Spawn new terminal instance (without zellij) running nvim
+      nvsp = pkgs.writeShellScriptBin "nvsp" ''
+        if [ -z "''${TERMINAL+x}" ]; then
+          echo "TERMINAL not set!" >&2
+          exit 1
+        fi
+        nohup $TERMINAL ${bin nvim} "''$@" >/dev/null 2>&1 &
+      '';
+
       # Flake-locked nixnvim
       nvfl = pkgs.symlinkJoin rec {
         name = "nvfl";
@@ -115,6 +124,7 @@
       ngit
       nvcd
       nvfl
+      nvsp
 
       opencode
     ];
