@@ -107,6 +107,30 @@
         };
       };
 
+      nixosConfigurations.homelab-proto = lib.nixosSystem {
+        inherit system;
+        modules = [
+          # inputs.stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.sharedModules = builtins.attrValues homeModules;
+          }
+          ./machines/homelab-proto/configuration.nix
+        ];
+
+        # Do not forget to also pass this to home-manager!
+        specialArgs = {
+          inherit
+            extras
+            mylib
+            units
+
+            # This will be used by system/nix.nix to set NIXPATH
+            inputs
+            ;
+        };
+      };
+
       # Autowire units. Units := my very own nix modules.
       units = with mylib; {
         themes = autowire.base ./themes;
