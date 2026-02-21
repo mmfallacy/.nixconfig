@@ -1,0 +1,100 @@
+{
+  units,
+  extras,
+  pkgs,
+  ...
+}:
+let
+
+  # Place specified <user profile> into scope;
+  # inherit (units.profiles) <user profile>;
+  # inherit (<user profile>.const) username name;
+  const = {
+    username = "mmfallacy";
+    name = "Michael M.";
+  };
+
+  inherit (const) username name;
+
+in
+{
+  # Set up included units as well as hardware configuration
+  imports = [
+    ./hardware-configuration.nix
+    units.system.base
+    units.system.nix.nix
+    units.system.audio.pipewire
+    # units.system.boot.grub
+    units.system.boot.systemd-boot
+    units.system.locales.en_PH
+
+    # units.system.login.gdm
+    units.system.login.ly
+
+    # Add gnome for easy recovery
+    units.system.wm.gnome
+
+    units.system.nix.nh
+
+    # Disable stylix first!
+    # units.themes.catpuccin
+  ];
+
+  # Setup timezone and hostname
+  time.timeZone = "Asia/Manila";
+  networking.hostName = "homelab-proto";
+
+  # Enable virtualisation for vmware
+  virtualisation.vmware.guest.enable = true;
+
+  # Set ly text
+  services.displayManager.ly.settings.initial_info_text = "Homelab Proto";
+
+  # Bootstrap Linux user from <user profile>.const
+  users.users.${username} =
+    # with <user_profile>;
+    {
+      isNormalUser = true;
+      description = name;
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      useDefaultShell = true;
+    };
+
+  services.openssh.enable = true;
+  networking.firewall = {
+    enable = true; # By default, all ports are blocked.
+    extraCommands =
+      let
+        localSubnet = "192.168.18.0/24";
+        ports = [
+          22
+        ];
+      in
+      # Expose SSH PORT to local subnet
+      pkgs.lib.concatMapStrings (port: ''
+        iptables -A INPUT -p tcp -s ${localSubnet} --dport ${builtins.toString port} -j ACCEPT
+
+      '') ports;
+  };
+
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  # Use ./home as primary entry point with <user profile>.profile as the base configuration
+  home-manager.users.${username} = import ./home;
+
+  home-manager.extraSpecialArgs =
+    # with <user_profile>;
+    {
+      inherit extras units;
+      inherit const;
+      # baseConfig = profile;
+    };
+
+  # stylix.enable = false;
+
+  system.stateVersion = "25.05";
+
+}
