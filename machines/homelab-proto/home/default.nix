@@ -16,7 +16,7 @@
     # units.profiles.mmfallacy.git
     units.profiles.common.kitty
     units.profiles.common.shell.zsh
-    units.profiles.common.niri
+    # units.profiles.common.niri
   ];
 
   programs.git.enable = true;
