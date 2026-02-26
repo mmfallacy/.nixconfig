@@ -217,6 +217,13 @@
       url = "git+file:./secrets";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Nix darwin
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixos-25.11";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
   };
 
 }
