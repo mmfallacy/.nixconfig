@@ -131,6 +131,15 @@
         };
       };
 
+      darwinConfigurations.aetheron = import ./machines/aetheron {
+        inherit
+          inputs
+          extras
+          units
+          mylib
+          ;
+      };
+
       # Autowire units. Units := my very own nix modules.
       units = with mylib; {
         themes = autowire.base ./themes;
