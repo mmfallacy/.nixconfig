@@ -25,10 +25,44 @@ def get_ssh_command(identityFile):
   panic(os.path.isfile(path), "Cannot find provided identity file")
   return f"ssh -i {identityFile} -o IdentitiesOnly=yes"
 
+HAS_GIT=None
+def get_git_command():
+  global HAS_GIT
+
+  if HAS_GIT is True:
+    return ["git"]
+  elif HAS_GIT is False:
+    return ["nix", "run", "nixpkgs#git", "--"]
+  elif HAS_GIT is None:
+    pass
+  else:
+    raise Exception(f"Unexpected HAS_GIT value ${HAS_GIT}. Maybe both git and nix (git fallback) is not in the system")
+
+  try:
+    subprocess.run(["git", "--version"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    HAS_GIT=True
+    return get_git_command()
+  except subprocess.CalledProcessError:
+    log("Git not found, trying nixpkgs#git as fallback", level="WARN")
+    
+  try:
+    subprocess.run(["nix", "--version"], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    HAS_GIT=False
+    return get_git_command()
+  except subprocess.CalledProcessError:
+    HAS_GIT = "NIX_NOT_FOUND"
+    log("No fallback can be used!", level="WARN")
+
+  # Should raise an exception!
+  return get_git_command()
+
+    
+
 def git(*args,env=None):
   try:
     env = {**os.environ, **(env or {})}
-    ret = subprocess.run(["git", *args], check=True, env=env)
+    git = get_git_command()
+    ret = subprocess.run([*git, *args], check=True, env=env)
     return (True, ret.returncode)
   except Exception as err:
     return (False, err)
@@ -73,6 +107,8 @@ def print_help():
   for i, user in enumerate(users):
     print("\t", i, user['username'])
 
+  print(f"{c("Using git:", [YELLOW])} {get_git_command()}")
+
 # Given key, return user dict from users
 def get_user(key):
   user = None
@@ -88,13 +124,13 @@ def get_user(key):
 
 def switch(user):
   res = git("config", "--local", "user.name", user["username"])
-  panic(res[0], "set local config failed!", ctx="git")
+  panic(res[0], f"set local config failed! {res[1]}", ctx="git")
   res = git("config", "--local", "user.email", user["email"])
-  panic(res[0], "set local config failed!", ctx="git")
+  panic(res[0], f"set local config failed! {res[1]}", ctx="git")
   res = git("config", "--local", "user.signingKey", user["signingKey"])
-  panic(res[0], "set local config failed!", ctx="git")
+  panic(res[0], f"set local config failed! {res[1]}", ctx="git")
   res = git("config", "--local", "core.sshCommand", get_ssh_command(user["authKey"]))
-  panic(res[0], "set local config failed!", ctx="git")
+  panic(res[0], f"set local config failed! {res[1]}", ctx="git")
   log(f"Successfully switched repo credentials to {user["username"]}", level="SUCCESS")
 
   return 0
