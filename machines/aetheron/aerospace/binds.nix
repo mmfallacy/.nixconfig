@@ -9,25 +9,25 @@
       let
         ts = builtins.toString;
         per-workspace-keybinds = builtins.map (i: {
-          "cmd-${ts i}" = "workspace ${ts i}";
-          "cmd-shift-${ts i}" = "move-node-to-workspace ${ts i}";
+          "alt-${ts i}" = "workspace ${ts i}";
+          "alt-shift-${ts i}" = "move-node-to-workspace ${ts i}";
         }) (pkgs.lib.range 1 9);
       in
       {
-        cmd-h = "focus left";
-        cmd-j = "focus down";
-        cmd-k = "focus up";
-        cmd-l = "focus right";
+        alt-h = "focus left";
+        alt-j = "focus down";
+        alt-k = "focus up";
+        alt-l = "focus right";
 
-        cmd-shift-h = "move left";
-        cmd-shift-j = "move down";
-        cmd-shift-k = "move up";
-        cmd-shift-l = "move right";
+        alt-shift-h = "move left";
+        alt-shift-j = "move down";
+        alt-shift-k = "move up";
+        alt-shift-l = "move right";
 
-        cmd-minus = "resize smart -50";
-        cmd-equal = "resize smart +50";
+        alt-minus = "resize smart -50";
+        alt-equal = "resize smart +50";
 
-        cmd-tab = "workspace-back-and-forth";
+        alt-tab = "workspace-back-and-forth";
       }
       // pkgs.lib.mergeAttrsList per-workspace-keybinds;
     mode.service.binding = {
@@ -48,19 +48,19 @@
         "mode main"
       ];
 
-      cmd-shift-h = [
+      alt-shift-h = [
         "join-with left"
         "mode main"
       ];
-      cmd-shift-j = [
+      alt-shift-j = [
         "join-with down"
         "mode main"
       ];
-      cmd-shift-k = [
+      alt-shift-k = [
         "join-with up"
         "mode main"
       ];
-      cmd-shift-l = [
+      alt-shift-l = [
         "join-with right"
         "mode main"
       ];

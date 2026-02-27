@@ -63,4 +63,11 @@ in
     ];
   };
 
+  system.defaults.finder.AppleShowAllFiles = true;
+  system.defaults.finder.QuitMenuItem = true;
+  system.defaults.finder.ShowPathBar = true;
+  system.defaults.finder._FXSortFoldersFirst = true;
+
+  system.defaults.trackpad.Dragging = true;
+
 }
