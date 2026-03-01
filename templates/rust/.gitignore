@@ -1,9 +1,0 @@
-.direnv/
-
-# Nix build result symlink
-result
-
-# Added by cargo
-
-/target
-
