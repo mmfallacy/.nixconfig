@@ -6,6 +6,11 @@
     nixpkgs-last.url = "https://channels.nixos.org/nixos-24.11/nixexprs.tar.xz";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
+    # Used as main home-manager version
+    # This should match main nixpkgs version
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Only used for package deduplication.
+
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     nh = {
