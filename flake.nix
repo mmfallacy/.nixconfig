@@ -41,8 +41,8 @@
         "aarch64-darwin"
       ];
 
-      perSystem =
-        { system, ... }:
+      _module.args.mkExtras =
+        system:
         let
           default = {
             inherit system;
@@ -50,19 +50,25 @@
           };
         in
         {
-          _module.args.pkgs = import inputs.nixpkgs default;
-          _module.args.extras = {
-            pkgs-unstable = import inputs.nixpkgs-unstable default;
-            pkgs-master = import inputs.nixpkgs-master default;
-            pkgs-last = import inputs.nixpkgs-last default;
+          pkgs-unstable = import inputs.nixpkgs-unstable default;
+          pkgs-master = import inputs.nixpkgs-master default;
+          pkgs-last = import inputs.nixpkgs-last default;
 
-            nh = inputs.nh.packages.${system}.nh;
-            flakeup = inputs.flakeup.packages.${system}.flakeup;
-            nixnvim = inputs.nixnvim.packages.${system};
+          nh = inputs.nh.packages.${system}.nh;
+          flakeup = inputs.flakeup.packages.${system}.flakeup;
+          nixnvim = inputs.nixnvim.packages.${system};
 
-            # inherit (inputs.secrets.outputs) secrets;
-            # inherit (inputs) niri;
-            # inherit mypkgs;
+          # inherit (inputs.secrets.outputs) secrets;
+          # inherit (inputs) niri;
+          # inherit mypkgs;
+        };
+
+      perSystem =
+        { system, ... }:
+        {
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
           };
         };
 
