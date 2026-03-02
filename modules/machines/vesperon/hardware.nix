@@ -1,0 +1,36 @@
+{
+  flake.nixosModules.machine-vesperon =
+    { lib, ... }:
+    {
+      imports = [ ];
+
+      boot.initrd.availableKernelModules = [
+        "ata_piix"
+        "mptspi"
+        "uhci_hcd"
+        "ehci_pci"
+        "ahci"
+        "sd_mod"
+        "sr_mod"
+      ];
+      boot.initrd.kernelModules = [ ];
+      boot.kernelModules = [ ];
+      boot.extraModulePackages = [ ];
+
+      fileSystems."/" = {
+        device = "/dev/disk/by-uuid/599d8df8-dba0-4e44-a97d-da570ba26b87";
+        fsType = "ext4";
+      };
+
+      swapDevices = [ ];
+
+      # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+      # (the default) this is the recommended approach. When using systemd-networkd it's
+      # still possible to use this option, but it's recommended to use it in conjunction
+      # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+      networking.useDHCP = lib.mkDefault true;
+      # networking.interfaces.ens33.useDHCP = lib.mkDefault true;
+
+      nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    };
+}

@@ -7,7 +7,15 @@ top: {
     }:
     {
       imports = with top.config.flake.nixosModules; [
+        core
+        nix
+        pipewire
         grub
+        locale_en_PH
+        weston
+        ly
+        niri
+        vmware-shared
         nh
       ];
 

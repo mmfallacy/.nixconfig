@@ -13,6 +13,12 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    niri = {
+      url = "github:sodiboo/niri-flake/main";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
+
     nh = {
       url = "github:nix-community/nh?ref=v4.2.0-beta2";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,7 +65,7 @@
           nixnvim = inputs.nixnvim.packages.${system};
 
           # inherit (inputs.secrets.outputs) secrets;
-          # inherit (inputs) niri;
+          inherit (inputs) niri;
           # inherit mypkgs;
         };
 
