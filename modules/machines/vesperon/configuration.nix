@@ -15,7 +15,6 @@ top: {
         weston
         ly
         niri
-        vmware-shared
         nh
       ];
 
