@@ -15,6 +15,7 @@ in
     modules = [
       config.flake.nixosModules."machine-${machine}"
       inputs.home-manager.nixosModules.home-manager
+      { networking.hostName = machine; }
     ];
   };
 }
