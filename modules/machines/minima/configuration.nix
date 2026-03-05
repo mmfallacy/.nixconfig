@@ -14,6 +14,7 @@ top: {
         locale_en_PH
         weston
         nh
+        ly
       ];
 
       environment.systemPackages = [
