@@ -16,9 +16,7 @@
 
       # System packages
       environment.systemPackages = with pkgs; [
-        neovim
         git
-        home-manager
       ];
 
       # Set Environment Variable
