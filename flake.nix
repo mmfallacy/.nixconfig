@@ -6,12 +6,15 @@
     nixpkgs-last.url = "https://channels.nixos.org/nixos-24.11/nixexprs.tar.xz";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
-    # Used as main home-manager version
-    # This should match main nixpkgs version
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Only used for package deduplication.
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    hjem = {
+      url = "github:feel-co/hjem";
+      input.nixpkgs.follows = "nixpkgs";
+    };
 
     niri = {
       url = "github:sodiboo/niri-flake/main";
@@ -78,6 +81,9 @@
           };
         };
 
-      imports = import-tree ./modules;
+      imports = lib.flatten [
+        (import-tree ./modules)
+        (import-tree ./machines)
+      ];
     };
 }

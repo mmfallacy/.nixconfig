@@ -14,8 +14,8 @@ in
     specialArgs.inputs = inputs;
     modules = [
       config.flake.nixosModules."machine-${machine}"
-      inputs.home-manager.nixosModules.home-manager
       { networking.hostName = machine; }
+      inputs.hjem.nixosModules.default
     ];
   };
 }
