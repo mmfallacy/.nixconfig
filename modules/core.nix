@@ -1,4 +1,4 @@
-{
+top: {
   flake.nixosModules.core =
     {
       pkgs,
@@ -6,6 +6,9 @@
       ...
     }:
     {
+      imports = with top.config.flake.nixosModules; [
+        zsh
+      ];
       # Clear default packages not necessary for running Nix
       # environment.defaultPackages ships with packages by default hence the need to override them.
       environment.defaultPackages = [ ];
@@ -23,9 +26,6 @@
       environment.sessionVariables = {
         IS_NIXOS = 1;
       };
-
-      programs.zsh.enable = true;
-      users.defaultUserShell = pkgs.zsh;
 
       security.sudo.extraConfig = ''
         Defaults pwfeedback
