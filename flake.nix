@@ -13,7 +13,7 @@
 
     hjem = {
       url = "github:feel-co/hjem";
-      input.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     niri = {
