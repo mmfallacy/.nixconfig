@@ -24,4 +24,14 @@
         ];
       };
     };
+
+  flake.hjemModules.zsh =
+    { config, lib, ... }:
+    let
+      inherit (lib.modules) mkIf;
+      hasSessionVars = config.environment.sessionVariables != { };
+    in
+    {
+      files.".zshenv" = mkIf hasSessionVars { source = config.environment.loadEnv; };
+    };
 }

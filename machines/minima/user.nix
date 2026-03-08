@@ -1,8 +1,6 @@
 top: {
   flake.nixosModules.machine-minima =
     {
-      config,
-      lib,
       pkgs,
       extras,
       ...
@@ -14,6 +12,7 @@ top: {
         };
         imports = with top.config.flake.hjemModules; [
           niri
+          zsh
         ];
 
         packages = with pkgs; [
@@ -32,10 +31,6 @@ top: {
         useDefaultShell = true;
       };
 
-      # Temp
-      hjem.users.mmfallacy.files.".zshrc".text = ''
-        source ${config.hjem.users.mmfallacy.environment.loadEnv}
-      '';
     };
 
 }
