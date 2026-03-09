@@ -26,12 +26,31 @@
     };
 
   flake.hjemModules.zsh =
-    { config, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       inherit (lib.modules) mkIf;
       hasSessionVars = config.environment.sessionVariables != { };
     in
     {
       files.".zshenv" = mkIf hasSessionVars { source = config.environment.loadEnv; };
+
+      files.".zshrc".text = # bash
+        ''
+          # Ensure unique entries
+          typeset -U path cdpath fpath manpath
+
+          # Load help files
+          HELPDIR="${pkgs.zsh}/share/zsh/$ZSH_VERSION/help"
+
+          HISTSIZE="10000"
+          SAVEHIST="10000"
+
+          HISTFILE="$HOME/.zsh_history"
+        '';
     };
 }
