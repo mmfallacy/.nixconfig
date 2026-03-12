@@ -1,6 +1,6 @@
 {
   flake.nixosModules.zsh =
-    { ... }:
+    { pkgs, ... }:
     {
       programs.zsh = {
         enable = true;
@@ -9,6 +9,7 @@
         enableCompletion = true;
 
         setOptions = [
+          "HIST_FCNTL_LOCK"
           "HIST_IGNORE_DUPS"
           "SHARE_HISTORY"
           "EXTENDED_HISTORY"
@@ -23,6 +24,8 @@
           "AUTO_MENU"
         ];
       };
+
+      users.defaultUserShell = pkgs.zsh;
     };
 
   flake.hjemModules.zsh =
@@ -43,6 +46,11 @@
         ''
           # Ensure unique entries
           typeset -U path cdpath fpath manpath
+
+          # Load completions from active nix profiles
+          for profile in ''${(z)NIX_PROFILES}; do
+            fpath+=("$profile/share/zsh/site-functions" "$profile/share/zsh/$ZSH_VERSION/functions" "$profile/share/zsh/vendor-completions")
+          done
 
           # Load help files
           HELPDIR="${pkgs.zsh}/share/zsh/$ZSH_VERSION/help"
