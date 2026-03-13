@@ -14,6 +14,7 @@ top: {
           niri
           zsh
           git
+          direnv
         ];
 
         packages = with pkgs; [
