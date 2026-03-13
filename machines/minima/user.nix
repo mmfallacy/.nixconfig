@@ -13,6 +13,7 @@ top: {
         imports = with top.config.flake.hjemModules; [
           niri
           zsh
+          git
         ];
 
         packages = with pkgs; [
