@@ -1,14 +1,18 @@
 top: {
   flake.nixosModules.machine-minima =
     {
+      config,
       pkgs,
       extras,
       ...
     }:
     {
-      hjem.users.mmfallacy = {
+      hjem.users.mmfallacy = rec {
+        directory = config.users.users.mmfallacy.home;
+
         environment.sessionVariables = {
           TERMINAL = "kitty";
+          FLAKE = "${directory}/.nixconfig-dendritic";
         };
         imports = with top.config.flake.hjemModules; [
           niri
