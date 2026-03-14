@@ -7,9 +7,9 @@
     }:
     {
       packages = [ pkgs.fzf ];
-      files.".zsh/.zshplugins".text = # bash
+      files.".zshrc".text = # bash
         ''
-            if [[ $options[zle] = on ]]; then
+          if [[ $options[zle] = on ]]; then
               source <(${lib.getExe pkgs.fzf} --zsh)
           fi
         '';
