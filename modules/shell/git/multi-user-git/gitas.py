@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, sys, subprocess, os
+import json, sys, subprocess, os, pathlib
 
 users = []
 
@@ -123,13 +123,17 @@ def get_user(key):
   return user
 
 def switch(user):
+  identity = user["authKey"]
+  if not pathlib.Path(identity).expanduser().exists():
+    panic(False, f"identity file does not exist! {identity}", ctx="git")
+
   res = git("config", "--local", "user.name", user["username"])
   panic(res[0], f"set local config failed! {res[1]}", ctx="git")
   res = git("config", "--local", "user.email", user["email"])
   panic(res[0], f"set local config failed! {res[1]}", ctx="git")
   res = git("config", "--local", "user.signingKey", user["signingKey"])
-  panic(res[0], f"set local config failed! {res[1]}", ctx="git")
-  res = git("config", "--local", "core.sshCommand", get_ssh_command(user["authKey"]))
+  panic(res[0], f"set local config failed! {res[1]}", ctx="git") 
+  res = git("config", "--local", "core.sshCommand", get_ssh_command(identity))
   panic(res[0], f"set local config failed! {res[1]}", ctx="git")
   log(f"Successfully switched repo credentials to {user["username"]}", level="SUCCESS")
 
