@@ -140,6 +140,10 @@ def switch(user):
   return 0
 
 def clone(user, repo, *extra_args):
+  identity = user["authKey"]
+  if not pathlib.Path(identity).expanduser().exists():
+    panic(False, f"identity file does not exist! {identity}", ctx="git")
+
   config_args = [
     f"user.name={user["username"]}",
     f"user.email={user["email"]}",
