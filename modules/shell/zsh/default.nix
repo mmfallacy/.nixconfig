@@ -40,6 +40,7 @@
       hasSessionVars = config.environment.sessionVariables != { };
     in
     {
+      files.".bashenv" = mkIf hasSessionVars { source = config.environment.loadEnv; };
       files.".zshenv" = mkIf hasSessionVars { source = config.environment.loadEnv; };
 
       files.".zshrc".text = # bash
