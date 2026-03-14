@@ -15,6 +15,11 @@ top: {
           zsh
           git
           direnv
+          starship
+          fastfetch
+          hstr
+          any-nix-shell
+          eza
         ];
 
         packages = with pkgs; [
