@@ -14,17 +14,22 @@ top: {
           TERMINAL = "kitty";
           FLAKE = "${directory}/.nixconfig-dendritic";
         };
-        imports = with top.config.flake.hjemModules; [
-          niri
-          zsh
-          git
-          direnv
-          starship
-          fastfetch
-          hstr
-          any-nix-shell
-          eza
-        ];
+        imports =
+          let
+            inherit (top.config.flake) hjemModules hjemConfigs;
+          in
+          with hjemModules;
+          [
+            hjemConfigs.minima-niri
+            zsh
+            git
+            direnv
+            starship
+            fastfetch
+            hstr
+            any-nix-shell
+            eza
+          ];
 
         packages = with pkgs; [
           kitty
