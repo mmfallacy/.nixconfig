@@ -15,9 +15,8 @@
     { pkgs, ... }:
     {
 
-      xdg.config.files."niri/config.kdl".source = pkgs.writeTextFile {
-        name = "niri-config.kdl";
-        text = ''
+      xdg.config.files."niri/config.kdl".text = # kdl
+        ''
           prefer-no-csd 
           layout {
             gaps 4
@@ -29,7 +28,7 @@
 
           binds {
             Mod+T { spawn "kitty"; }
-            Mod+Ctrl+T { spawn "\"$TERMINAL\" -d \"$FLAKE\""; }
+            Mod+Ctrl+T { spawn "bash" "-c" "$TERMINAL" "-d" "\"$FLAKE\"";}
             Mod+Q repeat=false { close-window; }
             
             Mod+H { focus-column-left; }
@@ -51,6 +50,5 @@
             Mod+Shift+E { quit; }
           }
         '';
-      };
     };
 }
