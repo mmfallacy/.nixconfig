@@ -22,7 +22,7 @@
       ''
         binds {
           ${Mod}+T repeat=false { spawn "${env.TERMINAL}"; }
-          ${Mod}+Shift+T repeat=false { spawn "${env.TERMINAL}" "-d" "${env.FLAKE}"; }
+          ${Mod}+Ctrl+T repeat=false { spawn "${env.TERMINAL}" "-d" "${env.FLAKE}"; }
 
           ${Mod}+Q repeat=false { close-window; }
           ${Mod}+Shift+E { quit; }
