@@ -73,12 +73,14 @@
         };
 
       perSystem =
-        { system, ... }:
+        { system, pkgs, ... }:
         {
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
             config.allowUnfree = true;
           };
+
+          devShells.default = import ./shell.nix { inherit pkgs; };
         };
 
       imports = lib.flatten [
