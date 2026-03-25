@@ -32,4 +32,15 @@
 
       };
     };
+
+  flake.hjemModules.niri =
+    { ... }:
+    {
+
+      xdg.config.files."niri/config.kdl".text = # kdl
+        ''
+          spawn-at-startup "noctalia-shell"
+        '';
+    };
+
 }
