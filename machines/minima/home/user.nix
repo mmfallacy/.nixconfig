@@ -21,6 +21,7 @@ top: {
           with hjemModules;
           [
             hjemConfigs.minima-niri
+            noctalia
             zsh
             git
             multi-user-git

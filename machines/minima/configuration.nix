@@ -11,6 +11,7 @@ top: {
         core
         nix
         grub
+        noctalia
         niri
         locale_en_PH
         weston
