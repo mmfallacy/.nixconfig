@@ -22,6 +22,11 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell/main";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     nh = {
       url = "github:nix-community/nh?ref=v4.2.0-beta2";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,7 +73,7 @@
           nixnvim = inputs.nixnvim.packages.${system};
 
           # inherit (inputs.secrets.outputs) secrets;
-          inherit (inputs) niri;
+          inherit (inputs) niri noctalia;
           # inherit mypkgs;
         };
 
