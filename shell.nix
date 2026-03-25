@@ -7,7 +7,6 @@ pkgs.mkShellNoCC {
   buildInputs =
     with pkgs;
     [
-      nvfetcher
       nh
     ]
     ++ extraPkgs;
