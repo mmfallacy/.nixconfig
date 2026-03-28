@@ -1,10 +1,6 @@
 {
   flake.nixosModules.gnome =
-    {
-      config,
-      lib,
-      ...
-    }:
+    { config, lib, ... }:
     {
       options.custom.system.gnome.enable = lib.mkEnableOption "system.gnome";
 

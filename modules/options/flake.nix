@@ -10,6 +10,9 @@ let
 in
 {
   options.flake = {
+    # Previously, machine modules are within nixosModules prefixed with "machine-"
+    # Since all.nix dynamically imports all modules to place in scope, all machine
+    # modules are unintentionally evaluated as they are not gated by an enabled option.
     nixosMachineModules = mkOption {
       type = attrsOf deferredModule;
       default = { };

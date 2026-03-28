@@ -1,10 +1,6 @@
 {
   flake.hjemModules.niri =
-    {
-      config,
-      lib,
-      ...
-    }:
+    { config, lib, ... }:
     {
       config = lib.mkIf config.custom.home.niri.enable {
         xdg.config.files."niri/config.kdl".text = # kdl

@@ -1,10 +1,6 @@
 {
   flake.nixosModules.vmware-shared =
-    {
-      config,
-      lib,
-      ...
-    }:
+    { config, lib, ... }:
     let
       mountPoint = "/mnt/hgfs";
     in

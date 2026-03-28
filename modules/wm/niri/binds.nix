@@ -1,10 +1,6 @@
 {
   flake.hjemModules.niri =
-    {
-      config,
-      lib,
-      ...
-    }:
+    { config, lib, ... }:
     let
       defaultEnv = {
         TERMINAL = "kitty";

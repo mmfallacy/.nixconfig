@@ -1,10 +1,6 @@
 {
   flake.hjemModules.git =
-    {
-      config,
-      lib,
-      ...
-    }:
+    { config, lib, ... }:
     {
       config = lib.mkIf config.custom.home.git.enable {
         xdg.config.files."git/config".value.alias = {

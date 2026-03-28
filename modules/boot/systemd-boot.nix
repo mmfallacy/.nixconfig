@@ -15,8 +15,8 @@
 
         assertions = [
           {
-            assertion = !config.boot.loader.systemd-boot.enable;
-            message = "grub conflicts with systemd-boot";
+            assertion = !config.custom.system.grub.enable;
+            message = "systemd-boot conflicts with grub";
           }
         ];
       };
