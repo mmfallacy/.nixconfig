@@ -13,7 +13,14 @@ in
     specialArgs.extras = mkExtras system;
     specialArgs.inputs = inputs;
     modules = [
-      config.flake.nixosModules."machine-${machine}"
+      {
+        imports = [
+          config.flake.nixosModules.all
+        ];
+        hjem.extraModules = [
+          config.flake.hjemModules.all
+        ];
+      }
       config.flake.nixosMachineModules.${machine}
       { networking.hostName = machine; }
       inputs.hjem.nixosModules.default

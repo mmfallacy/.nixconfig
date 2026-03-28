@@ -10,9 +10,9 @@
       options.custom.system.core.enable = lib.mkEnableOption "system.core";
 
       config = lib.mkIf config.custom.system.core.enable {
-        imports = with config.flake.nixosModules; [
-          zsh
-        ];
+        # Activate zsh nixosModule
+        custom.system.zsh.enable = true;
+
         # Clear default packages not necessary for running Nix
         # environment.defaultPackages ships with packages by default hence the need to override them.
         environment.defaultPackages = [ ];

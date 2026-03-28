@@ -2,10 +2,7 @@ top: {
   flake.hjemConfigs.minima-niri =
     { pkgs, ... }:
     {
-      imports = with top.config.flake.hjemModules; [
-        niri
-      ];
-
+      custom.home.niri.enable = true;
       xdg.config.files."niri/config.kdl".text = # kdl
         ''
           output "Virtual-1" {

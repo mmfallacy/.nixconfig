@@ -3,6 +3,7 @@ top: {
     {
       config,
       pkgs,
+      lib,
       extras,
       ...
     }:
@@ -14,23 +15,31 @@ top: {
           TERMINAL = "kitty";
           FLAKE = "${directory}/.nixconfig-dendritic";
         };
-        imports =
+        imports = with top.config.flake.hjemConfigs; [
+          minima-niri
+        ];
+
+        custom.home =
           let
-            inherit (top.config.flake) hjemModules hjemConfigs;
+            enabled = [
+              "noctalia"
+              "zsh"
+              "git"
+              "direnv"
+              "starship"
+              "fastfetch"
+              "hstr"
+              "any-nix-shell"
+              "eza"
+            ];
+            mapper = name: {
+              inherit name;
+              value.enable = true;
+            };
           in
-          with hjemModules;
-          [
-            hjemConfigs.minima-niri
-            noctalia
-            zsh
-            git
-            multi-user-git
-            direnv
-            starship
-            fastfetch
-            hstr
-            any-nix-shell
-            eza
+          lib.pipe enabled [
+            (map mapper)
+            builtins.listToAttrs
           ];
 
         packages =
@@ -42,7 +51,7 @@ top: {
           in
           [
             kitty
-            extras.nixnvim.neovim
+            extras.nixnvim.neovim.devMode
             opencode
           ];
 

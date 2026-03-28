@@ -7,17 +7,29 @@ top: {
       ...
     }:
     {
-      imports = with top.config.flake.nixosModules; [
-        core
-        nix
-        grub
-        noctalia
-        niri
-        locale_en_PH
-        weston
-        nh
-        ly
-      ];
+
+      custom.system =
+        let
+          enabled = [
+            "core"
+            "nix"
+            "grub"
+            "noctalia"
+            "niri"
+            "locale-en-PH"
+            "weston"
+            "nh"
+            "ly"
+          ];
+          mapper = name: {
+            inherit name;
+            value.enable = true;
+          };
+        in
+        lib.pipe enabled [
+          (map mapper)
+          builtins.listToAttrs
+        ];
 
       environment.systemPackages = [
         extras.pkgs-last.cowsay
