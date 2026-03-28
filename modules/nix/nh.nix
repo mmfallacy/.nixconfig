@@ -1,16 +1,25 @@
 {
   flake.nixosModules.nh =
-    { extras, ... }:
     {
-      programs.nh = {
-        enable = true;
+      config,
+      lib,
+      extras,
+      ...
+    }:
+    {
+      options.custom.system.nh.enable = lib.mkEnableOption "system.nh";
 
-        clean.enable = true;
-        clean.extraArgs = "--keep 3";
+      config = lib.mkIf config.custom.system.nh.enable {
+        programs.nh = {
+          enable = true;
 
-        # NOTE: nh does not propagate home-manager activation errors
-        # https://github.com/nix-community/nh/issues/388
-        package = extras.nh;
+          clean.enable = true;
+          clean.extraArgs = "--keep 3";
+
+          # NOTE: nh does not propagate home-manager activation errors
+          # https://github.com/nix-community/nh/issues/388
+          package = extras.nh;
+        };
       };
     };
 }

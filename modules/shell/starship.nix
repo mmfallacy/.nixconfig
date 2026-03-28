@@ -1,8 +1,9 @@
 {
   flake.hjemModules.starship =
     {
-      pkgs,
+      config,
       lib,
+      pkgs,
       ...
     }:
     let
@@ -10,18 +11,22 @@
       starshipTOMLGen = mkTOMLGenerator.generate "starship-config";
     in
     {
-      packages = [ pkgs.starship ];
-      files.".zshrc".text = # bash
-        ''
-          if [[ $TERM != "dumb" ]]; then
-            eval "$(${lib.getExe pkgs.starship} init zsh)"
-          fi
-        '';
+      options.custom.home.starship.enable = lib.mkEnableOption "home.starship";
 
-      xdg.config.files."starship.toml" = {
-        generator = starshipTOMLGen;
-        value = {
-          add_newline = true;
+      config = lib.mkIf config.custom.home.starship.enable {
+        packages = [ pkgs.starship ];
+        files.".zshrc".text = # bash
+          ''
+            if [[ $TERM != "dumb" ]]; then
+              eval "$(${lib.getExe pkgs.starship} init zsh)"
+            fi
+          '';
+
+        xdg.config.files."starship.toml" = {
+          generator = starshipTOMLGen;
+          value = {
+            add_newline = true;
+          };
         };
       };
     };
