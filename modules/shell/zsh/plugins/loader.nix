@@ -1,6 +1,10 @@
 top: {
   flake.hjemModules.zsh =
-    { lib, ... }@inputs:
+    {
+      config,
+      lib,
+      ...
+    }@inputs:
     let
       zshPlugins = import ./_plugins.nix top inputs;
       pmap = map (plugin: {
@@ -9,56 +13,59 @@ top: {
       reduce = lib.foldl' (a: b: a // b) { };
     in
     {
-      files = lib.pipe zshPlugins [
-        pmap
-        reduce
-      ];
-    }
-    // {
-      imports = lib.pipe zshPlugins [
-        (map (plugin: if plugin ? deps then plugin.deps else [ ]))
-        lib.flatten
-      ];
+      config =
+        lib.mkIf config.custom.home.zsh.enable {
+          files = lib.pipe zshPlugins [
+            pmap
+            reduce
+          ];
+        }
+        // {
 
-      files.".zsh/.zshplugins".text =
-        let
-          join = lib.concatStringsSep "\n";
-          init = # bash
-            ''
-              # test
-            '';
+          imports = lib.pipe zshPlugins [
+            (map (plugin: if plugin ? deps then plugin.deps else [ ]))
+            lib.flatten
+          ];
 
-          pPathFpathMap = map (
-            raw:
+          files.".zsh/.zshplugins".text =
             let
-              # transform
-              plugin = raw // {
-                file = if raw ? file then raw.file else raw.name;
-              };
+              join = lib.concatStringsSep "\n";
+              init = # bash
+                ''
+                  # test
+                '';
+
+              pPathFpathMap = map (
+                raw:
+                let
+                  # transform
+                  plugin = raw // {
+                    file = if raw ? file then raw.file else raw.name;
+                  };
+                in
+                # bash
+                ''
+                  path+="$HOME/.zsh/plugins/${plugin.name}"
+                  fpath+="$HOME/.zsh/plugins/${plugin.name}"
+
+                  if [[ -f "$HOME/.zsh/plugins/${plugin.name}/${plugin.file}.zsh" ]]; then
+                    source "$HOME/.zsh/plugins/${plugin.name}/${plugin.file}.zsh"
+                  fi
+                ''
+              );
+
             in
-            # bash
+            join [
+              init
+              # Build out path and fpath
+              (join (pPathFpathMap zshPlugins))
+            ];
+
+          files.".zshrc".text = # bash
             ''
-              path+="$HOME/.zsh/plugins/${plugin.name}"
-              fpath+="$HOME/.zsh/plugins/${plugin.name}"
-
-              if [[ -f "$HOME/.zsh/plugins/${plugin.name}/${plugin.file}.zsh" ]]; then
-                source "$HOME/.zsh/plugins/${plugin.name}/${plugin.file}.zsh"
-              fi
-            ''
-          );
-
-        in
-        join [
-          init
-          # Build out path and fpath
-          (join (pPathFpathMap zshPlugins))
-
-        ];
-
-      files.".zshrc".text = # bash
-        ''
-          # Link zsh plugins config
-          source "$HOME/.zsh/.zshplugins"
-        '';
+              # Link zsh plugins config
+              source "$HOME/.zsh/.zshplugins"
+            '';
+        };
     };
 }

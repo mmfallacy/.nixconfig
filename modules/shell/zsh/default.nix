@@ -1,31 +1,40 @@
 {
   flake.nixosModules.zsh =
-    { pkgs, ... }:
     {
-      programs.zsh = {
-        enable = true;
-        autosuggestions.enable = true;
-        syntaxHighlighting.enable = true;
-        enableCompletion = true;
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    {
+      options.custom.system.zsh.enable = lib.mkEnableOption "system.zsh";
 
-        setOptions = [
-          "HIST_FCNTL_LOCK"
-          "HIST_IGNORE_DUPS"
-          "SHARE_HISTORY"
-          "EXTENDED_HISTORY"
-          # `cd`s push to directory stack
-          "AUTO_PUSHD"
-          "PUSHD_IGNORE_DUPS"
-          # show list on ambiguous completion.
-          "AUTO_LIST"
-          # move cursor to end of completed word.
-          "ALWAYS_TO_END"
-          # show completion menu on successive tab press
-          "AUTO_MENU"
-        ];
+      config = lib.mkIf config.custom.system.zsh.enable {
+        programs.zsh = {
+          enable = true;
+          autosuggestions.enable = true;
+          syntaxHighlighting.enable = true;
+          enableCompletion = true;
+
+          setOptions = [
+            "HIST_FCNTL_LOCK"
+            "HIST_IGNORE_DUPS"
+            "SHARE_HISTORY"
+            "EXTENDED_HISTORY"
+            # `cd`s push to directory stack.
+            "AUTO_PUSHD"
+            "PUSHD_IGNORE_DUPS"
+            # show list on ambiguous completion.
+            "AUTO_LIST"
+            # move cursor to end of completed word.
+            "ALWAYS_TO_END"
+            # show completion menu on successive tab press.
+            "AUTO_MENU"
+          ];
+        };
+
+        users.defaultUserShell = pkgs.zsh;
       };
-
-      users.defaultUserShell = pkgs.zsh;
     };
 
   flake.hjemModules.zsh =
@@ -40,26 +49,30 @@
       hasSessionVars = config.environment.sessionVariables != { };
     in
     {
-      files.".bashenv" = mkIf hasSessionVars { source = config.environment.loadEnv; };
-      files.".zshenv" = mkIf hasSessionVars { source = config.environment.loadEnv; };
+      options.custom.home.zsh.enable = lib.mkEnableOption "home.zsh";
 
-      files.".zshrc".text = # bash
-        ''
-          # Ensure unique entries
-          typeset -U path cdpath fpath manpath
+      config = mkIf config.custom.home.zsh.enable {
+        files.".bashenv" = mkIf hasSessionVars { source = config.environment.loadEnv; };
+        files.".zshenv" = mkIf hasSessionVars { source = config.environment.loadEnv; };
 
-          # Load completions from active nix profiles
-          for profile in ''${(z)NIX_PROFILES}; do
-            fpath+=("$profile/share/zsh/site-functions" "$profile/share/zsh/$ZSH_VERSION/functions" "$profile/share/zsh/vendor-completions")
-          done
+        files.".zshrc".text = # bash
+          ''
+            # Ensure unique entries
+            typeset -U path cdpath fpath manpath
 
-          # Load help files
-          HELPDIR="${pkgs.zsh}/share/zsh/$ZSH_VERSION/help"
+            # Load completions from active nix profiles
+            for profile in ''${(z)NIX_PROFILES}; do
+              fpath+=("$profile/share/zsh/site-functions" "$profile/share/zsh/$ZSH_VERSION/functions" "$profile/share/zsh/vendor-completions")
+            done
 
-          HISTSIZE="10000"
-          SAVEHIST="10000"
+            # Load help files
+            HELPDIR="${pkgs.zsh}/share/zsh/$ZSH_VERSION/help"
 
-          HISTFILE="$HOME/.zsh_history"
-        '';
+            HISTSIZE="10000"
+            SAVEHIST="10000"
+
+            HISTFILE="$HOME/.zsh_history"
+          '';
+      };
     };
 }

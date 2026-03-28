@@ -1,37 +1,48 @@
 {
   flake.hjemModules.git =
     {
-      pkgs,
+      config,
       lib,
+      pkgs,
       ...
     }:
     {
-      packages = [ pkgs.git ];
+      options.custom.home.git.enable = lib.mkEnableOption "home.git";
 
-      xdg.config.files."git/config" = {
-        generator = lib.generators.toGitINI;
-        value = {
-          # Let multi-user-git handle credentials
-          user.useConfigOnly = true;
+      config = lib.mkIf config.custom.home.git.enable {
+        packages = [ pkgs.git ];
 
-          url."ssh://git@github.com/".insteadOf = "github:";
-          url."https://github.com/".insteadOf = "gh-https:";
-          rerere = {
-            enabled = true;
-            autoUpdate = true;
-          };
+        xdg.config.files."git/config" = {
+          generator = lib.generators.toGitINI;
+          value =
+            let
+              difft = lib.getExe pkgs.difftastic;
+            in
+            {
+              # Let multi-user-git handle credentials
+              user.useConfigOnly = true;
 
-          merge.tool = lib.mkDefault "nvim";
-          diff.tool = lib.mkDefault "nvimdiff";
+              url."ssh://git@github.com/".insteadOf = "github:";
+              url."https://github.com/".insteadOf = "gh-https:";
+              rerere = {
+                enabled = true;
+                autoUpdate = true;
+              };
 
-          init.defaultBranch = "main";
+              merge.tool = lib.mkDefault "nvim";
+              diff.tool = lib.mkDefault "nvimdiff";
 
-          gpg.format = "ssh";
-          commit.gpgSign = true;
-          tag.gpgSign = true;
+              init.defaultBranch = "main";
 
-          # Use difftastic for better syntax-aware git diffs.
-          diff.external = lib.getExe pkgs.difftastic;
+              gpg.format = "ssh";
+              commit.gpgSign = true;
+              tag.gpgSign = true;
+
+              # Use difftastic for better syntax-aware git diffs.
+              diff.external = difft;
+              diff.tool = lib.mkDefault "difftastic";
+              difftool.difftastic.cmd = "${difft} $LOCAL $REMOTE";
+            };
         };
       };
     };
