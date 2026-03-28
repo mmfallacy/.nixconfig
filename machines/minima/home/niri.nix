@@ -1,6 +1,6 @@
-top: {
+{
   flake.hjemConfigs.minima-niri =
-    { pkgs, ... }:
+    { ... }:
     {
       custom.home.niri.enable = true;
       xdg.config.files."niri/config.kdl".text = # kdl

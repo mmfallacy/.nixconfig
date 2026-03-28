@@ -1,10 +1,6 @@
-top: {
+{
   flake.nixosMachineModules.vesperon =
-    {
-      lib,
-      extras,
-      ...
-    }:
+    { lib, extras, ... }:
     {
       custom.system =
         let

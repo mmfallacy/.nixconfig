@@ -1,8 +1,6 @@
-top: {
+{
   flake.nixosMachineModules.minima =
-    {
-      ...
-    }:
+    { ... }:
     {
       specialisation."VMWare Guest".configuration = {
         virtualisation.vmware.guest.enable = true;

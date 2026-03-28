@@ -1,11 +1,6 @@
-top: {
+{
   flake.nixosMachineModules.minima =
-    {
-      lib,
-      pkgs,
-      extras,
-      ...
-    }:
+    { lib, extras, ... }:
     {
 
       custom.system =
