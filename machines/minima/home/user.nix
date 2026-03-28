@@ -33,10 +33,18 @@ top: {
             eza
           ];
 
-        packages = with pkgs; [
-          kitty
-          extras.nixnvim.neovim
-        ];
+        packages =
+          with pkgs;
+          let
+            opencode = extras.nixnvim.opencode.override {
+              xdgConfig = "${directory}/.nixnvim";
+            };
+          in
+          [
+            kitty
+            extras.nixnvim.neovim
+            opencode
+          ];
 
         custom.multi-user-git = {
           enable = true;
