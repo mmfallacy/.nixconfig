@@ -30,7 +30,6 @@
               };
 
               merge.tool = lib.mkDefault "nvim";
-              diff.tool = lib.mkDefault "nvimdiff";
 
               init.defaultBranch = "main";
 
@@ -38,9 +37,11 @@
               commit.gpgSign = true;
               tag.gpgSign = true;
 
-              # Use difftastic for better syntax-aware git diffs.
+              # Use difftastic for better syntax-aware structural diffs.
+              # Use histogram for non external git diffs
               diff.external = difft;
               diff.tool = lib.mkDefault "difftastic";
+              diff.algorithm = "histogram";
               difftool.difftastic.cmd = "${difft} $LOCAL $REMOTE";
             };
         };
