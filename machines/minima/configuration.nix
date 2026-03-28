@@ -1,5 +1,5 @@
 top: {
-  flake.nixosModules.machine-minima =
+  flake.nixosMachineModules.minima =
     {
       lib,
       pkgs,

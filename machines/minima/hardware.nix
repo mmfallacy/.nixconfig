@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.machine-minima =
+  flake.nixosMachineModules.machine-minima =
     { lib, ... }:
     {
       imports = [ ];

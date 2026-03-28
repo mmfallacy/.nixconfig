@@ -14,6 +14,7 @@ in
     specialArgs.inputs = inputs;
     modules = [
       config.flake.nixosModules."machine-${machine}"
+      config.flake.nixosMachineModules.${machine}
       { networking.hostName = machine; }
       inputs.hjem.nixosModules.default
     ];
