@@ -13,7 +13,7 @@ in
     specialArgs.extras = mkExtras system;
     specialArgs.inputs = inputs;
     modules = [
-      config.flake.nixosModules."machine-${machine}"
+      config.flake.nixosMachineModules.${machine}
       inputs.home-manager.nixosModules.home-manager
     ];
   };

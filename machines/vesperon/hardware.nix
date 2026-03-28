@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.machine-vesperon =
+  flake.nixosMachineModules.vesperon =
     { lib, ... }:
     {
       imports = [ ];
