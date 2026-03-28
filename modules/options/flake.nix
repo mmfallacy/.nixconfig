@@ -10,6 +10,12 @@ let
 in
 {
   options.flake = {
+    nixosMachineModules = mkOption {
+      type = attrsOf deferredModule;
+      default = { };
+      description = "NixOS machine configuration modules";
+    };
+
     hjemModules = mkOption {
       type = attrsOf deferredModule;
       default = { };
