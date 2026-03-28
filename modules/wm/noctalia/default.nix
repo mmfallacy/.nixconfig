@@ -9,10 +9,11 @@
     {
       options.custom.system.noctalia.enable = lib.mkEnableOption "system.noctalia";
 
+      imports = [
+        extras.noctalia.nixosModules.default
+      ];
+
       config = lib.mkIf config.custom.system.noctalia.enable {
-        imports = [
-          extras.noctalia.nixosModules.default
-        ];
 
         services.noctalia-shell.enable = true;
 
