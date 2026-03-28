@@ -2,6 +2,9 @@ top: {
   flake.hjemModules.zsh =
     {
       config,
+      # Required by _plugins.nix.
+      # Removing this would not pull the argument in inputs
+      pkgs,
       lib,
       ...
     }@inputs:
