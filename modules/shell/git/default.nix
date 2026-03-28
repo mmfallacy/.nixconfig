@@ -29,6 +29,9 @@
           gpg.format = "ssh";
           commit.gpgSign = true;
           tag.gpgSign = true;
+
+          # Use difftastic for better syntax-aware git diffs.
+          diff.external = lib.getExe pkgs.difftastic;
         };
       };
     };
