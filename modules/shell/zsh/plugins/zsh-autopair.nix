@@ -14,16 +14,21 @@
         # source files
         files."${PLUGINS_DIR}/zsh-autopair".source = pkgs.zsh-autopair;
 
-        # load
-        files.".zsh/.zshplugins".text = # bash
-          ''
-            path+="$HOME/${PLUGINS_DIR}/zsh-autopair"
-            fpath+="$HOME/${PLUGINS_DIR}/zsh-autopair"
+        # load last
+        files.".zsh/.zshplugins".text =
+          lib.mkAfter
+            # bash
+            ''
+              plugin_src="$HOME/${PLUGINS_DIR}/zsh-autopair"
 
-            plugin_path="$HOME/${PLUGINS_DIR}/zsh-autopair/share/zsh/zsh-autopair/autopair.zsh"
-            [[ -f "$plugin_path" ]] && source "$plugin_path"
-            unset plugin_path
-          '';
+              path+="$plugin_src"
+              fpath+="$plugin_src"
+
+              plugin_entry="$plugin_src/share/zsh/zsh-autopair/autopair.zsh"
+              [[ -f "$plugin_entry" ]] && source "$plugin_entry"
+
+              unset plugin_entry plugin_src
+            '';
 
         # dependencies
       };

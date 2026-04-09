@@ -16,13 +16,15 @@
         # load
         files.".zsh/.zshplugins".text = # bash
           ''
-            # source files
-              path+="$HOME/${PLUGINS_DIR}/zsh-fzf-tab"
-              fpath+="$HOME/${PLUGINS_DIR}/zsh-fzf-tab"
+            plugin_src="$HOME/${PLUGINS_DIR}/zsh-fzf-tab"
 
-              plugin_path="$HOME/${PLUGINS_DIR}/zsh-fzf-tab/share/fzf-tab/fzf-tab.plugin.zsh"
-              [[ -f "$plugin_path" ]] && source "$plugin_path"
-              unset plugin_path
+            path+="$plugin_src"
+            fpath+="$plugin_src"
+
+            plugin_entry="$plugin_src/share/fzf-tab/fzf-tab.plugin.zsh"
+            [[ -f "$plugin_entry" ]] && source "$plugin_entry"
+
+            unset plugin_entry plugin_src
           '';
 
         # dependencies
