@@ -1,33 +1,20 @@
 {
   flake.nixosMachineModules.minima =
-    { lib, extras, ... }:
+    { lib, ... }:
     {
-
-      custom.system =
-        let
-          enabled = [
-            "core"
-            "nix"
-            "grub"
-            "noctalia"
-            "niri"
-            "locale-en-PH"
-            "weston"
-            "nh"
-            "ly"
-          ];
-          mapper = name: {
-            inherit name;
-            value.enable = true;
-          };
-        in
-        lib.pipe enabled [
-          (map mapper)
-          builtins.listToAttrs
-        ];
+      custom.quickenable.system.modules = [
+        "core"
+        "nix"
+        "grub"
+        "noctalia"
+        "niri"
+        "locale-en-PH"
+        "weston"
+        "nh"
+        "ly"
+      ];
 
       environment.systemPackages = [
-        extras.pkgs-last.cowsay
       ];
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

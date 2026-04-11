@@ -19,28 +19,17 @@ top: {
           minima-niri
         ];
 
-        custom.home =
-          let
-            enabled = [
-              "noctalia"
-              "zsh"
-              "git"
-              "direnv"
-              "starship"
-              "fastfetch"
-              "hstr"
-              "any-nix-shell"
-              "eza"
-            ];
-            mapper = name: {
-              inherit name;
-              value.enable = true;
-            };
-          in
-          lib.pipe enabled [
-            (map mapper)
-            builtins.listToAttrs
-          ];
+        custom.quickenable.hjem.modules = [
+          "noctalia"
+          "zsh"
+          "git"
+          "direnv"
+          "starship"
+          "fastfetch"
+          "hstr"
+          "any-nix-shell"
+          "eza"
+        ];
 
         packages =
           with pkgs;

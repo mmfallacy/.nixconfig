@@ -10,6 +10,7 @@ let
 in
 {
   flake.nixosConfigurations.${machine} = inputs.nixpkgs.lib.nixosSystem {
+    inherit system;
     specialArgs.extras = mkExtras system;
     specialArgs.inputs = inputs;
     modules = [
