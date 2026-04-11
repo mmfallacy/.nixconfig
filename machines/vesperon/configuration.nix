@@ -1,46 +1,41 @@
 {
   flake.nixosMachineModules.vesperon =
-    { lib, extras, ... }:
+    { lib, ... }:
     {
-      custom.system =
-        let
-          enabled = [
-            "core"
-            "nix"
-            "pipewire"
-            "grub"
-            "locale-en-PH"
-            "weston"
-            "ly"
-            "niri"
-            "nh"
-          ];
-          mapper = name: {
-            inherit name;
-            value.enable = true;
-          };
-        in
-        lib.pipe enabled [
-          (map mapper)
-          builtins.listToAttrs
-        ];
+      custom.quickenable.system.modules = [
+        "core"
+        "nix"
+        "grub"
+        "noctalia"
+        "niri"
+        "locale-en-PH"
+        "weston"
+        "nh"
+        "ly"
+      ];
 
       environment.systemPackages = [
-        extras.pkgs-last.cowsay
       ];
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       system.stateVersion = "25.05";
 
-      users.users.mmfallacy = {
-        isNormalUser = true;
-        description = "Michael M.";
-        extraGroups = [
-          "networkmanager"
-          "wheel"
-        ];
-        useDefaultShell = true;
+      virtualisation.vmware.guest.enable = true;
+      custom.system.vmware-shared.enable = true;
+
+      networking.firewall = {
+        enable = true; # By default, all ports are blocked.
+        extraCommands =
+          let
+            localSubnet = "192.168.18.0/24";
+            ports = [
+              "3000:9000"
+            ];
+          in
+          lib.concatMapStrings (port: ''
+            iptables -A INPUT -p tcp -s ${localSubnet} --dport ${builtins.toString port} -j ACCEPT
+
+          '') ports;
       };
     };
-
 }

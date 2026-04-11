@@ -10,11 +10,21 @@ let
 in
 {
   flake.nixosConfigurations.${machine} = inputs.nixpkgs.lib.nixosSystem {
+    inherit system;
     specialArgs.extras = mkExtras system;
     specialArgs.inputs = inputs;
     modules = [
+      {
+        imports = [
+          config.flake.nixosModules.all
+        ];
+        hjem.extraModules = [
+          config.flake.hjemModules.all
+        ];
+      }
       config.flake.nixosMachineModules.${machine}
-      inputs.home-manager.nixosModules.home-manager
+      { networking.hostName = machine; }
+      inputs.hjem.nixosModules.default
     ];
   };
 }
