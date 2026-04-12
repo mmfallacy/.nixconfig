@@ -42,7 +42,7 @@
 
   };
   outputs =
-    inputs@{ flake-parts, ... }:
+    inputs@{ self, flake-parts, ... }:
     let
       inherit (inputs.nixpkgs) lib;
       shouldImport = file: file.hasExt "nix" && !(lib.hasPrefix "_" file.name);
@@ -79,7 +79,7 @@
 
           # inherit (inputs.secrets.outputs) secrets;
           inherit (inputs) niri noctalia;
-          # inherit mypkgs;
+          mypkgs = self.packages.${system};
         };
 
       perSystem =
