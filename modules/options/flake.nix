@@ -31,6 +31,12 @@ in
       description = "Hjem profiles that compose hjem modules to build user profiles";
     };
 
+    hjemConfigs = mkOption {
+      type = attrsOf deferredModule;
+      default = { };
+      description = "Hjem configs are machine-specific hjem overrides";
+    };
+
     lib = mkOption {
       type = lazyAttrsOf raw;
       default = { };
