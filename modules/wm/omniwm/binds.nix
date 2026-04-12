@@ -185,6 +185,10 @@
               binding = "Control+Option+Space";
               id = "openCommandPalette";
             }
+            {
+              binding = "Unassigned";
+              id = "toggleWorkspaceLayout";
+            }
           ];
         };
       };
