@@ -15,6 +15,9 @@ in
     specialArgs.inputs = inputs;
     modules = [
       {
+        imports = [
+          config.flake.darwinModules.all
+        ];
         hjem.extraModules = [
           config.flake.hjemModules.all
         ];

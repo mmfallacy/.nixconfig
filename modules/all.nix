@@ -18,4 +18,12 @@ in
     {
       imports = builtins.attrValues (removeSelf top.config.flake.hjemModules);
     };
+
+  flake.darwinModules.all =
+    {
+      ...
+    }:
+    {
+      imports = builtins.attrValues (removeSelf top.config.flake.darwinModules);
+    };
 }
