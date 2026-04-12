@@ -6,10 +6,6 @@
       ...
     }:
     {
-      imports = [
-        ./aerospace/_default.nix
-      ];
-
       nixpkgs.config.allowUnfree = true;
 
       security.pam.services.sudo_local.touchIdAuth = true;
@@ -55,5 +51,7 @@
 
       system.primaryUser = "mmfallacy";
       environment.variables.NH_FLAKE = "/Users/mmfallacy/.nixconfig/";
+
+      custom.system.omniwm.enable = true;
     };
 }
