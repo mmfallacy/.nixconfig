@@ -25,6 +25,12 @@ in
       description = "Hjem modules for user-level packages";
     };
 
+    darwinModules = mkOption {
+      type = attrsOf deferredModule;
+      default = { };
+      description = "Nix-darwin modules for system-level packages";
+    };
+
     hjemProfiles = mkOption {
       type = attrsOf deferredModule;
       default = { };
