@@ -39,6 +39,7 @@
       options.custom.home.omniwm.enable = lib.mkEnableOption "home.omniwm";
       config = lib.mkIf config.custom.home.omniwm.enable {
         xdg.config.files."omniwm/settings.json" = {
+          clobber = true;
           generator = json.generate "settings.json";
           value = {
             version = 4;
