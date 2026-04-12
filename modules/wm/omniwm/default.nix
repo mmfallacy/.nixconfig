@@ -14,10 +14,8 @@
           extras.mypkgs.omniwm
         ];
 
-        launchd.user.agents.my-startup-app = {
-          script = ''
-            /Applications/Nix Apps/OmniWM.app/Contents/MacOS/OmniWM
-          '';
+        launchd.user.agents.omniwm = {
+          command = "${extras.mypkgs.omniwm}/Applications/OmniWM.app/Contents/MacOS/OmniWM";
           serviceConfig = {
             RunAtLoad = true;
             KeepAlive = true;
