@@ -53,5 +53,6 @@
       environment.variables.NH_FLAKE = "/Users/mmfallacy/.nixconfig/";
 
       custom.system.omniwm.enable = true;
+      custom.system.rustcast.enable = true;
     };
 }
