@@ -25,4 +25,29 @@
       };
     };
 
+  flake.hjemModules.omniwm =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      json = pkgs.formats.json { };
+    in
+    {
+      options.custom.home.omniwm.enable = lib.mkEnableOption "home.omniwm";
+      config = lib.mkIf config.custom.home.omniwm.enable {
+        xdg.config.files."omniwm/settings.json" = {
+          generator = json.generate "settings.json";
+          value = {
+            version = 4;
+            commandPaletteLastMode = "windows";
+            ipcEnabled = false;
+            preventSleepEnabled = false;
+            updateChecksEnabled = true;
+          };
+        };
+      };
+    };
 }

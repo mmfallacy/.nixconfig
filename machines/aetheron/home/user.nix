@@ -17,6 +17,8 @@ top: {
         };
 
         custom.quickenable.hjem.modules = [
+          "omniwm"
+
           "zsh"
           "git"
           "direnv"
