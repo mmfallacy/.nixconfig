@@ -96,6 +96,7 @@
       imports = lib.flatten [
         (import-tree ./modules)
         (import-tree ./machines)
+        (import-tree ./packages)
       ];
     };
 }
