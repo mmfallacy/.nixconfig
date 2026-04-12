@@ -27,6 +27,11 @@
               mkdir -p $out/Applications/
               # Using bsdtar instead of unzip as unzip breaks .app codesigning.
               bsdtar -xf $src -C $out/Applications/
+
+              # Symlink executables to bin
+              mkdir -p $out/bin
+              ln -s $out/Applications/OmniWM.app/Contents/MacOS/OmniWM $out/bin/OmniWM
+              ln -s $out/Applications/OmniWM.app/Contents/MacOS/omniwmctl $out/bin/omniwmctl
             '';
 
             meta = {
