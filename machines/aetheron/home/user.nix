@@ -13,6 +13,7 @@ top: {
 
         environment.sessionVariables = {
           TERMINAL = "kitty";
+          EDITOR = "nvim";
           FLAKE = "${directory}/.nixconfig-dendritic";
         };
 
