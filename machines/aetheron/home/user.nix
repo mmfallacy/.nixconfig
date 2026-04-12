@@ -25,6 +25,7 @@ top: {
           "hstr"
           "any-nix-shell"
           "eza"
+          "kitty"
         ];
 
         packages =
