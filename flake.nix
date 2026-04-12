@@ -7,7 +7,7 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
+      system = "aarch64-darwin";
       # Setting up nixpkgs sources
       default = {
         inherit system;
