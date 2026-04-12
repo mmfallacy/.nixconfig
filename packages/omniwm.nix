@@ -1,6 +1,11 @@
 {
   perSystem =
-    { system, pkgs, ... }:
+    {
+      system,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       packages.omniwm =
         if system != "aarch64-darwin" then
@@ -23,6 +28,14 @@
               # Using bsdtar instead of unzip as unzip breaks .app codesigning.
               bsdtar -xf $src -C $out/Applications/
             '';
+
+            meta = {
+              description = "MacOS Niri and Hyprland inspired tiling window manager that's developer signed and notorized (safe for managed enterprise environments). Aiming for parity and extra innovation.";
+              homepage = "https://github.com/BarutSRB/OmniWM";
+              license = lib.licenses.gpl2Only;
+              mainProgram = "OmniWM";
+              platforms = [ "aarch64-darwin" ];
+            };
           };
     };
 }
