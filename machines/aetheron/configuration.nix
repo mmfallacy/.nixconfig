@@ -26,6 +26,8 @@ in
     pkgs.kitty
     pkgs.podman
     pkgs.podman-compose
+    pkgs._1password-cli
+    extras.pkgs-unstable.difftastic
   ];
 
   networking.hostName = hostname;
@@ -65,7 +67,7 @@ in
 
   system.defaults.finder.AppleShowAllFiles = true;
   system.defaults.finder.QuitMenuItem = true;
-  system.defaults.finder.ShowPathBar = true;
+  system.defaults.finder.ShowPathbar = true;
   system.defaults.finder._FXSortFoldersFirst = true;
 
   system.defaults.trackpad.Dragging = true;
