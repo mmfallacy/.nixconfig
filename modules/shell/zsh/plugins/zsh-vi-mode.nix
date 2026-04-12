@@ -26,7 +26,6 @@
             # ZVM Configuration
             function zvm_config() {
               ZVM_SYSTEM_CLIPBOARD_ENABLED=true
-              ZVM_LINE_INIT_MODE=$ZVM_MODE_NORMAL
               ZVM_VI_SURROUND_BINDKEY=s-prefix
             }
 
