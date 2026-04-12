@@ -1,46 +1,62 @@
 # mmfallacy's `.nixconfig`
 
-This repository is my attempt at creating my first very own Nix configuration. Currently, this repository is not used as my daily development driver as I have deployed it in a virtual machine with the intention of further incorporating my [Arch dotfiles](https://github.com/mmfallacy/.dotfiles). This is not intended to be a Nix configuration template but feel free to fork and reuse my configuration structure! 🌟
+This repository now hosts my attempt at creating a maintainable (subjective, maintainable in my sense) Nix configuration using [`flake-parts`](https://github.com/hercules-ci/flake-parts). After daily driving Nix for development purposes for the past year, I've come to manage a few (3 lol) machines with this configuration.
+
+The configuration still loosely incorporates [my setup during my Arch days](https://github.com/mmfallacy/.dotfiles).
+
+This is still not intended to be a Nix configuration template, but feel free to fork and use my configuration structure! 🌟
+
+> Do note that I am still running `vesperon`, my main development machine in a virtual machine. VMs give me the ability to suspend and resume development whenever I need to context switch (gaming). `aetheron` on the other hand is running `nixos-darwin` on my work macbook.
 
 ## Structure:
 
-### `./lib`
-
-This directory holds my very own helper functions. Most of the functions inside are documented through comments.
-
 ### `./machines`
 
-This folder holds the nixosConfigurations (i.e. configuration for my hosts/machines) that I import in flake.nix Current machines defined:
+This folder holds the `nixosConfigurations` (configuration for my hosts/machines) that I import in `flake.nix`. Current machines defined:
 
-- `vesperon`: My NixOS VM in VMWare Workstation. I am currently developing this `.nixconfig` here.
+- `vesperon`: My NixOS VM in VMWare Workstation.
+- `minima`: Another NixOS VM with VMware guest specialisation.
 
-### `./packages`
+Each machine directory contains:
 
-This directory contains my own package sources in case a package I need does not exist yet in any nixpkgs channel.
+- `configuration.nix` - system-level configuration
+- `hardware.nix` - hardware configuration
+- `home/` - home-manager user configuration
+- `specialisations/` - machine-specific specializations
 
-### `./profiles`
+### `./modules`
 
-This directory contains user configurations that are system-agnostic. These configurations are imported by a machine's own home.nix entry point (`./machines/<system>/home.nix`). Current profiles defined are:
+This directory contains all Nix modules ala flake-parts organized by category:
 
-- `mmfallacy`: This serves as my main user configuration. It composes user modules such as `git`, `zsh`, `starship`, `neovim`, `kitty` to form a base configuration I can extend per system.
+- `audio/` - PipeWire audio configuration
+- `boot/` - Boot loader modules (GRUB, systemd-boot)
+- `locales/` - Locale settings (en_PH)
+- `login/` - Login manager configuration (ly)
+- `nix/` - Nix and nh (Nix helper) configuration
+- `options/` - Custom flake options
+- `shell/` - Shell utilities: zsh, git, starship, direnv, fastfetch, eza, hstr, fzf, any-nix-shell
+- `vmware/` - VMware guest shared configuration
+- `wm/` - Window manager modules: niri, noctalia, weston, gnome
 
-### `./system`
+### Root files
 
-This folder holds the system modules (i.e. modules imported and installed system-level) that I use to define my machines.
-
-### `./themes`
-
-This directory houses my theme modules. These modules contains configuration that deal directly with appearances and colors. I use stylix to automate most of the ricing, but I also place appearance related overrides like `ly`'s matrix foreground color, etc.
-
-### `./user`
-
-This folder holds the user modules (i.e. modules imported and installed user-level via `home-manager`) that I use to define my machines.
+- `flake.nix` - Main flake entry point
+- `flake.lock` - Locked dependencies
+- `shell.nix` - Development shell
 
 ## References:
 
+- [youtube:Vimjoyer/Nix tutorials](https://www.youtube.com/playlist?list=PLko9chwSoP-15ZtZxu64k_CuTzXrFpxPE)
+- [github:iynaix/dotfiles](https://github.com/iynaix/dotfiles)
+- [github:Michael-C-Buckley/nixos](https://github.com/Michael-C-Buckley/nixos)
+- [docs:flake.parts](https://flake.parts/)
+
+<details>
+    <summary>Pre-dendritic references</summary>
+
 - [github:notusknot/dotfiles-nix](https://github.com/notusknot/dotfiles-nix)
 - [github:ryan4yin/nixos-and-flakes-book](https://github.com/ryan4yin/nixos-and-flakes-book)
-- [youtube:Vimjoyer/Nix tutorials](https://www.youtube.com/playlist?list=PLko9chwSoP-15ZtZxu64k_CuTzXrFpxPE)
 - [youtube:LibrePhoneix/NixOS Config Guides for NHerds and Other Cool People](https://www.youtube.com/playlist?list=PL_WcXIXdDWWpuypAEKzZF2b5PijTluxRG)
 - [github:librephoenix/nixos-config](https://github.com/librephoenix/nixos-config)
 - [github:NotAShelf/nyx](https://github.com/notashelf/nyx)
+</details>

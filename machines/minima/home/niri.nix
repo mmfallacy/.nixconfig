@@ -1,5 +1,5 @@
 {
-  flake.hjemConfigs.vesperon-niri =
+  flake.hjemConfigs.minima-niri =
     { ... }:
     {
       custom.home.niri.enable = true;
