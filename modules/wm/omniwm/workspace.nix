@@ -45,6 +45,40 @@
               };
               name = "5";
             }
+            {
+              id = "627673D5-2585-458D-B2E6-6A04EE33758E";
+              layoutType = "niri";
+              monitorAssignment = {
+                type = "main";
+              };
+              name = "6";
+            }
+            {
+              id = "4061C387-4439-460A-B1D5-E311CD997F37";
+              layoutType = "niri";
+              monitorAssignment = {
+                type = "main";
+              };
+              name = "7";
+            }
+            {
+              id = "33CBF705-DF20-4ADB-9ECD-7CC57F098EBD";
+              layoutType = "niri";
+              monitorAssignment = {
+                type = "main";
+              };
+              name = "8";
+            }
+            {
+              id = "2C863386-E76E-49E4-8B25-53D5E7119ADD";
+              layoutType = "niri";
+              monitorAssignment = {
+                type = "main";
+              };
+              displayName = "Clickup";
+              name = "9";
+            }
+
           ];
 
           monitorBarSettings = [ ];
