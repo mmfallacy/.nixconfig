@@ -21,16 +21,6 @@
 
           monitorNiriSettings = [ ];
           monitorOrientationSettings = [ ];
-
-          # Dwindle layout
-          dwindleDefaultSplitRatio = 1;
-          dwindleMoveToRootStable = true;
-          dwindleSingleWindowAspectRatio = "4:3";
-          dwindleSmartSplit = false;
-          dwindleSplitWidthMultiplier = 1;
-          dwindleUseGlobalGaps = true;
-
-          monitorDwindleSettings = [ ];
         };
       };
     };

@@ -51,8 +51,8 @@
 
           hiddenBarIsCollapsed = true;
 
-          statusBarShowAppNames = true;
-          statusBarShowWorkspaceName = true;
+          statusBarShowAppNames = false;
+          statusBarShowWorkspaceName = false;
           statusBarUseWorkspaceId = true;
 
           workspaceBarEnabled = false;
