@@ -44,4 +44,40 @@
         system.rebuild.enableNg = true;
       };
     };
+  flake.darwinModules.nix =
+    {
+      config,
+      lib,
+      inputs,
+      ...
+    }:
+    {
+      options.custom.system.nix.enable = lib.mkEnableOption "system.nix";
+
+      config = lib.mkIf config.custom.system.nix.enable {
+        nix.optimise.automatic = true;
+        nix.settings = {
+          experimental-features = [
+            "nix-command"
+            "flakes"
+            "pipe-operators"
+          ];
+
+          substituters = [
+            "https://nix-community.cachix.org/"
+            "https://cache.nixos.org/"
+          ];
+
+          trusted-public-keys = [
+            "nix-community.cachix.org-1:mb9fsh9qf2dcimdsuo8zy7bkq5cx+/rkcwyvrcyg3fs="
+          ];
+        };
+
+        # Remove NIX_PATH and legacy channels
+        nix.nixPath = [
+          "nixpkgs=${inputs.nixpkgs}"
+        ];
+        nix.channel.enable = false;
+      };
+    };
 }

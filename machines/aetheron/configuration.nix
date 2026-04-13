@@ -12,27 +12,6 @@
 
       system.stateVersion = 6;
 
-      nix = {
-        optimise.automatic = true;
-        settings = {
-          experimental-features = [
-            "nix-command"
-            "flakes"
-            "pipe-operators"
-          ];
-
-          substituters = [
-            "https://nix-community.cachix.org/"
-            "https://cache.nixos.org/"
-          ];
-
-          trusted-public-keys = [
-            "nix-community.cachix.org-1:mb9fsh9qf2dcimdsuo8zy7bkq5cx+/rkcwyvrcyg3fs="
-          ];
-
-        };
-      };
-
       system.defaults.finder.AppleShowAllFiles = true;
       system.defaults.finder.QuitMenuItem = true;
       system.defaults.finder.ShowPathbar = true;
@@ -54,5 +33,6 @@
 
       custom.system.omniwm.enable = true;
       custom.system.rustcast.enable = true;
+      custom.system.nix.enable = true;
     };
 }
