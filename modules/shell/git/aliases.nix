@@ -61,6 +61,9 @@
           uig = "! git ls-files -z $1 | xargs -0 git uigf";
           # List all ignored and assume-unchanged files
           lig = "! echo -e \"\\033[34mIgnored and Assume-unchanged:\\033[0m\" && git ls-files -v | grep ^[Shc]";
+          # Worktrees: update refs
+          fur = "fetch origin \"+refs/heads/*:refs/remotes/origin/*\"";
+          ur = "fetch origin \"refs/heads/*:refs/remotes/origin/*\"";
         };
       };
     };
