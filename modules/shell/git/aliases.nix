@@ -64,6 +64,9 @@
           # Worktrees: update refs
           fur = "fetch origin \"+refs/heads/*:refs/remotes/origin/*\"";
           ur = "fetch origin \"refs/heads/*:refs/remotes/origin/*\"";
+
+          # Cherrypick
+          cp = "cherry-pick";
         };
       };
     };
