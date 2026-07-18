@@ -97,6 +97,7 @@
         (import-tree ./modules)
         (import-tree ./machines)
         (import-tree ./packages)
+        (import ./templates/default.nix)
       ];
     };
 }
