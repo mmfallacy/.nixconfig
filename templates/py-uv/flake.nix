@@ -7,7 +7,7 @@
 
   outputs =
     { nixpkgs-stable, systems, ... }:
-    builtins.foldl' (a: b: a // b) { } (
+    builtins.foldl' (nixpkgs-stable.lib.recursiveUpdate) { } (
       builtins.map (
         system:
         let
