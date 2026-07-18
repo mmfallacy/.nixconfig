@@ -67,6 +67,10 @@
 
           # Cherrypick
           cp = "cherry-pick";
+
+          # Rebase
+          rbc = "rebase --continue";
+          rba = "rebase --abort";
         };
       };
     };
