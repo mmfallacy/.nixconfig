@@ -6,7 +6,6 @@
         "core"
         "nix"
         "grub"
-        "noctalia"
         "niri"
         "locale-en-PH"
         "weston"

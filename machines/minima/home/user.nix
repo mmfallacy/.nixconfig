@@ -20,7 +20,6 @@ top: {
         ];
 
         custom.quickenable.hjem.modules = [
-          "noctalia"
           "zsh"
           "git"
           "direnv"
@@ -40,7 +39,7 @@ top: {
           in
           [
             kitty
-            extras.nixnvim.neovim.devMode
+            neovim
             opencode
           ];
 
