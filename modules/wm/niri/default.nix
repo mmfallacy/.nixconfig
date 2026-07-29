@@ -14,11 +14,7 @@
       ];
 
       config = lib.mkIf config.custom.system.niri.enable {
-        nixpkgs.overlays = [ extras.niri.overlays.niri ];
         programs.niri.enable = true;
-        # Use sodiboo's binary cache for niri. This is by default
-        niri-flake.cache.enable = true;
-      };
 
       nix.settings = {
         substituters = [
@@ -29,6 +25,8 @@
           "niri-nix.cachix.org-1:SvFtqpDcf7Sm1SMJdby1/+Y+6f3Yt3/3PMcSTKPJNJ0="
         ];
       };
+      };
+
     };
 
   flake.hjemModules.niri =

@@ -32,15 +32,9 @@ top: {
 
         packages =
           with pkgs;
-          let
-            opencode = extras.nixnvim.opencode.override {
-              xdgConfig = "${directory}/.nixnvim";
-            };
-          in
           [
             kitty
             neovim
-            opencode
           ];
 
         custom.multi-user-git = {
