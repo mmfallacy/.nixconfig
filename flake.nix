@@ -1,9 +1,9 @@
 {
   inputs = {
     # Channel urls are faster and more reliable than github
-    nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
     nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
-    nixpkgs-last.url = "https://channels.nixos.org/nixos-24.11/nixexprs.tar.xz";
+    nixpkgs-last.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
