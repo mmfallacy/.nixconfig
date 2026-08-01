@@ -54,8 +54,8 @@ top: {
             # github:feel-co/hjem/154
             xdg.config.files."weston.ini".text = ''
               [launcher]
-                icon=${icon}
-                path=${lib.getExe pkgs.kitty}
+              icon=${icon}
+              path=${lib.getExe pkgs.kitty}
             '';
           };
     };
