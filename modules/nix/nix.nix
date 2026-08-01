@@ -40,8 +40,6 @@
           "nixpkgs=${inputs.nixpkgs}"
         ];
         nix.channel.enable = false;
-
-        system.rebuild.enableNg = true;
       };
     };
   flake.darwinModules.nix =
