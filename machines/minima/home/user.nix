@@ -16,7 +16,7 @@ top: {
           FLAKE = "${directory}/.nixconfig-dendritic";
         };
         imports = with top.config.flake.hjemConfigs; [
-          minima-niri
+          minima-weston
         ];
 
         custom.quickenable.hjem.modules = [
@@ -26,16 +26,14 @@ top: {
           "starship"
           "fastfetch"
           "hstr"
+          "kitty"
           "any-nix-shell"
           "eza"
         ];
 
-        packages =
-          with pkgs;
-          [
-            kitty
-            neovim
-          ];
+        packages = with pkgs; [
+          extras.nixnvim.neovim
+        ];
 
         custom.multi-user-git = {
           enable = true;

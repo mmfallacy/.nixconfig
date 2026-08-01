@@ -1,4 +1,4 @@
-{
+top: {
   flake.nixosModules.weston =
     {
       config,
@@ -24,9 +24,11 @@
 
   flake.hjemModules.kitty =
     {
+      config,
       osConfig,
       lib,
       pkgs,
+      mylib,
       ...
     }:
     let
@@ -41,16 +43,20 @@
     in
     {
       # Use kitty as default shell
-      config = lib.mkIf osConfig.custom.system.weston.enable {
-        xdg.config.files."weston.ini" = {
-          generator = lib.generators.toINI { };
-          value = {
-            launcher = {
-              icon = icon;
-              path = "${lib.getExe pkgs.kitty}";
-            };
+      config =
+        mylib.mkIfAllTrue
+          [
+            osConfig.custom.system.weston.enable
+            config.custom.home.kitty.enable
+          ]
+          {
+            # Use text for glorious merging until i find a better option to not redeclare generators.
+            # github:feel-co/hjem/154
+            xdg.config.files."weston.ini".text = ''
+              [launcher]
+                icon=${icon}
+                path=${lib.getExe pkgs.kitty}
+            '';
           };
-        };
-      };
     };
 }
