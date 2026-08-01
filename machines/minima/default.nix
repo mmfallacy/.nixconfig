@@ -13,6 +13,7 @@ in
     inherit system;
     specialArgs.extras = mkExtras system;
     specialArgs.inputs = inputs;
+    specialArgs.mylib = config.flake.lib;
     modules = [
       {
         imports = [
@@ -21,6 +22,8 @@ in
         hjem.extraModules = [
           config.flake.hjemModules.all
         ];
+        hjem.specialArgs.mylib = config.flake.lib;
+
       }
       config.flake.nixosMachineModules.${machine}
       { networking.hostName = machine; }
