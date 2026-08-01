@@ -1,6 +1,6 @@
 {
   flake.nixosMachineModules.minima =
-    { lib, ... }:
+    { lib, extras, ... }:
     {
       custom.quickenable.system.modules = [
         "core"
@@ -10,9 +10,7 @@
         "weston"
         "nh"
         "ly"
-      ];
-
-      environment.systemPackages = [
+        "clipsync"
       ];
 
       boot.loader.systemd-boot.enable = true;
