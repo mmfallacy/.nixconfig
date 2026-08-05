@@ -15,6 +15,14 @@
 
       config = lib.mkIf config.custom.system.niri.enable {
         programs.mango.enable = true;
+
+        programs.uwsm.waylandCompositors = {
+          mango = {
+            prettyName = "Mango";
+            comment = "Mango compositor managed by UWSM";
+            binPath = "/run/current-system/sw/bin/mango";
+          };
+        };
       };
 
     };
