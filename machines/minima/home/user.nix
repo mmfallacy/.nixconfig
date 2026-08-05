@@ -32,7 +32,7 @@ top: {
         ];
 
         packages = with pkgs; [
-	  extras.nixnvim.neovim
+          extras.nixnvim.neovim
         ];
 
         custom.multi-user-git = {
