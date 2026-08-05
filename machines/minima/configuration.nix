@@ -6,6 +6,7 @@
         "core"
         "nix"
         "niri"
+        "mango"
         "locale-en-PH"
         "weston"
         "nh"
