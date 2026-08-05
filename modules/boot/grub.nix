@@ -10,7 +10,7 @@
 
       config = lib.mkIf config.custom.system.grub.enable {
         boot.loader.grub.enable = true;
-        boot.loader.grub.device = "/dev/sda";
+        boot.loader.grub.device = lib.mkDefault "/dev/sda";
         boot.loader.grub.useOSProber = true;
 
         assertions = [
