@@ -27,6 +27,11 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
+    mango = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell/main";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -78,7 +83,7 @@
           nixnvim = inputs.nixnvim.packages.${system};
 
           # inherit (inputs.secrets.outputs) secrets;
-          inherit (inputs) niri noctalia;
+          inherit (inputs) niri noctalia mango;
           mypkgs = self.packages.${system};
         };
 
