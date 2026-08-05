@@ -11,11 +11,10 @@
         "nh"
         "ly"
         "clipsync"
+        "grub"
       ];
 
-      boot.loader.systemd-boot.enable = true;
-      boot.loader.efi.canTouchEfiVariables = true;
-      virtualisation.hypervGuest.enable = true;
+      boot.loader.grub.device = "/dev/vda";
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       system.stateVersion = "25.05";
