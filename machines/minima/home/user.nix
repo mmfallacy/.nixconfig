@@ -17,6 +17,7 @@ top: {
         };
         imports = with top.config.flake.hjemConfigs; [
           minima-weston
+          minima-mango
         ];
 
         custom.quickenable.hjem.modules = [
@@ -29,7 +30,6 @@ top: {
           "kitty"
           "any-nix-shell"
           "eza"
-          "mango"
         ];
 
         packages = with pkgs; [
