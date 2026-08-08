@@ -29,6 +29,7 @@ top: {
           "kitty"
           "any-nix-shell"
           "eza"
+          "mango"
         ];
 
         packages = with pkgs; [
