@@ -16,6 +16,8 @@
       config = lib.mkIf config.custom.system.niri.enable {
         programs.mango.enable = true;
 
+        programs.mango.addLoginEntry = false;
+
         programs.uwsm.waylandCompositors = {
           mango = {
             prettyName = "Mango";
@@ -37,6 +39,12 @@
       options.custom.home.mango.enable = lib.mkEnableOption "home.mango";
 
       config = lib.mkIf config.custom.home.mango.enable {
+        xdg.config.files."mango/config.conf".text = ''
+          source=./binds.conf
+          source=./appearance.conf
+          source=./animations.conf
+          source=./layout.conf
+        '';
       };
     };
 }
