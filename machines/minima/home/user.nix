@@ -13,7 +13,7 @@ top: {
 
         environment.sessionVariables = {
           TERMINAL = "kitty";
-          FLAKE = "${directory}/.nixconfig-dendritic";
+          FLAKE = "${directory}/.nixconfig";
         };
         imports = with top.config.flake.hjemConfigs; [
           minima-weston
