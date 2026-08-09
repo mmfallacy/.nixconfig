@@ -18,6 +18,8 @@
 
         programs.mango.addLoginEntry = false;
 
+        programs.uwsm.enable = true;
+
         programs.uwsm.waylandCompositors = {
           mango = {
             prettyName = "Mango";
