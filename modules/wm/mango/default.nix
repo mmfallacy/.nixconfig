@@ -48,7 +48,7 @@
           source=./binds.conf
           source=./appearance.conf
           source=./animations.conf
-          source=./layout.conf
+          source=./layouts.conf
         '';
       };
     };
