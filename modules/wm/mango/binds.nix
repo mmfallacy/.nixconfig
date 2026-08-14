@@ -13,14 +13,16 @@
           bind=SUPER+SHIFT,m,quit
           bind=SUPER,q,killclient
 
-          bind=SUPER,t,spawn,kitty
-          bind=SUPER+SHIFT,t,spawn,$TERMINAL
+          bind=SUPER,t,spawn,$TERMINAL
 
           bind=SUPER,o,focuslast
           bind=ALT,Tab,focusstack,next
           bind=ALT+SHIFT,Tab,focusstack,last
+
           bind=SUPER,h,focusdir,left
           bind=SUPER,l,focusdir,right
+          bind=SUPER,k,focusdir,up
+          bind=SUPER,j,focusdir,down
 
           bind=SUPER+SHIFT,k,exchange_client,up
           bind=SUPER+SHIFT,j,exchange_client,down
@@ -38,9 +40,6 @@
           bind=SUPER,p,togglefloating
           bind=SUPER,f,togglemaximizescreen
           bind=SUPER+SHIFT,f,togglefullscreen
-
-          bind=SUPER,k,viewtoleft
-          bind=SUPER,j,viewtoright
 
           bind=SUPER,1,view,1,0
           bind=SUPER,2,view,2,0
