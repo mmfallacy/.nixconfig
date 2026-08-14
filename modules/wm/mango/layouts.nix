@@ -9,8 +9,8 @@
       config = lib.mkIf config.custom.home.mango.enable {
         # These binds presume that the primary layout is scroller
         xdg.config.files."mango/layouts.conf".text = ''
-          scroller_structs=20
-          scroller_default_proportion=0.8
+          scroller_structs=10
+          scroller_default_proportion=0.5
           scroller_focus_center=0
           scroller_prefer_center=0
           edge_scroller_pointer_focus=1
