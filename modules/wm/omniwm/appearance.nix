@@ -4,21 +4,30 @@
     {
       config = lib.mkIf config.custom.home.omniwm.enable {
         xdg.config.files."omniwm/settings.toml".value = {
-          animationsEnabled = true;
-          appearanceMode = "automatic";
+          general.animationsEnabled = true;
 
-          bordersEnabled = true;
-          borderWidth = 3;
-          borderColorAlpha = 1;
-          borderColorRed = 0.029246121644973755;
-          borderColorGreen = 0.8049586415290833;
-          borderColorBlue = 0.7683688998222351;
+          appearance.mode = "automatic";
 
-          gapSize = 4;
-          outerGapTop = 4;
-          outerGapBottom = 4;
-          outerGapLeft = 4;
-          outerGapRight = 4;
+          borders = {
+            enabled = true;
+            width = 3;
+            color = {
+              alpha = 1;
+              red = 0.029246121644973755;
+              green = 0.8049586415290833;
+              blue = 0.7683688998222351;
+            };
+          };
+
+          gaps = {
+            size = 6;
+            outer = {
+              top = 0;
+              bottom = 0;
+              left = 0;
+              right = 0;
+            };
+          };
         };
       };
     };
