@@ -4,24 +4,27 @@
     {
       config = lib.mkIf config.custom.home.omniwm.enable {
         xdg.config.files."omniwm/settings.toml".value = {
-          # Focus behaviour
-          focusFollowsMouse = false;
-          focusFollowsWindowToMonitor = false;
-          moveMouseToFocusedWindow = false;
+          focus = {
+            followsMouse = false;
+            followsWindowToMonitor = false;
+            moveMouseToFocusedWindow = false;
+          };
 
-          # Mouse warp between monitors
-          mouseWarpAxis = "horizontal";
-          mouseWarpMargin = 1;
-          mouseWarpMonitorOrder = [ ];
+          mouseWarp.margin = 1;
 
-          # Trackpad gestures (workspace swipe)
-          gestureFingerCount = 3;
-          gestureInvertDirection = true;
-
-          # Scroll modifier
-          scrollGestureEnabled = true;
-          scrollModifierKey = "optionShift";
-          scrollSensitivity = 5;
+          gesture = {
+            fingerCount = 3;
+            invertDirection = true;
+            mouseMoveModifierKey = "option";
+            mouseResizeModifierKey = "option";
+            scrollEnabled = true;
+            scrollModifierKey = "optionShift";
+            scrollSensitivity = 5.0;
+            trackpadScrollStyle = "snap";
+            workspaceSwipeAxis = "vertical";
+            workspaceSwipeEnabled = false;
+            workspaceSwipeFingerCount = 3;
+          };
         };
       };
     };
