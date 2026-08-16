@@ -4,23 +4,24 @@
     {
       config = lib.mkIf config.custom.home.omniwm.enable {
         xdg.config.files."omniwm/settings.toml".value = {
-          defaultLayoutType = "niri";
+          general.defaultLayoutType = "niri";
 
           # Niri layout
-          niriAlwaysCenterSingleColumn = true;
-          niriCenterFocusedColumn = "never";
-          niriColumnWidthPresets = [
-            0.3333333333333333
-            0.5
-            0.66
-          ];
-          niriInfiniteLoop = true;
-          niriMaxVisibleColumns = 2;
-          niriMaxWindowsPerColumn = 3;
-          niriSingleWindowAspectRatio = "4:3";
+          niri = {
+            alwaysCenterSingleColumn = true;
+            centerFocusedColumn = "never";
+            containerPrimarySpanPresets = [
+              0.3333333333333333
+              0.5
+              0.66
+            ];
+            infiniteLoop = true;
+            visibleContainerCount = 2;
+            singleWindowFit = "1440x1080";
+          };
 
-          monitorNiriSettings = [ ];
-          monitorOrientationSettings = [ ];
+          monitorNiriOverrides = [ ];
+          monitorOrientationOverrides = [ ];
         };
       };
     };
