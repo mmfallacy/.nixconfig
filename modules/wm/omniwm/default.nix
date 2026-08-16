@@ -42,11 +42,11 @@
           clobber = true;
           generator = toml.generate "settings.toml";
           value = {
-            version = 4;
-            commandPaletteLastMode = "windows";
-            ipcEnabled = false;
-            preventSleepEnabled = false;
-            updateChecksEnabled = true;
+            general = {
+              ipcEnabled = false;
+              preventSleepEnabled = false;
+              updateChecksEnabled = true;
+            };
           };
         };
       };
