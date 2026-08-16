@@ -4,9 +4,9 @@
     {
       config = lib.mkIf config.custom.home.omniwm.enable {
         xdg.config.files."omniwm/settings.toml".value = {
-          hotkeysEnabled = true;
+          general.hotkeysEnabled = true;
 
-          hotkeyBindings = [
+          hotkeys = [
             # Workspace switching
             {
               binding = "Option+1";
@@ -147,15 +147,15 @@
 
             {
               binding = "Option+.";
-              id = "cycleColumnWidthForward";
+              id = "cycleSizeForward";
             }
             {
               binding = "Option+,";
-              id = "cycleColumnWidthBackward";
+              id = "cycleSizeBackward";
             }
             {
               binding = "Option+Shift+F";
-              id = "toggleColumnFullWidth";
+              id = "toggleContainerFullPrimarySpan";
             }
             {
               binding = "Option+Shift+B";
@@ -165,19 +165,19 @@
             # Resize
             {
               binding = "Option+-";
-              id = "resizeGrow.left";
+              id = "setContainerPrimarySpan.decrease10Percent";
             }
             {
               binding = "Option+=";
-              id = "resizeGrow.right";
+              id = "setContainerPrimarySpan.increase10Percent";
             }
             {
               binding = "Option+Shift+-";
-              id = "resizeGrow.up";
+              id = "setWindowSecondarySpan.decrease10Percent";
             }
             {
               binding = "Option+Shift+=";
-              id = "resizeGrow.down";
+              id = "setWindowSecondarySpan.increase10Percent";
             }
 
             # UI / misc
@@ -188,6 +188,10 @@
             {
               binding = "Unassigned";
               id = "toggleWorkspaceLayout";
+            }
+            {
+              binding = "Control+Option+B";
+              id = "toggleWorkspaceBarVisibility";
             }
           ];
         };
