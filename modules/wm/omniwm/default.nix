@@ -33,14 +33,14 @@
       ...
     }:
     let
-      json = pkgs.formats.json { };
+      toml = pkgs.formats.toml { };
     in
     {
       options.custom.home.omniwm.enable = lib.mkEnableOption "home.omniwm";
       config = lib.mkIf config.custom.home.omniwm.enable {
-        xdg.config.files."omniwm/settings.json" = {
+        xdg.config.files."omniwm/settings.toml" = {
           clobber = true;
-          generator = json.generate "settings.json";
+          generator = toml.generate "settings.toml";
           value = {
             version = 4;
             commandPaletteLastMode = "windows";

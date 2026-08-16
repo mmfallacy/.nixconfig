@@ -3,7 +3,7 @@
     { config, lib, ... }:
     {
       config = lib.mkIf config.custom.home.omniwm.enable {
-        xdg.config.files."omniwm/settings.json".value = {
+        xdg.config.files."omniwm/settings.toml".value = {
           # Focus behaviour
           focusFollowsMouse = false;
           focusFollowsWindowToMonitor = false;

@@ -3,7 +3,7 @@
     { config, lib, ... }:
     {
       config = lib.mkIf config.custom.home.omniwm.enable {
-        xdg.config.files."omniwm/settings.json".value = {
+        xdg.config.files."omniwm/settings.toml".value = {
           workspaceConfigurations = [
             {
               id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0";

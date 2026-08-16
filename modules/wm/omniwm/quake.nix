@@ -3,7 +3,7 @@
     { config, lib, ... }:
     {
       config = lib.mkIf config.custom.home.omniwm.enable {
-        xdg.config.files."omniwm/settings.json".value = {
+        xdg.config.files."omniwm/settings.toml".value = {
           quakeTerminalEnabled = false;
           quakeTerminalAnimationDuration = 0.2;
           quakeTerminalAutoHide = false;
