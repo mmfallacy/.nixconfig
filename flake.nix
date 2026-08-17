@@ -6,7 +6,7 @@
     nixpkgs-last.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
