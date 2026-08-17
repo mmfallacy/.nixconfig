@@ -21,6 +21,7 @@ in
         hjem.extraModules = [
           config.flake.hjemModules.all
         ];
+        hjem.specialArgs.mylib = config.flake.lib;
       }
       config.flake.nixosMachineModules.${machine}
       {

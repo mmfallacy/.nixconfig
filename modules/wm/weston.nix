@@ -1,4 +1,16 @@
 top: {
+  flake.darwinModules.weston =
+    { config, lib, ... }:
+    {
+      options.custom.system.weston.enable = lib.mkEnableOption "system.weston";
+
+      config = lib.mkIf config.custom.system.weston.enable {
+        warnings = [
+          "myModule.enable is enabled. This may have unintended consequences."
+        ];
+      };
+    };
+
   flake.nixosModules.weston =
     {
       config,
@@ -29,6 +41,7 @@ top: {
       lib,
       pkgs,
       mylib,
+      system,
       ...
     }:
     let
