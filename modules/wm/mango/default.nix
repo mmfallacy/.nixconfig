@@ -49,6 +49,8 @@
           source=./appearance.conf
           source=./animations.conf
           source=./layouts.conf
+
+          sloppyfocus=0
         '';
       };
     };
