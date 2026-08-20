@@ -9,12 +9,12 @@
       xdg.config.files."mango/outputs.conf".text =
         let
           name = "^Virtual-1$";
-          width = "1920";
-          height = "1080";
-          refresh = "60";
+          width = "2560";
+          height = "1369";
+          refresh = "74.999";
           x = "0";
           y = "0";
-          scale = "0.75";
+          scale = "1";
           vrr = "0";
           rr = "0";
         in
