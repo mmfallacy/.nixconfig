@@ -13,7 +13,9 @@ top: {
 
         packages = [
           extras.nixnvim.neovim
-          extras.nixnvim.opencode
+          (extras.nixnvim.opencode.override {
+            xdgConfig = "/home/mmfallacy/.nixnvim";
+          })
         ];
       };
     };
