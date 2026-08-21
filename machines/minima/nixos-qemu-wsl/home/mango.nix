@@ -17,9 +17,10 @@
           scale = "1";
           vrr = "0";
           rr = "0";
+          custom = "1";
         in
         ''
-          monitorrule=name:${name},width:${width},height:${height},refresh:${refresh},x:${x},y:${y},scale:${scale},vrr:${vrr},rr:${rr}
+          monitorrule=name:${name},width:${width},height:${height},refresh:${refresh},x:${x},y:${y},scale:${scale},vrr:${vrr},rr:${rr},custom:${custom}
         '';
     };
 }
