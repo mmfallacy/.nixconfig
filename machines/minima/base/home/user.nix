@@ -13,6 +13,7 @@ top: {
 
         environment.sessionVariables = {
           TERMINAL = "kitty";
+          EDITOR = "nvim";
           FLAKE = "${directory}/.nixconfig";
         };
         imports = with top.config.flake.hjemConfigs; [
@@ -34,6 +35,7 @@ top: {
 
         packages = with pkgs; [
           extras.nixnvim.neovim
+          extras.nixnvim.opencode
         ];
 
         custom.multi-user-git = {

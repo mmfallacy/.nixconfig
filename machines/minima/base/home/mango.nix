@@ -9,9 +9,10 @@
       xdg.config.files."mango/outputs.conf".text =
         let
           name = "^Virtual-1$";
-          width = "2560";
-          height = "1369";
-          refresh = "74.999";
+          width = "2556";
+          # less taskbar
+          height = "1366";
+          refresh = "60";
           x = "0";
           y = "0";
           scale = "1";
