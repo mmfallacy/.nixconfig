@@ -1,9 +1,7 @@
 {
-  flake.nixosMachineModules.minima =
+  flake.nixosMachineModules.minima-nixos-qemu-wsl =
     {
-      config,
       lib,
-      pkgs,
       modulesPath,
       ...
     }:
@@ -11,6 +9,8 @@
       imports = [
         (modulesPath + "/profiles/qemu-guest.nix")
       ];
+
+      boot.loader.grub.device = "/dev/vda";
 
       boot.initrd.availableKernelModules = [
         "ahci"

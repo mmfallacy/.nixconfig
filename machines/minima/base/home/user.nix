@@ -1,10 +1,7 @@
 top: {
-  flake.nixosMachineModules.minima =
+  flake.nixosMachineModules.minima-base =
     {
       config,
-      pkgs,
-      lib,
-      extras,
       ...
     }:
     {
@@ -16,10 +13,6 @@ top: {
           EDITOR = "nvim";
           FLAKE = "${directory}/.nixconfig";
         };
-        imports = with top.config.flake.hjemConfigs; [
-          minima-weston
-          minima-mango
-        ];
 
         custom.quickenable.hjem.modules = [
           "zsh"
@@ -33,11 +26,6 @@ top: {
           "eza"
         ];
 
-        packages = with pkgs; [
-          extras.nixnvim.neovim
-          extras.nixnvim.opencode
-        ];
-
         custom.multi-user-git = {
           enable = true;
           users = [
@@ -47,18 +35,18 @@ top: {
               signingKey = "~/.ssh/id_ed25519";
               authKey = "~/.ssh/id_ed25519";
             }
-            {
-              username = "mmfallacy-extra";
-              email = "205347616+mmfallacy-extra@users.noreply.github.com";
-              signingKey = "~/.ssh/mmfallacy-extra_ed25519";
-              authKey = "~/.ssh/mmfallacy-extra_ed25519";
-            }
-            {
-              username = "ryuuudev";
-              email = "211357809+ryuuudev@users.noreply.github.com";
-              signingKey = "~/.ssh/ryuuudev_ed25519";
-              authKey = "~/.ssh/ryuuudev_ed25519";
-            }
+            # {
+            #   username = "mmfallacy-extra";
+            #   email = "205347616+mmfallacy-extra@users.noreply.github.com";
+            #   signingKey = "~/.ssh/mmfallacy-extra_ed25519";
+            #   authKey = "~/.ssh/mmfallacy-extra_ed25519";
+            # }
+            # {
+            #   username = "ryuuudev";
+            #   email = "211357809+ryuuudev@users.noreply.github.com";
+            #   signingKey = "~/.ssh/ryuuudev_ed25519";
+            #   authKey = "~/.ssh/ryuuudev_ed25519";
+            # }
           ];
         };
 

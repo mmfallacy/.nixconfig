@@ -1,6 +1,6 @@
 {
-  flake.nixosMachineModules.minima =
-    { lib, extras, ... }:
+  flake.nixosMachineModules.minima-base =
+    { lib, ... }:
     {
       custom.quickenable.system.modules = [
         "core"
@@ -12,14 +12,9 @@
         "nh"
         "ly"
         "clipsync"
-        "grub"
       ];
-
-      boot.loader.grub.device = "/dev/vda";
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       system.stateVersion = "25.05";
-
-      networking.firewall.allowedTCPPorts = [ 7420 ];
     };
 }

@@ -1,5 +1,5 @@
 {
-  flake.hjemConfigs.minima-mango =
+  flake.hjemConfigs.minima-nixos-qemu-wsl =
     { ... }:
     {
       custom.home.mango.enable = true;
@@ -10,7 +10,6 @@
         let
           name = "^Virtual-1$";
           width = "2556";
-          # less taskbar
           height = "1366";
           refresh = "60";
           x = "0";
