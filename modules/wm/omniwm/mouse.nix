@@ -12,7 +12,7 @@
 
           mouseWarp.margin = 1;
 
-          gesture = {
+          gestures = {
             fingerCount = 3;
             invertDirection = true;
             mouseMoveModifierKey = "option";

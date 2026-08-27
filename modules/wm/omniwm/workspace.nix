@@ -84,7 +84,6 @@
             hideEmptyWorkspaces = false;
             showFloatingWindows = false;
             showLabels = false;
-            labelFontSize = 12;
             deduplicateAppIcons = true;
           };
 
