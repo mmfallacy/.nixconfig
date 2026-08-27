@@ -27,6 +27,8 @@
             }
             {
               bundleId = "com.umangsurana.rustcast";
+
+              id = "443C1A29-119D-42EC-99BE-20B2E2025823";
               layout = "float";
             }
           ];

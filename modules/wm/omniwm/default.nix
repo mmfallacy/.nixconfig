@@ -43,7 +43,7 @@
           generator = toml.generate "settings.toml";
           value = {
             general = {
-              ipcEnabled = false;
+              ipcEnabled = true;
               preventSleepEnabled = false;
               updateChecksEnabled = true;
             };
