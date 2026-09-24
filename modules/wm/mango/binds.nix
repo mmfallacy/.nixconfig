@@ -16,11 +16,9 @@
           bind=SUPER,t,spawn,$TERMINAL
 
           bind=SUPER,o,focuslast
-          bind=ALT,Tab,focusstack,next
-          bind=ALT+SHIFT,Tab,focusstack,last
 
-          bind=SUPER,h,focusdir,left
-          bind=SUPER,l,focusdir,right
+          bind=SUPER,h,focusstack,last
+          bind=SUPER,l,focusstack,next
           bind=SUPER,k,focusdir,up
           bind=SUPER,j,focusdir,down
 
