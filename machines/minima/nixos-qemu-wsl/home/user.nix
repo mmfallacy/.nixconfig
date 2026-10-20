@@ -12,7 +12,7 @@ top: {
         ];
 
         packages = [
-          extras.nixnvim.neovim
+          extras.nixnvim.neovim.devMode
           (extras.nixnvim.opencode.override {
             xdgConfig = "/home/mmfallacy/.nixnvim";
           })
