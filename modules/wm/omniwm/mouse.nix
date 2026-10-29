@@ -8,6 +8,7 @@
             followsMouse = false;
             followsWindowToMonitor = false;
             moveMouseToFocusedWindow = false;
+            raiseOnMouseFocus = false;
           };
 
           mouseWarp.margin = 1;

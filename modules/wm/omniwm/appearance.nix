@@ -27,6 +27,7 @@
               left = 0;
               right = 0;
             };
+            fullscreenUsesOuterGaps = false;
           };
         };
       };
