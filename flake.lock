@@ -453,6 +453,22 @@
         "type": "github"
       }
     },
+    "openwrt-nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1788196604,
+        "narHash": "sha256-kXh7XIBukm/XDe4SbUBPbbT8GFF4ItyL25YEZdU6mo4=",
+        "owner": "lonerOrz",
+        "repo": "openwrt-nix",
+        "rev": "7d0cc8db7be221ffdfbbe9ec31a64f227badf30b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lonerOrz",
+        "repo": "openwrt-nix",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -467,7 +483,8 @@
         "nixpkgs-last": "nixpkgs-last_2",
         "nixpkgs-master": "nixpkgs-master_2",
         "nixpkgs-unstable": "nixpkgs-unstable_2",
-        "noctalia": "noctalia"
+        "noctalia": "noctalia",
+        "openwrt-nix": "openwrt-nix"
       }
     },
     "scenefx": {

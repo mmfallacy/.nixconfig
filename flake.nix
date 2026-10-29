@@ -44,6 +44,10 @@
 
     flakeup.url = "github:mmfallacy/flakeup/main";
     nixnvim.url = "github:mmfallacy/.nixnvim/main";
+    openwrt-nix = {
+      url = "github:lonerOrz/openwrt-nix";
+      flake = false;
+    };
 
   };
   outputs =
@@ -83,7 +87,7 @@
           nixnvim = inputs.nixnvim.packages.${system};
 
           # inherit (inputs.secrets.outputs) secrets;
-          inherit (inputs) niri noctalia mango;
+          inherit (inputs) niri noctalia mango openwrt-nix;
           mypkgs = self.packages.${system};
         };
 
