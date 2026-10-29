@@ -4,7 +4,11 @@ let
 in
 {
   perSystem =
-    { pkgs, system, ... }:
+    {
+      pkgs,
+      system,
+      ...
+    }:
     let
       extras = mkExtras system;
       nuci = pkgs.callPackage (extras.openwrt-nix + "/nix") { };
