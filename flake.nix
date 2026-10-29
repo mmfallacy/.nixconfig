@@ -87,7 +87,12 @@
           nixnvim = inputs.nixnvim.packages.${system};
 
           # inherit (inputs.secrets.outputs) secrets;
-          inherit (inputs) niri noctalia mango openwrt-nix;
+          inherit (inputs)
+            niri
+            noctalia
+            mango
+            openwrt-nix
+            ;
           mypkgs = self.packages.${system};
         };
 
