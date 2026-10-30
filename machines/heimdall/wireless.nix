@@ -32,6 +32,7 @@ in
           in
           [
             "uci set wireless.${radio}.disabled='0'"
+            "uci set wireless.${radio}.country='PH'"
             "uci set wireless.${iface}=wifi-iface"
             "uci set wireless.${iface}.wmm='1'"
             "uci set wireless.${iface}.device='${radio}'"
