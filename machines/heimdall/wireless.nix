@@ -33,7 +33,9 @@ in
           [
             "uci set wireless.${radio}.disabled='0'"
             "uci set wireless.${iface}=wifi-iface"
+            "uci set wireless.${iface}.wmm='1'"
             "uci set wireless.${iface}.device='${radio}'"
+            "uci set wireless.${iface}.disabled='0'"
             "uci set wireless.${iface}.network='lan'"
             "uci set wireless.${iface}.mode='ap'"
             "uci set wireless.${iface}.ssid='${ssid}'"
@@ -47,6 +49,8 @@ in
           "radio0"
           "radio1"
         ]
-      ++ [ "uci commit wireless" ];
+      ++ [
+        "uci commit wireless"
+      ];
   };
 }
