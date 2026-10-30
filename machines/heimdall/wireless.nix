@@ -14,6 +14,7 @@ in
     uci.settings.usteer.usteer = [
       {
         _type = "usteer";
+        network = "lan";
         roam_scan_snr = -65;
         signal_diff_threshold = 8;
         band_steering_interval = 120000;
