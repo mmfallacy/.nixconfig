@@ -22,5 +22,16 @@
         ''
           monitorrule=name:${name},width:${width},height:${height},refresh:${refresh},x:${x},y:${y},scale:${scale},vrr:${vrr},rr:${rr},custom:${custom}
         '';
+      xdg.config.files."mango/binds.conf".text = ''
+        # Added for minima-nixos-qemu-wsl
+        bind=SUPER,d,spawn,unfocus
+      '';
+
+      custom.home.unfocus = {
+        enable = true;
+        username = "mmfallacy";
+        # WSL gateway
+        ip = "192.168.122.1";
+      };
     };
 }
