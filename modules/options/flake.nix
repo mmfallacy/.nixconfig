@@ -43,6 +43,12 @@ in
       description = "Hjem configs are machine-specific hjem overrides";
     };
 
+    nuciConfigs = mkOption {
+      type = attrsOf deferredModule;
+      default = { };
+      description = "Nuci configs are modules that dictate an openwrt setup via nuci/openwrt-nix";
+    };
+
     lib = mkOption {
       type = lazyAttrsOf raw;
       default = { };
