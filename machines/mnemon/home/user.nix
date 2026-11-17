@@ -2,6 +2,7 @@ top: {
   flake.nixosMachineModules.mnemon-base =
     {
       config,
+      extras,
       ...
     }:
     {
@@ -41,6 +42,8 @@ top: {
             }
           ];
         };
+
+        packages = [ extras.nixnvim.neovim ];
 
       };
 
