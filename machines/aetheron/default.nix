@@ -1,34 +1,11 @@
+{ config, ... }:
 {
-  config,
-  inputs,
-  mkExtras,
-  ...
-}:
-let
-  machine = "aetheron";
-  system = "aarch64-darwin";
-in
-{
-  flake.darwinConfigurations.${machine} = inputs.nix-darwin.lib.darwinSystem {
-    inherit system;
-    specialArgs.extras = mkExtras system;
-    specialArgs.inputs = inputs;
+  flake.darwinConfigurations.aetheron = config.flake.lib.mkSystem {
+    machine = "aetheron";
+    system = "aarch64-darwin";
+    platform = "darwin";
     modules = [
-      {
-        imports = [
-          config.flake.darwinModules.all
-        ];
-        hjem.extraModules = [
-          config.flake.hjemModules.all
-        ];
-        hjem.specialArgs.mylib = config.flake.lib;
-      }
-      config.flake.nixosMachineModules.${machine}
-      {
-        networking.hostName = machine;
-        networking.computerName = machine;
-      }
-      inputs.hjem.darwinModules.default
+      config.flake.nixosMachineModules.aetheron
     ];
   };
 }
