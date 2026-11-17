@@ -5,8 +5,8 @@
       custom.quickenable.system.modules = [
         "core"
         "nix"
-        "niri"
         "mango"
+	"systemd-boot"
         "locale-en-PH"
         "weston"
         "nh"
