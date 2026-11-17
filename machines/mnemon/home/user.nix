@@ -33,24 +33,6 @@ top: {
         custom.multi-user-git = {
           enable = true;
           users = [
-            {
-              username = "mmfallacy";
-              email = "31348500+mmfallacy@users.noreply.github.com";
-              signingKey = "~/.ssh/id_ed25519";
-              authKey = "~/.ssh/id_ed25519";
-            }
-            # {
-            #   username = "mmfallacy-extra";
-            #   email = "205347616+mmfallacy-extra@users.noreply.github.com";
-            #   signingKey = "~/.ssh/mmfallacy-extra_ed25519";
-            #   authKey = "~/.ssh/mmfallacy-extra_ed25519";
-            # }
-            # {
-            #   username = "ryuuudev";
-            #   email = "211357809+ryuuudev@users.noreply.github.com";
-            #   signingKey = "~/.ssh/ryuuudev_ed25519";
-            #   authKey = "~/.ssh/ryuuudev_ed25519";
-            # }
           ];
         };
 
