@@ -33,6 +33,12 @@ top: {
         custom.multi-user-git = {
           enable = true;
           users = [
+            {
+              username = "mmfallacy";
+              email = "noreply@mnstrl.xyz";
+              signingKey = "~/.ssh/id_ed25519";
+              authKey = "~/.ssh/id_ed25519";
+            }
           ];
         };
 
