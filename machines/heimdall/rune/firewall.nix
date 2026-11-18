@@ -2,6 +2,8 @@
   flake.nuciConfigs.heimdall = { lib, ... }: {
     uci.rawUci =
       let
+        dhcpEntries = import ./dhcp/_entries.nix;
+
         forwarding = [
           "uci set firewall.rune_wan=forwarding"
           "uci set firewall.rune_wan.src='rune'"
@@ -26,6 +28,27 @@
           "uci set firewall.rune_dhcp.family='ipv4'"
           "uci set firewall.rune_dhcp.target='ACCEPT'"
         ];
+
+        # No destination zone: this grants access to the router, not forwarding.
+        allowMnemonManagement =
+          let
+            mnemon = lib.findFirst (entry: entry.name == "mnemon") null dhcpEntries;
+          in
+          if mnemon == null then
+            lib.warn "Rune: mnemon is missing from dhcpEntries; skipping router management access" [ ]
+          else
+            [
+              "uci set firewall.rune_mnemon_management=rule"
+              "uci set firewall.rune_mnemon_management.name='Allow-Mnemon-Management-Rune'"
+              "uci set firewall.rune_mnemon_management.src='rune'"
+              "uci set firewall.rune_mnemon_management.src_ip='${mnemon.ip}'"
+              "uci set firewall.rune_mnemon_management.src_mac='${mnemon.mac}'"
+              "uci set firewall.rune_mnemon_management.dest_ip='192.168.20.1'"
+              "uci set firewall.rune_mnemon_management.dest_port='22 80 443'"
+              "uci set firewall.rune_mnemon_management.proto='tcp'"
+              "uci set firewall.rune_mnemon_management.family='ipv4'"
+              "uci set firewall.rune_mnemon_management.target='ACCEPT'"
+            ];
       in
       lib.flatten [
         "uci set firewall.rune=zone"
@@ -38,6 +61,7 @@
         forwarding
         allowDNS
         allowDHCP
+        allowMnemonManagement
 
         "uci commit firewall"
       ];
