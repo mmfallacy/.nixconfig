@@ -6,6 +6,7 @@
     platform = "nixos";
     modules = [
       config.flake.nixosMachineModules.mnemon-base
+      config.flake.nixosMachineModules.mnemon-hypervisor
     ];
   };
 }
