@@ -29,8 +29,27 @@
           "uci set firewall.rune_dhcp.target='ACCEPT'"
         ];
 
-        # No destination zone: this grants access to the router, not forwarding.
-        allowMnemonManagement =
+        # Aegis and the main wired LAN share the lan firewall zone.
+        allowAegisSSHToMnemon =
+          let
+            mnemon = lib.findFirst (entry: entry.name == "mnemon") null dhcpEntries;
+          in
+          if mnemon == null then
+            lib.warn "Rune: mnemon is missing from dhcpEntries; skipping SSH access from Aegis" [ ]
+          else
+            [
+              "uci set firewall.aegis_mnemon_ssh=rule"
+              "uci set firewall.aegis_mnemon_ssh.name='Allow-Aegis-SSH-To-Mnemon'"
+              "uci set firewall.aegis_mnemon_ssh.src='lan'"
+              "uci set firewall.aegis_mnemon_ssh.dest='rune'"
+              "uci set firewall.aegis_mnemon_ssh.dest_ip='${mnemon.ip}'"
+              "uci set firewall.aegis_mnemon_ssh.dest_port='22'"
+              "uci set firewall.aegis_mnemon_ssh.proto='tcp'"
+              "uci set firewall.aegis_mnemon_ssh.family='ipv4'"
+              "uci set firewall.aegis_mnemon_ssh.target='ACCEPT'"
+            ];
+
+        allowMnemonRouterManagement =
           let
             mnemon = lib.findFirst (entry: entry.name == "mnemon") null dhcpEntries;
           in
@@ -61,7 +80,8 @@
         forwarding
         allowDNS
         allowDHCP
-        allowMnemonManagement
+        allowAegisSSHToMnemon
+        allowMnemonRouterManagement
 
         "uci commit firewall"
       ];
