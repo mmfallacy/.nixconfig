@@ -11,6 +11,7 @@
 
     uci.sshKeys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPUXKxoErHfK/z5UDw/rOwadz0DAgQzqVnsmSc3rARkd 31348500+mmfallacy@users.noreply.github.com"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOC03RehgKxsKzFCfNA/QI66HOa62KM1bbyEEwxr/5jt mmfallacy@minima"
     ];
   };
 }
