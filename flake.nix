@@ -54,12 +54,18 @@
     inputs@{ self, flake-parts, ... }:
     let
       inherit (inputs.nixpkgs) lib;
-      shouldImport = file: file.hasExt "nix" && !(lib.hasPrefix "_" file.name);
+      isNonPrefixed = file: file.hasExt "nix" && !(lib.hasPrefix "_" file.name);
+      isAnyPathPrefixed =
+        root: path:
+        lib.all (component: !(lib.hasPrefix "_" component)) (
+          lib.splitString "/" (lib.removePrefix "${toString root}/" (toString path))
+        );
       import-tree =
         path:
         lib.pipe path [
-          (lib.fileset.fileFilter shouldImport)
+          (lib.fileset.fileFilter isNonPrefixed)
           (lib.fileset.toList)
+          (builtins.filter (isAnyPathPrefixed path))
         ];
     in
     flake-parts.lib.mkFlake { inherit inputs; } {
