@@ -55,6 +55,9 @@ top: {
           "wheel"
         ];
         useDefaultShell = true;
+        openssh.authorizedKeys.keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOC03RehgKxsKzFCfNA/QI66HOa62KM1bbyEEwxr/5jt mmfallacy@minima"
+        ];
       };
     };
 
